@@ -1,0 +1,18 @@
+{
+  "name": "cs554_lab1",
+  "version": "1.0.0",
+  "description": "Lab 1 fro CS-554",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harish Indalkar",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "express": "^4.16.4",
+    "mongodb": "^3.1.13",
+    "uuid": "^3.3.2"
+  }
+}
