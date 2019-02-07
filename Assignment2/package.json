@@ -1,0 +1,17 @@
+{
+  "name": "assignment2",
+  "version": "1.0.0",
+  "description": "CS-554 Assignment 2 ",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Harish Indalkar 10441759",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^4.2.1",
+    "express": "^4.16.4",
+    "path": "^0.12.7"
+  }
+}

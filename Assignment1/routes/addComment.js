@@ -11,6 +11,8 @@ try {
         let taskId = req.params.id;
         // console.log(taskId);
         let comment = req.body;
+        // console.log("comment"+JSON.stringify(req.body) );
+        // console.log("comment"+comment.comments[0] );
 
         let status;
         let error = false;
