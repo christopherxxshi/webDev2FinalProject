@@ -19,14 +19,15 @@ const userSchema =  mongoose.Schema({
     _id:{type : String, 'require':true},
     username :{type:String, 'require':true},
     imagePath: String,
-    languages: [String]
+    languages: {type:[String], default: []}
 });
 
 const questionSchema = new mongoose.Schema({
     _id:{type : String, 'require':true},
     title : {type:String, 'require':true},
-    desc : {type: Number, 'require':true},
-    language: {String, 'require':true},
+    desc : {type: String, 'require':true},
+    language: {type:String, 'require':true},
+    vote:{type:Number, 'require':true},
     comments: [{
         _id : {type:String, require:true},
         userId: {type:String, require:true},
