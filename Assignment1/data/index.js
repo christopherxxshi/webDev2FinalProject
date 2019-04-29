@@ -136,8 +136,9 @@ module.exports = {
                 }
                 else {
                     const newId = insertInfo.insertedId;
-                    // console.log("newId:" + newId);
-                    const task = await this.getTask(newId);
+                    // console.log("newId:" + insertInfo);
+                    // console.log("newId:" + typeof newId);
+                    const task = await this.getTask(data.id);
                     return task;
                     // return data;
                 }
@@ -220,7 +221,7 @@ module.exports = {
 
                 // let task = await this.getTask(id);
                 // console.log("1"); count++;
-                console.log(count);
+                // console.log(count);
                 msgObj[`message${count}`] = `Comment Details is not provided to add to task '${task.title}'.`;
 
             }
@@ -254,7 +255,7 @@ module.exports = {
             }
             // console.log("1");
             if (!this.isEmpty(msgObj)) {  //https://coderwall.com/p/_g3x9q/how-to-check-if-javascript-object-is-empty
-                console.log(msgObj);
+                // console.log(msgObj);
                 return msgObj;
             }
             else {
@@ -362,14 +363,20 @@ module.exports = {
                     else {
 
                         // console.log("commentExist"+JSON.stringify(commentExist) );
-                        console.log("commentId" + commentId);
+                        // console.log("commentId" + commentId);
 
                         // let del = await mongoCollection.findOneAndUpdate({ _id: confirmTaskId._id }, { $pull: { comments: { "_id": commentId } } });
                         let del = await mongoCollection.findOneAndUpdate({ id: confirmTaskId.id }, { $pull: { comments: { "id": commentId } } });
 
-                        if (del == null) return { message: "Could not delete Comment." };
+                        let delTask;
+
+                        if (del == null) return { message: "Could not delete Comment." }
+                        else{
+                             delTask = await this.getTask(confirmTaskId.id);
+                        }
                         // console.log(del);
-                        return del;
+                        // return del;
+                        return delTask;
                     }
 
                 }
@@ -650,12 +657,18 @@ module.exports = {
             // console.log(skipNumber);
             // console.log(takeNumber);
 
+            // const allTask = await mongoCollection.find({}).toArray();
+
+            // const allTaskCount = allTask.length;
+
+            // allTaskCount = allTaskCount - skipNumber; 
+
             if (!skipNumber) {
                 skipNumber = 0;
             }
 
             if (!takeNumber) {
-                console.log(takeNumber);
+                // console.log(takeNumber);
                 takeNumber = 20;
             }
 

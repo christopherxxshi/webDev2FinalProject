@@ -7,19 +7,29 @@ try {
 
     const constructMethod = app => {
 
-        app.use("/", async (req, res) => {
+        app.get("/", async (req, res) => {
+
+            // console.log("hgvg");
 
             let filePath = await path.join(__dirname, "../views/main.html");
 
-            res.sendFile(filePath);
+            res.status(200).sendFile(filePath);
 
         });
 
-        app.use("*", (req, res) => {
+        app.get("*", async (req, res) => {
 
-            res.status(404).json({message:"Page not found"});
+            // console.log("argtg");
+
+            // res.status(404).json({message:"Page not found"});
+
+            let filePath = await path.join(__dirname, "../views/pageNotFound.html");
+
+            res.status(404).sendFile(filePath);
 
         });
+
+        
 
     };
 

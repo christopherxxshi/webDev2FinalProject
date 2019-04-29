@@ -10,7 +10,7 @@ try{
         let task = req.body;
         let taskId = req.params.id;
 
-        if(task.length){
+        if(!data.isEmpty(task)){
             let status;
             let error = false;
     

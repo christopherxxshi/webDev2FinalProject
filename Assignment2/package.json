@@ -10,8 +10,20 @@
   "author": "Harish Indalkar 10441759",
   "license": "ISC",
   "dependencies": {
-    "bootstrap": "^4.2.1",
+    "bootstrap": "^4.3.1",
     "express": "^4.16.4",
-    "path": "^0.12.7"
+    "gulp-imagemin": "^5.0.3",
+    "jquery": "^3.3.1",
+    "path": "^0.12.7",
+    "popper": "^1.0.1",
+    "popper.js": "^1.14.7"
+  },
+  "devDependencies": {
+    "gulp": "^4.0.0",
+    "gulp-autoprefixer": "^6.0.0",
+    "gulp-clean-css": "^4.0.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-rename": "^1.4.0",
+    "gulp-sass": "^4.0.2"
   }
 }

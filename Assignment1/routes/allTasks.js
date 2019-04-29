@@ -6,13 +6,13 @@ try {
     router.get("/", async (req, res) => {
 
         
-        console.log(req.query);
+        // console.log(req.query);
 
         let skip = req.query.skip;
         let take = req.query.take;
 
         // console.log(typeof skip);
-        console.log("Number(skip)"+ skip );
+        // console.log("Number(skip)"+ skip );
         // console.log(typeof take);
         // console.log(  "Number(take)"+parseInt(take));
         // console.log( Number("gfchgjhb") );
@@ -28,8 +28,8 @@ try {
         else if (isNaN(takeNum) && take != undefined) {
             res.status(400).json({ "message": "Value provided to Take is not a Number." });
         }
-        else if(takeNum > 100 || takeNum < 20){
-            res.status(400).json({ "message": "Value provided to Take must be between 20 and 100." })
+        else if(takeNum > 100){
+            res.status(400).json({ "message": "Value provided to Take must be less than 100." })
         }
         else {
             // console.log(req.query.skip);
@@ -38,6 +38,13 @@ try {
             // console.log("hi");
 
             let getDetails = await data.getAllTask(skip,take);
+
+            // getDetails.length = 0;
+            // console.log(getDetails.length);
+            if(getDetails.length == 0){
+                getDetails = {};
+                getDetails["message"] = "Database is Empty";
+            }
             // console.log(getDetails.length);
 
             // console.log(getDetails);

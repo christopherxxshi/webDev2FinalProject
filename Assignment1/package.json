@@ -7,7 +7,7 @@
     "start": "node app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "Harish Indalkar",
+  "author": "Harish Indalkar 10441759",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.18.3",

@@ -1,6 +1,6 @@
 {
     "mongoConfig" : {
         "serverUrl" : "mongodb://localhost:27017/",
-        "database" : "tasksDB"
+        "database" : "Indalkar-Harish-CS554-Lab1"
     }
 }
