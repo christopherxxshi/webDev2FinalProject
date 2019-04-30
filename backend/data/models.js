@@ -24,6 +24,7 @@ const userSchema =  mongoose.Schema({
 
 const questionSchema = new mongoose.Schema({
     _id:{type : String, 'require':true},
+    ownerId: {type:String, 'require':true},
     title : {type:String, 'require':true},
     desc : {type: String, 'require':true},
     language: {type:String, 'require':true},

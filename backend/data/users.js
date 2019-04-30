@@ -5,19 +5,19 @@ const userModel = models.getModel('User');
 
 module.exports.getUserById = async function (id){
     if(typeof id !== 'string'){
-        return {success: false, desc: "Invalid params"}
+        throw "Invalid params";
     }
     let result = await userModel.findOne({_id:id});
     if(result){
-        return {success : true, data: result};
+        return result;
     }else{
-        return {success : false, data: `Cannot find ${id}`};
+        throw `Cannot find ${id}`;
     }
 };
 
 module.exports.addUser =  async function(data){
     if(typeof data === "undefined" || typeof data == null || typeof data.username === "undefined"){
-        return { success : false, desc: "invalid params"}
+        throw "invalid params";
     }
     if(typeof data.languages === "undefined"){
         data.languages = []
@@ -30,21 +30,21 @@ module.exports.addUser =  async function(data){
     });
     try{
         await newUser.save();
-        return {success: true, data: newUser};
+        return newUser;
     }catch (e) {
-        return {success: false, desc: e};
+        throw e;
     }
 };
 
 module.exports.updateUserById = async function (id, data){
     if(typeof id !== 'string' || typeof data === "undefined" ){
-        return { success : false, desc: "invalid params"}
+        throw  "invalid params";
     }
 
     let result = await userModel.updateOne({'_id':id},{$set:data});
     if(result.n > 0){
-        return { success : true , data : await this.getUserById(id)};
+        return await this.getUserById(id);
     }else{
-        return { success : false, desc: `can't find ${id} in database or invalid params`};
+        throw `can't find ${id} in database or invalid params`;
     }
 };
