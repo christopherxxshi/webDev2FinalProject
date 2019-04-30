@@ -8,4 +8,5 @@ module.exports = [
     "C++",
     "C#",
     "C",
+    "Others"
 ];
