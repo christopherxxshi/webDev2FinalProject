@@ -54,7 +54,7 @@ module.exports.getAllQuestions = async function () {
         }
         for( let i = 0; i < result.length; i++){
             if(!techTypes.includes(result[i].language)){
-                data['others'].push(result[i])
+                data['Others'].push(result[i])
             }else{
                 data[result[i].language].push(result[i]);
             }
