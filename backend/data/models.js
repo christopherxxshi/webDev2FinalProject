@@ -1,9 +1,22 @@
 "use strict";
-
+const bluebird  =require('bluebird');
+const redis = require('redis');
 const mongoose = require("mongoose");
 const config = require("./config");
 
-const DB_URL = config.serverUrl+config.database;
+bluebird.promisifyAll(redis.RedisClient.prototype);
+bluebird.promisifyAll(redis.Multi.prototype);
+
+const DB_URL = config.mongoServerUrl+config.mongoDatabase;
+const redisClient = redis.createClient(config.redisPort,config.redisUrl);
+
+redisClient.on('connect', ()=>{
+    console.log(`connected to redis: ${config.redisUrl}/${config.redisPort}` );
+});
+
+redisClient.on('error', (err)=>{
+    console.log('cannot connect to Redis! ' + err);
+});
 
 mongoose.connect(DB_URL, {
     useNewUrlParser: true
@@ -43,5 +56,6 @@ mongoose.model('Question', questionSchema);
 module.exports = {
     getModel:function(name){
         return mongoose.model(name)
-    }
+    },
+    redisClient
 };

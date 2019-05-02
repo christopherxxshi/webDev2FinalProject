@@ -1,5 +1,7 @@
 "use strict";
 module.exports = {
-    serverUrl: "mongodb://localhost:27017/",
-    database: "tech_questions"
-}
+    mongoServerUrl: "mongodb://localhost:27017/",
+    mongoDatabase: "tech_questions",
+    redisPort: 6379,
+    redisUrl: "127.0.0.1"
+};
