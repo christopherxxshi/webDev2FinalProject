@@ -19,6 +19,7 @@ async function createUser(num) {
         }
     }
 }
+
 async function test(){
     try{
         let result = await users.updateUserById("3f8ac6c5-89c5-44fb-bb2f-a541ad91962f",{languages: ['Java']});
