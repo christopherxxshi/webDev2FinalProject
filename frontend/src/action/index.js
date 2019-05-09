@@ -1,35 +1,45 @@
-import axios from "axios";
+import data from "../api";
 
-export const signIn = (user) =>{
+export const signIn = (user) => {
 
-return async (dispatch) =>{
+    return async (dispatch) => {
 
-    // console.log(user);
+        // console.log(user);
 
-    if(user.email){
-        user.emailVerified = true;
+        if (user.email) {
+            user.emailVerified = true;
+        }
+
+        user["notExist"] = true;
+
+        dispatch({ type: "SIGN_IN", payload: user });
+
     }
-
-    user["notExist"] = true; 
-
-    dispatch({ type: "SIGN_IN", payload: user });
-
-} 
 
 }
 
-export const signOut = () =>{
-    return async (dispatch) =>{
+export const signOut = () => {
+    return async (dispatch) => {
 
         console.log("signOut");
         var signOutUser = {
-            name : "",
-            email:"",
-            emailVerified : "",
-            imgUrl : ""
+            name: "",
+            email: "",
+            emailVerified: "",
+            imgUrl: ""
         };
 
-        dispatch({type : "SIGN_OUT",payload:signOutUser});
+        dispatch({ type: "SIGN_OUT", payload: signOutUser });
+
+    }
+}
+
+export const displayQuestions = () => {
+    return async (dispatch) => {
+
+        let questions = data.get("/");
+
+        dispatch({ type: "DISPLAY_QUESTIONS", payload: questions });
 
     }
 }
