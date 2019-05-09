@@ -38,7 +38,7 @@ async function main() {
         await users.addUser(seedUsers[i]);
     }
 
-
+    //POSTING QUESTIONS
     var seedQuestions = [
         {
             title: "What is the use of strict in ES7?",
@@ -67,15 +67,11 @@ async function main() {
         }
     ]
 
-
     questions.addQuestion("R4y9Jry1oPdDycBVnBokZZUt9Zo1", seedQuestions[0]);
     questions.addQuestion("qo3rbPgWfSYR8ClzpdrtcH6jKIi2", seedQuestions[1]);
     questions.addQuestion("iISMcVjw2zO0YgKssnNeUTenehk1", seedQuestions[2]);
     questions.addQuestion("R4y9Jry1oPdDycBVnBokZZUt9Zo1", seedQuestions[3]);
     questions.addQuestion("iISMcVjw2zO0YgKssnNeUTenehk1", seedQuestions[4]);
-
-
-
 
 }
 
