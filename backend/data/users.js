@@ -27,9 +27,9 @@ module.exports.getUserById = async function (id){
     }catch (e) {
         throw e;
     }
-
-
 };
+
+
 
 module.exports.addUser =  async function(data){
     if(typeof data === "undefined" || typeof data == null || typeof data.username === "undefined"){
