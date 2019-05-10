@@ -12,6 +12,7 @@ import Footer from "./components/Footer";
 import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
+import DisplayQuestions from "./components/DisplayQuestions";
 
 // function App(props) {
 class App extends React.Component {
