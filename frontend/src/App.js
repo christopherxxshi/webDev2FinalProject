@@ -11,6 +11,7 @@ import Footer from "./components/Footer";
 // import question from "./images/question.png"
 
 import AskQuestion from "./components/AskQuestion";
+import DisplayQuestions from "./components/DisplayQuestions";
 
 function App() {
   return (
