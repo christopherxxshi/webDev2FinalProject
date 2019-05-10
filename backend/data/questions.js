@@ -21,9 +21,11 @@ async function deleteCacheData(id){
 
 }
 module.exports.addQuestion = async function (ownerId, questionData) {
+    console.log(questionData);
     if(ownerId === undefined || questionData.title === undefined || questionData.desc === undefined){
         throw "Invalid params";
     }
+    
     let newQuestion = await new questionModel({
         _id: uuid.v4(),
         ownerId: ownerId,
@@ -33,6 +35,7 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         vote: 0,
         comments:[]
     });
+    console.log(newQuestion);
     await newQuestion.save();
     return newQuestion;
 };

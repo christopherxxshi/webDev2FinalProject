@@ -1,4 +1,5 @@
 import data from "../api";
+// import store from "../"
 
 export const signIn = (user) => {
 
@@ -9,6 +10,8 @@ export const signIn = (user) => {
         if (user.email) {
             user.emailVerified = true;
         }
+
+        console.log(user);
 
         user["notExist"] = true;
 
@@ -26,7 +29,8 @@ export const signOut = () => {
             name: "",
             email: "",
             emailVerified: "",
-            imgUrl: ""
+            imgUrl: "",
+            userId : ""
         };
 
         dispatch({ type: "SIGN_OUT", payload: signOutUser });
@@ -37,29 +41,51 @@ export const signOut = () => {
 export const displayQuestions = () => {
     return async (dispatch) => {
 
-        console.log("display questions");
+        // console.log("display questions");
 
         let getQuestions = await data.get("/api/question");
 
         let allQuestions = [];
 
-        for(let prop in getQuestions.data){
+        for (let prop in getQuestions.data) {
             // allQuestions.push(getQuestions.data[prop]);
-            for(let i =0;i<getQuestions.data[prop].length;i++){
+            for (let i = 0; i < getQuestions.data[prop].length; i++) {
                 allQuestions.push(getQuestions.data[prop][i]);
             }
-            console.log(allQuestions);
+            // console.log(allQuestions);
         }
 
         // console.log(allQuestions);
         // let allQuestions = JSON.parser(JSON.stringify(getQuestions) );
         // console.log(allQuestions);
-        
-       
-        
-        
+
+
+
+
 
         dispatch({ type: "DISPLAY_QUESTIONS", payload: allQuestions });
+
+    }
+}
+
+export const askQuestions = (authUser, questionDetails) => {
+    return async (dispatch) => {
+
+        // console.log(questionDetails);
+        // console.log(authUser);
+
+        let userId = authUser.userId
+
+        let insertQuestion = {
+            title : questionDetails.title,
+            desc : questionDetails.description
+        }
+
+        let addQuestion = await data.post(`/api/question/user/${userId}`,{
+            title : questionDetails.title,
+            desc : questionDetails.description
+        });
+        console.log(addQuestion);
 
     }
 }

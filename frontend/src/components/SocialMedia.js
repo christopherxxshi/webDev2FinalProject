@@ -43,6 +43,7 @@ class SocialMedia extends React.Component {
             userDetails["name"] = result.user.displayName;
             userDetails["email"] = result.user.email;
             userDetails["imgUrl"] = result.user.photoURL;
+            userDetails["userId"] = result.user.uid;
 
        
             await this.props.signIn(userDetails);

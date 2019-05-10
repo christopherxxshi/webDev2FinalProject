@@ -7,7 +7,6 @@ import * as serviceWorker from './serviceWorker';
 
 import { Provider } from 'react-redux';
 import { createStore, applyMiddleware, compose } from "redux";
-// import reducers from './reducers';
 import reduxThunk from "redux-thunk";
 
 
@@ -25,7 +24,7 @@ const persistedReducer = persistReducer(persistConfig, rootReducer);
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 // const store = createStore(reducers,composeEnhancers(applyMiddleware(reduxThunk)));
 const store = createStore(persistedReducer, composeEnhancers(applyMiddleware(reduxThunk)));
-
+// import { store, persistor } from "./store";
 
 ReactDOM.render(
     <Provider store={store}>

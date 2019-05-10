@@ -30,7 +30,8 @@ class App extends React.Component {
         <Header />
         {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
         <Switch>
-          <Route component={DisplayPosts}></Route>
+          <Route path="/" exact component={DisplayPosts}></Route>
+          <Route path="/askQuestion" component={DisplayQuestions}></Route>
         </Switch>
       </Router>
 

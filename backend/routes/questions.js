@@ -35,6 +35,7 @@ router.get('/', async (req, res) =>{
 });
 
 router.post('/user/:userId', async (req, res)=>{
+    console.log(req.params.userId);
     let userId = req.params.userId;
     let data = req.body;
     try{
