@@ -13,13 +13,21 @@ import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
 
-function App() {
+// function App(props) {
+class App extends React.Component {
+
+  componentDidMount(){
+    console.log(this.props);
+  }
+
+  render(){
+
   return (
     <div>
       <Router history={history}>
-      {/* {this.props.auth.email ? <AskQuestion></AskQuestion> : null} */}
+     
         <Header />
-        
+        {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
         <Switch>
           <Route component={DisplayPosts}></Route>
         </Switch>
@@ -31,6 +39,7 @@ function App() {
 
 
   );
+  }
 }
 
 // export default App;
