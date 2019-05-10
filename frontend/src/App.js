@@ -13,14 +13,14 @@ import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
 import DisplayQuestions from "./components/DisplayQuestions";
+import IndividualUserQuestion from './components/IndividualUserQuestion';
 
 function App() {
   return (
     <div>
       <Router history={history}>
-      {/* {this.props.auth.email ? <AskQuestion></AskQuestion> : null} */}
+        {/* {this.props.auth.email ? <AskQuestion></AskQuestion> : null} */}
         <Header />
-        
         <Switch>
           <Route component={DisplayPosts}></Route>
         </Switch>
