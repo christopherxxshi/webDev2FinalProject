@@ -8,18 +8,13 @@ class IndividualUserQuestion extends Component {
         this.state = {
             showComments: false
         };
-
-
     }
-
 
     openComments = (e) => {
         e.preventDefault();
         console.log("Hello....");
         this.setState({ showComments: !this.state.showComments })
     }
-
-
 
     render() {
         return (
@@ -42,8 +37,6 @@ class IndividualUserQuestion extends Component {
                                 <div className="spacer"></div>
                                 <p>-Username</p>
                             </div>
-                            
-
                         </div>
                         :
                         null
@@ -53,9 +46,6 @@ class IndividualUserQuestion extends Component {
 
         )
     }
-
-
-
 }
 
 export default IndividualUserQuestion;
