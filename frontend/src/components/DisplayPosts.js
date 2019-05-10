@@ -38,7 +38,8 @@ class DisplayPosts extends React.Component {
                                             <FontAwesomeIcon  className="displayBtn" 
                                                               type="submit" 
                                                               icon={faThumbsUp} 
-                                                              style={{ fontSize: '1.75em' }} />
+                                                              
+                                                              style={{ fontSize: '1.75em',border:"none" }} />
                                     
                                         <br />
                                         5
