@@ -37,9 +37,29 @@ export const signOut = () => {
 export const displayQuestions = () => {
     return async (dispatch) => {
 
-        let questions = data.get("/");
+        console.log("display questions");
 
-        dispatch({ type: "DISPLAY_QUESTIONS", payload: questions });
+        let getQuestions = await data.get("/api/question");
+
+        let allQuestions = [];
+
+        for(let prop in getQuestions.data){
+            // allQuestions.push(getQuestions.data[prop]);
+            for(let i =0;i<getQuestions.data[prop].length;i++){
+                allQuestions.push(getQuestions.data[prop][i]);
+            }
+            console.log(allQuestions);
+        }
+
+        // console.log(allQuestions);
+        // let allQuestions = JSON.parser(JSON.stringify(getQuestions) );
+        // console.log(allQuestions);
+        
+       
+        
+        
+
+        dispatch({ type: "DISPLAY_QUESTIONS", payload: allQuestions });
 
     }
 }

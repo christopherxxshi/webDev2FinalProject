@@ -3,12 +3,15 @@ import SideBar from "./Sidebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 import { faCommentMedical } from '@fortawesome/free-solid-svg-icons';
-
+import {displayQuestions} from "../action/index";
+import { connect } from "react-redux";
 
 class DisplayPosts extends React.Component {
 
 
-    componentDidMount() {
+    async componentDidMount() {
+
+        let questions = await this.props.displayQuestions();
 
     }
 
@@ -18,6 +21,9 @@ class DisplayPosts extends React.Component {
 
 
     render() {
+
+        // console.log(this.props.questions);
+
         return (
             <div>
                 {/* <SideBar></SideBar> */}
@@ -82,4 +88,16 @@ class DisplayPosts extends React.Component {
 }
 
 
-export default DisplayPosts;
+// export default DisplayPosts;
+
+
+const mapStateToProps = (state) => {
+
+    console.log("display component");
+
+    console.log(state.questions);
+
+    return { questions : null };
+};
+
+export default connect(mapStateToProps, { displayQuestions })(DisplayPosts);
