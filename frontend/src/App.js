@@ -5,6 +5,7 @@ import { Router, Route, Switch } from "react-router-dom";
 import history from "./history";
 import Header from "./components/Header";
 import DisplayPosts from "./components/DisplayPosts.js"
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -15,6 +16,8 @@ function App() {
           <Route component={DisplayPosts}></Route>
         </Switch>
       </Router>
+
+    <Footer></Footer>
 
 </div>
 

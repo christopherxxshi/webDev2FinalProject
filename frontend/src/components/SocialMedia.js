@@ -1,5 +1,5 @@
 import React from "react";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faFacebookSquare, faGooglePlusSquare, faGithubSquare } from '@fortawesome/free-brands-svg-icons';
 import "../style/socialMedia.css";
 import auth from "../config/auth";
