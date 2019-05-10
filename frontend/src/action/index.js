@@ -90,4 +90,12 @@ export const askQuestions = (authUser, questionDetails) => {
     }
 }
 
+// export const getUserQuestions = ()=>{
+
+// return async (dispatch)=>{
+
+// }
+
+// }
+
 
