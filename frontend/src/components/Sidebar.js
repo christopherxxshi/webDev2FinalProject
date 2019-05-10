@@ -1,68 +1,87 @@
 import React from "react";
 import SideNav, { Toggle, Nav, NavItem, NavIcon, NavText } from '@trendmicro/react-sidenav';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faJava,faJsSquare,faPython,faCss3Alt,faHtml5 } from '@fortawesome/free-brands-svg-icons';
+import { faJava, faJsSquare, faPython, faCss3Alt, faHtml5 } from '@fortawesome/free-brands-svg-icons';
+import { NavLink, BrowserRouter as Router, Route } from 'react-router-dom';
 // Be sure to include styles at some point, probably during your bootstraping
+//import { Route, Switch } from 'react-router-dom';
+import Java from '../pages/java';
 import '@trendmicro/react-sidenav/dist/react-sidenav.css';
 
-const SideBar = () => {
+class SideBar extends Component {
 
-    // render(){
-    return (
-        <div >
-            <SideNav
-                onSelect={(selected) => {
-                    // Add your code here
-                }}
-            >
-                <SideNav.Toggle />
-                <SideNav.Nav defaultSelected="home">
-                    <NavItem eventKey="java">
-                        <NavIcon>
-                            {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
-                            <FontAwesomeIcon className="" icon={faJava} style={{ fontSize: '1.75em' }} />
-                        </NavIcon>
-                        <NavText>
-                            Java
+    render() {
+
+        SideBar = () => {
+            // render(){
+            return (
+                <div >
+                    <SideNav
+                        onSelect={(selected) => {
+                            // Add your code here
+                            // render() {
+                            return (
+                                <Router>
+                                    <nav>
+                                        <NavLink to='/Java'>
+                                        </NavLink>
+                                    </nav>
+                                    <Route exact path='/Java' component={Java} />
+                                    {/* <Route path='/list' component={List}/> */}
+                                </Router>
+                            );
+                            //}
+                        }
+                        }
+                    >
+                        <SideNav.Toggle />
+                        <SideNav.Nav defaultSelected="home">
+                            <NavItem eventKey="java">
+                                <NavIcon>
+                                    {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
+                                    <FontAwesomeIcon className="" icon={faJava} style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    Java
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="js">
-                        <NavIcon>
-                            {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
-                            <FontAwesomeIcon className="" icon={faJsSquare} style={{ fontSize: '1.75em' }} />
-                        </NavIcon>
-                        <NavText>
-                            JavaScript
+                            </NavItem>
+                            <NavItem eventKey="js">
+                                <NavIcon>
+                                    {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
+                                    <FontAwesomeIcon className="" icon={faJsSquare} style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    JavaScript
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="html">
-                        <NavIcon>
-                            {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
-                            <FontAwesomeIcon className="" icon={faCss3Alt} style={{ fontSize: '1.75em' }} />
-                        </NavIcon>
-                        <NavText>
-                            HTML5
+                            </NavItem>
+                            <NavItem eventKey="html">
+                                <NavIcon>
+                                    {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
+                                    <FontAwesomeIcon className="" icon={faCss3Alt} style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    HTML5
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="python">
-                        <NavIcon>
-                            {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
-                            <FontAwesomeIcon className="" icon={faPython} style={{ fontSize: '1.75em' }} />
-                        </NavIcon>
-                        <NavText>
-                            Python
+                            </NavItem>
+                            <NavItem eventKey="python">
+                                <NavIcon>
+                                    {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
+                                    <FontAwesomeIcon className="" icon={faPython} style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    Python
                         </NavText>
-                    </NavItem>
-                    <NavItem eventKey="css">
-                        <NavIcon>
-                            {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
-                            <FontAwesomeIcon className="" icon={ faHtml5} style={{ fontSize: '1.75em' }} />
-                        </NavIcon>
-                        <NavText>
-                            CSS3
+                            </NavItem>
+                            <NavItem eventKey="css">
+                                <NavIcon>
+                                    {/* <i className="fa fa-fw fa-home" style={{ fontSize: '1.75em' }} /> */}
+                                    <FontAwesomeIcon className="" icon={faHtml5} style={{ fontSize: '1.75em' }} />
+                                </NavIcon>
+                                <NavText>
+                                    CSS3
                         </NavText>
-                    </NavItem>
-                    {/* <NavItem eventKey="charts">
+                            </NavItem>
+                            {/* <NavItem eventKey="charts">
                         <NavIcon>
                             <i className="fa fa-fw fa-line-chart" style={{ fontSize: '1.75em' }} />
                         </NavIcon>
@@ -80,13 +99,13 @@ const SideBar = () => {
                 </NavText>
                         </NavItem>
                     </NavItem> */}
-                </SideNav.Nav>
-            </SideNav>
-        </div>
+                        </SideNav.Nav>
+                    </SideNav>
+                </div >
 
-    )
-    // }
-
+            )
+            // }
+        }
+    }
 }
-
 export default SideBar;
