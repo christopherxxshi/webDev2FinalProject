@@ -12,7 +12,8 @@ import Footer from "./components/Footer";
 import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
-import DisplayQuestions from "./components/DisplayQuestions";
+//import DisplayQuestions from "./components/DisplayQuestions";
+import SubmitImage from './components/SubmitImage';
 
 // function App(props) {
 class App extends React.Component {
@@ -26,12 +27,12 @@ class App extends React.Component {
   return (
     <div>
       <Router history={history}>
-     
         <Header />
         {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
         <Switch>
           <Route component={DisplayPosts}></Route>
         </Switch>
+        <Route component={SubmitImage}></Route>
       </Router>
 
       <Footer></Footer>
