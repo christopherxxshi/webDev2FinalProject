@@ -50,7 +50,7 @@ export const displayQuestions = () => {
 
         // console.log(getQuestions);
 
-        for(let i = 0;i<getQuestions.data.length;i++){
+        for (let i = 0; i < getQuestions.data.length; i++) {
             allQuestions.push(getQuestions.data[i]);
         }
 
@@ -80,7 +80,7 @@ export const askQuestions = (authUser, questionDetails) => {
         //     desc: questionDetails.description
         // }
 
-         await data.post(`/api/question/user/${userId}`, {
+        await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description
         });
@@ -139,7 +139,7 @@ export const updateUserQuestion = (quesdata) => {
             // "language": quesdata.language
         });
 
-        console.log(updateQuestion);
+        // console.log(updateQuestion);
 
     }
 }
@@ -162,4 +162,35 @@ export const getSignleQuestion = (quesId) => {
     }
 }
 
+
+export const addComment = (quesId, comment) => {
+    return async (dispatch) => {
+
+        let addComment = await data.post(`api/question/${quesId}/comment`, {
+            userId: comment.userId,
+            comment: comment.comment
+        });
+
+        dispatch({ type: "SINGLE_QUESTION", payload: addComment.data })
+    }
+}
+
+export const updateQuestion = (quesId, updateDetails) => {
+    return async (dispatch) => {
+
+        let obj = {};
+
+        for (let prop in updateDetails) {
+            obj[prop] = updateDetails[prop];
+        }
+
+        // console.log(quesId);
+        // console.log(updateDetails);
+
+        let updateQuestion = await data.patch(`/api/question/${quesId}`,obj);
+
+        dispatch({ type: "UPDATE_QUESTIONS", payload: updateQuestion.data });
+
+    }
+}
 

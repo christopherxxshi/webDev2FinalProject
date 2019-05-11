@@ -155,10 +155,13 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     let newComment = {
         _id: uuid.v4(),
         userId: commentData.userId,
-        comment: commentData.comment
+        comment: commentData.comment,
+        date: new Date().toLocaleDateString(),
+        time: new Date().getHours() + ":" + new Date().getMinutes()
     };
 
 
+    console.log(newComment);
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
