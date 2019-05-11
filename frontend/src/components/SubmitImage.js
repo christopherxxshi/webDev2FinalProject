@@ -14,6 +14,8 @@ import React, {Component} from 'react';
  * save to mongodb as binary
  * pull from mongodb and process the binary in imagemagick
  * 
+ * https://codeburst.io/image-uploading-using-react-and-node-to-get-the-images-up-c46ec11a7129
+ * https://github.com/drminnaar/noteworx-react-mongodb
  */
 
 class SubmitImage extends Component {
@@ -26,8 +28,13 @@ class SubmitImage extends Component {
   }
 
   uploadHandler = () => {
-    console.log(this.state.imgFile);
-    // Upload to mongoDB
+    console.log(this.state.imgFile.size);
+    if (this.state.imgFile.size / 1024 / 1024 >  3) {
+      // imageMagick
+      alert("File toooo large");
+    } else {
+      // can just upload
+    }
   }
 
   render() {

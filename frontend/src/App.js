@@ -34,7 +34,6 @@ class App extends React.Component {
         </Switch>
         <Route component={SubmitImage}></Route>
       </Router>
-
       <Footer></Footer>
 
     </div>
