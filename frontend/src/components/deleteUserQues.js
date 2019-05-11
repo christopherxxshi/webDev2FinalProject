@@ -1,7 +1,8 @@
 import React from "react";
 import ReactModal from 'react-modal';
 import { Link } from "react-router-dom";
-
+import { getSignleQuestion, deleteUserQuestion } from "../action";
+import { connect } from "react-redux";
 
 
 ReactModal.setAppElement("#root");
@@ -22,11 +23,18 @@ const customStyles = {
 
 class DeleteUserQues extends React.Component {
 
-    componentDidMount() {
-        console.log(this.props);
+
+
+    async componentDidMount() {
+
+        await this.props.getSignleQuestion(this.props.match.params.quesId);
+        // this.setState({title : this.props.question})
+
     }
 
     handleSubmit = async () => {
+
+        await this.props.deleteUserQuestion(this.props.match.params.quesId);
 
     }
 
@@ -54,7 +62,7 @@ class DeleteUserQues extends React.Component {
                     <hr />
 
                         <h4>
-                            Are you sure you want to delete Question .
+                            Are you sure you want to delete Question "{`${this.props.question.title}`}".
                         </h4>
 
                         <hr />
@@ -63,7 +71,7 @@ class DeleteUserQues extends React.Component {
                             <button className="btn " onClick={this.handleSubmit.bind(this)}>
                                 Delete
                         </button>
-                            <Link className="link" to="/">
+                            <Link className="link" to="/userQuestions">
                                 <button className="btn ">
                                     Cancel
                         </button>
@@ -83,4 +91,14 @@ class DeleteUserQues extends React.Component {
 
 }
 
-export default DeleteUserQues;
+// export default DeleteUserQues;
+
+
+const mapStateToProps = (state) => {
+
+    return { question: state.question };
+
+}
+
+
+export default connect(mapStateToProps, { getSignleQuestion, deleteUserQuestion })(DeleteUserQues);

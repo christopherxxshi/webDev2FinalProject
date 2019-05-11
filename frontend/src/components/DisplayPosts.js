@@ -1,73 +1,75 @@
 import React from "react";
-import SideBar from "./Sidebar";
+// import SideBar from "./Sidebar";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
 import { faCommentMedical } from '@fortawesome/free-solid-svg-icons';
-import {displayQuestions} from "../action/index";
+import { displayQuestions } from "../action/index";
 import { connect } from "react-redux";
+import NoContent from "./NoContent";
+import { Link } from "react-router-dom";
 
 class DisplayPosts extends React.Component {
 
 
     async componentDidMount() {
 
-        let questions = await this.props.displayQuestions();
+        await this.props.displayQuestions();
 
     }
 
 
-    
+
 
 
 
     render() {
 
-        // console.log(this.props.questions);
+        var allQuestions = [];
 
-        return (
-            <div>
-                {/* <SideBar></SideBar> */}
-                <div className="container">
-                    <div>
+        if (this.props.questions) {
+
+            allQuestions = this.props.questions.map(question => {
+                return (
+
+                    <div key={question._id}>
                         <hr />
                         <div className="row">
                             <div className="col-lg-3 col-md-4 col-xs-12">
                                 <div className="row">
                                     <div className="col-lg-4 col-sm-4  col-md-4 text-center">
-                                        
-                                            <FontAwesomeIcon  className="displayBtn" 
-                                                              type="submit" 
-                                                              icon={faThumbsUp} 
-                                                              
-                                                              style={{ fontSize: '1.75em',border:"none" }} />
-                                    
+
+                                        <FontAwesomeIcon
+                                            className="displayBtn"
+                                            icon={faThumbsUp}
+                                            style={{ fontSize: '1.75em', border: "none" }} />
+
                                         <br />
-                                        5
+                                        {question.upVote}
                                         <br />
                                         Vote
                                     </div>
                                     <div className="col-lg-4 col-sm-4 col-md-4 text-center">
-                                    
-                                            <FontAwesomeIcon type="submit" 
-                                                             className="displayBtn" 
-                                                             icon={faCommentMedical} 
-                                                             style={{ fontSize: '1.75em' }} />
-                                       
+
+                                        <FontAwesomeIcon
+                                            className="displayBtn"
+                                            icon={faCommentMedical}
+                                            style={{ fontSize: '1.75em' }} />
+
                                         <br />
-                                        5
+                                        {question.comments.length}
                                         <br />
                                         Answers
                                     </div>
                                     <div className="col-lg-4 col-sm-4 col-md-4  text-center">
-                                    
-                                            <FontAwesomeIcon type="submit" 
-                                                             className="displayBtn" 
-                                                             icon={faThumbsDown} 
-                                                             style={{ fontSize: '1.75em' }} />
-                                  
+
+                                        <FontAwesomeIcon
+                                            className="displayBtn"
+                                            icon={faThumbsDown}
+                                            style={{ fontSize: '1.75em' }} />
+
 
                                         <br />
-                                        5
+                                        {question.downVote}
                                         <br />
                                         Awful
                                     </div>
@@ -75,12 +77,32 @@ class DisplayPosts extends React.Component {
 
                             </div>
                             <div className="col-lg-9  col-md-8 col-xs-12">
-                                title
+                                <Link to={`/singleQuestion/${question._id}`}>
+                                    <h2>
+                                        {question.title}
+                                    </h2>
+                                </Link>
                             </div>
                         </div>
                         <hr />
                     </div>
+
+                )
+            })
+
+        }
+        else {
+            allQuestions = <NoContent msg="There are no Posts."></NoContent>
+        }
+
+        return (
+            <div>
+
+                <div className="container">
+                    {allQuestions}
                 </div>
+
+
 
             </div>
         )
@@ -94,11 +116,11 @@ class DisplayPosts extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    console.log("display component");
+    // console.log("display component");
 
-    console.log(state.questions);
+    // console.log(state.questions);
 
-    return { questions : null };
+    return { questions: state.questions.question };
 };
 
 export default connect(mapStateToProps, { displayQuestions })(DisplayPosts);

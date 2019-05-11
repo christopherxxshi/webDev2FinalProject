@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import Link from "next/link";
 import { Link } from "react-router-dom";
 import AuthUser from "./AuthUser";
-import EmailLogin from "./EmailLogin";
+// import EmailLogin from "./EmailLogin";
 
 class Header extends React.Component {
 

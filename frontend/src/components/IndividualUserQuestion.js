@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCalendarAlt } from '@fortawesome/free-solid-svg-icons';
 import { faClock } from '@fortawesome/free-regular-svg-icons';
 import { Link } from "react-router-dom";
+import NoContent from "./NoContent";
 
 class IndividualUserQuestion extends Component {
 
@@ -37,7 +38,7 @@ class IndividualUserQuestion extends Component {
 
         var questions = [];
 
-        if (this.props.questions != undefined) {
+        if (this.props.questions !== undefined) {
 
             for (let prop in userquestions) {
                 let indiQuestion = userquestions[prop];
@@ -46,7 +47,7 @@ class IndividualUserQuestion extends Component {
                     // <div className="centerAlign">
                     <div >
                         {/* <div className="userBody"> */}
-                        <div>
+                        <div key={indiQuestion.quesId}>
                             <div className="box" onClick={() => this.openComments.bind(this)(indiQuestion.quesId)}>
                                 {/* <div  onClick={() => this.openComments.bind(this)(indiQuestion.quesId)}> */}
                                 {/* <div className="content"> */}
@@ -114,6 +115,14 @@ class IndividualUserQuestion extends Component {
                 );
             }
 
+
+        }
+        else{
+            questions = (<div>
+
+                <NoContent></NoContent>
+
+            </div>)
 
         }
 

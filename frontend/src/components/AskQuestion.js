@@ -10,7 +10,7 @@ function AskQuestion(props){
 
 return(
 
-    <div className="container ">
+    <div className=" text-center">
           <div className="row">
             <div className="col-lg-2 text-center">
               <img src={question} alt="ask question" width="50%"></img>
@@ -29,7 +29,7 @@ return(
             </div>
           </div>
 
-
+<hr/>
         </div>
 
 )

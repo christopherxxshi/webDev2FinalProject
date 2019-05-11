@@ -78,7 +78,7 @@ module.exports.getQuestionById = async function (qId) {
                 throw `Can't find question id: ${qId}`;
             }
         }
-        
+
     } catch (e) {
         throw e;
     }
@@ -86,6 +86,8 @@ module.exports.getQuestionById = async function (qId) {
 };
 
 module.exports.updateQuestionById = async function (qId, questionData) {
+    console.log(questionData);
+    console.log(qId);
     if (qId === undefined || Object.keys(questionData).length === 0) {
         throw "Invalid params";
     }
@@ -101,13 +103,13 @@ module.exports.updateQuestionById = async function (qId, questionData) {
 //Getting recent question from redis
 module.exports.getRecentQuestions = async function () {
 
-    var historyArray =[];
+    var historyArray = [];
     var reply = await redisClient.lrangeAsync("ids", 0, 19);
 
-    if(reply.length == 0){
+    if (reply.length == 0) {
         return historyArray;
     } else {
-        for(var i =0; i<reply.length; i++){
+        for (var i = 0; i < reply.length; i++) {
             var push = await redisClient.getAsync(reply[i]);
             await historyArray.push(JSON.parse(push));
         }

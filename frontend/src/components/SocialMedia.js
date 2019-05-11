@@ -15,13 +15,13 @@ class SocialMedia extends React.Component {
         console.log(sMedia);
 
         var provider;
-        if (sMedia == "google") {
+        if (sMedia === "google") {
             provider = new firebase.auth.GoogleAuthProvider();
         }
-        else if (sMedia == "facebook") {
+        else if (sMedia === "facebook") {
             provider = new firebase.auth.FacebookAuthProvider();
         }
-        else if (sMedia == "github") {
+        else if (sMedia === "github") {
             provider = new firebase.auth.GithubAuthProvider();
         }
 
@@ -34,11 +34,11 @@ class SocialMedia extends React.Component {
 
         
         await auth.auth().signInWithPopup(provider).then( async (result)=> {
-            var token = result.credential.accessToken;
+            // var token = result.credential.accessToken;
             
-            var user = result.user;
+            // var user = result.user;
 
-            console.log(result);
+            // console.log(result);
 
             userDetails["name"] = result.user.displayName;
             userDetails["email"] = result.user.email;
@@ -50,10 +50,10 @@ class SocialMedia extends React.Component {
 
     
           }).catch(function(error) {
-            var errorCode = error.code;
-            var errorMessage = error.message;
-            var email = error.email;
-            var credential = error.credential;
+            // var errorCode = error.code;
+            // var errorMessage = error.message;
+            // var email = error.email;
+            // var credential = error.credential;
             
             console.log(error);
 
