@@ -41,7 +41,10 @@ const questionSchema = new mongoose.Schema({
     title : {type:String, 'require':true},
     desc : {type: String, 'require':true},
     language: {type:String, 'require':true},
-    vote:{type:Number, 'require':true},
+    upVote:{type:Number, 'require':true},
+    downVote:{type:Number, 'require':true},
+    date:{type:String, 'require':true},
+    time:{type:String, 'require':true},
     comments: [{
         _id : {type:String, require:true},
         userId: {type:String, require:true},

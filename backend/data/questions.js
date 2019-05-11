@@ -21,7 +21,7 @@ async function deleteCacheData(id){
 
 }
 module.exports.addQuestion = async function (ownerId, questionData) {
-    console.log(questionData);
+    // console.log(questionData);
     if(ownerId === undefined || questionData.title === undefined || questionData.desc === undefined){
         throw "Invalid params";
     }
@@ -32,10 +32,17 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         title: questionData.title,
         desc: questionData.desc,
         language: questionData.language,
-        vote: 0,
+        upVote: 0,
+        downVote: 0,
+        date: new Date().toLocaleDateString(),
+        time: new Date().getHours()+":"+new Date().getMinutes(),
         comments:[]
     });
-    console.log(newQuestion);
+    
+    // const setInput = await redisClient.setAsync(newQuestion.id, JSON.stringify(newQuestion));
+    // console.log(setInput);
+    // const found = await redisClient.getAsync(newQuestion.id);
+    // console.log(found);
     await newQuestion.save();
     return newQuestion;
 };
