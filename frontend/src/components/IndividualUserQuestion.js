@@ -74,15 +74,15 @@ class IndividualUserQuestion extends Component {
                                     {/* {indiQuestion.answers > 0 ?
 
                                         ( */}
-                                            <div className="col-lg-5 btnEditDelete" >
-                                                <div>
-                                                    <Link to=""><button className="btn btn-primary">Edit</button></Link>
-                                                </div>
-                                                <div>
-                                                    <Link to=""><button className="btn btn-primary">Delete</button></Link>
-                                                </div>
-                                            </div>
-                                        {/* )
+                                    <div className="col-lg-5 btnEditDelete" >
+                                        <div>
+                                            <Link to={`/editUserQues/${indiQuestion.quesId}`}><button className="btn btn-primary">Edit</button></Link>
+                                        </div>
+                                        <div>
+                                            <Link to={`/deleteUserQues/${indiQuestion.quesId}`}><button className="btn btn-primary">Delete</button></Link>
+                                        </div>
+                                    </div>
+                                    {/* )
                                         : null
 
                                     } */}

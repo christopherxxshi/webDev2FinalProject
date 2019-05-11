@@ -14,7 +14,8 @@ import { connect } from "react-redux";
 import AskQuestion from "./components/AskQuestion";
 import DisplayQuestions from "./components/DisplayQuestions";
 import UserQuestions from "./components/IndividualUserQuestion";
-
+import EditUserQues from "./components/editUserQues";
+import DeleteUserQues from "./components/deleteUserQues";
 
 // function App(props) {
 class App extends React.Component {
@@ -35,6 +36,8 @@ class App extends React.Component {
             <Route path="/" exact component={DisplayPosts}></Route>
             <Route path="/askQuestion" component={DisplayQuestions}></Route>
             <Route path="/userQuestions" component={UserQuestions}></Route>
+            <Route path="/editUserQues/:quesId" component={EditUserQues}></Route>
+            <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
           </Switch>
         </Router>
 

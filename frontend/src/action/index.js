@@ -126,4 +126,17 @@ export const getUserQuestions = (userId) => {
 
 }
 
+export const updateUserQuestion = (quesdata) => {
+    return async (dispatch) => {
+
+    }
+}
+
+
+export const deleteUserQuestion = (quesdata) => {
+    return async (dispatch) => {
+
+    }
+}
+
 
