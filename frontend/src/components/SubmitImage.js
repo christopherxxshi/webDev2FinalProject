@@ -19,49 +19,58 @@ import React, {Component} from 'react';
  */
 
 class SubmitImage extends Component {
-  state = {
-    imgFile: null
+  constructor(props) {
+    super(props);
+
+    this.uploadHandler = this.uploadHandler.bind(this);
   }
 
-  fileChangedHandler = (event) => {
-    this.setState({ imgFile: event.target.files[0] });
-    console.log(this.state.imgFile);
-  }
+  // fileChangedHandler = (event) => {
+  //   this.setState({ imgFile: event.target.files[0] });
+  //   console.log(this.state.imgFile);
+  // }
 
-  uploadHandler = async () => {
-    const formData = new FormData();
-    formData.append('imgFile',this.state.imgFile);
+  uploadHandler = async (event) => {
+    event.preventDefault();
+    
+    let formData = new FormData();
+    console.log("about to append ", this.uploadInput.files[0]);
+    formData.append('imgFile', this.uploadInput.files[0]);
 
-    if (this.state.imgFile.size / 1024 / 1024 >  3) {
+    if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
       // Post to resize route
-      await fetch('http://localhost:3001/question/resizeImg', {
+      await fetch('http://localhost:3001/api/question/resizeImg', {
         method: 'POST',
-        body: formData,
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3001/resizeImg'
-        }
+        body: formData
       });
       alert("Upload done");
     } else {
       // can just upload
-      await fetch('http://localhost:3001/question/uploadImg', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Access-Control-Allow-Origin': 'http://localhost:3001/uploadImg'
-        }
-      });
-      alert("Upload done");
+      try {
+        await fetch('http://localhost:3001/api/question/uploadImg', {
+          method: 'POST',
+          body: formData
+        });
+        alert("Upload done");
+      } catch (error) {
+        console.error(error);
+      }
     }
   }
 
   render() {
-    return(
-      <div>
-        <input type="file" onChange={this.fileChangedHandler}/>
-        <button onClick={this.uploadHandler}>Upload!</button>
-      </div>
-    )
+    return (
+      <form onSubmit={this.uploadHandler}>
+        <div>
+          <input ref={(ref) => { this.uploadInput = ref;}} type="file"/>
+          <button>Upload</button>
+        </div>
+      </form>
+      // <div>
+      //   <input type="file" value={this.state.imgFile} onChange={this.fileChangedHandler}/>
+      //   <button onClick={this.uploadHandler.bind(event)}>Upload!</button>
+      // </div>
+    );
   }
 }
 

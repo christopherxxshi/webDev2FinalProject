@@ -4,8 +4,6 @@ const uuid = require("uuid/v4");
 const models = require("./models");
 const imageModel = models.getModel('Image');
 
-
-
 module.exports = {
   getImgById = async function (id) {
     if(typeof id !== 'string'){
@@ -30,6 +28,7 @@ module.exports = {
     if (data === undefined) {
       throw "Image needs to be not null";
     }
+    console.log("got to addImg");
     newId = uuid();
     let newImg = new imageModel({
       _id: newId,
