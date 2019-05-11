@@ -52,9 +52,15 @@ const questionSchema = new mongoose.Schema({
     }]
 });
 
+const imageSchema = new mongoose.Schema({
+    _id: {type: String, 'require': true},
+    img: {type: String, 'require': true}
+})
+
 
 mongoose.model('User', userSchema);
 mongoose.model('Question', questionSchema);
+mongoose.model('Image', imageSchema);
 
 module.exports = {
     getModel:function(name){
