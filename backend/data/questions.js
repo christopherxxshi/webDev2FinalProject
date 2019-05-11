@@ -38,11 +38,15 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         time: new Date().getHours()+":"+new Date().getMinutes(),
         comments:[]
     });
+
     
     // const setInput = await redisClient.setAsync(newQuestion.id, JSON.stringify(newQuestion));
     // console.log(setInput);
     // const found = await redisClient.getAsync(newQuestion.id);
     // console.log(found);
+
+
+
     await newQuestion.save();
     return newQuestion;
 };
