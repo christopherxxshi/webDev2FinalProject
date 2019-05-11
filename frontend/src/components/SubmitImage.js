@@ -27,13 +27,25 @@ class SubmitImage extends Component {
     this.setState({ imgFile: event.target.files[0] });
   }
 
-  uploadHandler = () => {
+  uploadHandler = async () => {
     console.log(this.state.imgFile.size);
+    const formData = new FormData();
+    formData.append(this.state.imgFile);
+
     if (this.state.imgFile.size / 1024 / 1024 >  3) {
-      // imageMagick
-      alert("File toooo large");
+      // Post to resize route
+      await fetch('http://localhost:3000/resizeImg', {
+        method: 'POST',
+        body: formData
+      });
+      alert("Upload done");
     } else {
       // can just upload
+      await fetch('http://localhost:3000/resizeImg', {
+        method: 'POST',
+        body: formData
+      });
+      alert("Upload done");
     }
   }
 

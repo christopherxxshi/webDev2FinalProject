@@ -8,7 +8,7 @@ export function NoContent(props) {
 
         <div className="NoContent text-center">
                <br/> 
-            <img className="imgExtn" src={image}></img>
+            <img className="imgExtn" alt="empty" src={image}></img>
             <h1>
                 There are no Questions   
             </h1>    

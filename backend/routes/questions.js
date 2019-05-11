@@ -3,7 +3,7 @@ const router = express.Router();
 const data = require("../data");
 const users = data.users;
 const questions = data.questions;
-
+const images = data.images
 
 router.get('/:qId', async (req, res)=>{
     let qId = req.params.qId;
@@ -91,6 +91,24 @@ router.get('/user/:userId', async(req, res)=>{
     }
 });
 
+router.post('/uploadImg', async (req, res) => {
+    try{
+        let result =  await questions.addCommentByQuestionId(qId, commentData);
+        res.status(200).json(result);
+    }catch (e) {
+        res.status(404).json({error: e});
+    }
+});
 
+router.post('/resizeImg', async (req, res) => {
+    let qId = req.params.qId;
+    let commentData = req.body;
+    try{
+        let result =  await questions.addCommentByQuestionId(qId, commentData);
+        res.status(200).json(result);
+    }catch (e) {
+        res.status(404).json({error: e});
+    }
+});
 
 module.exports = router;

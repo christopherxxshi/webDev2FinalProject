@@ -12,22 +12,18 @@ import Footer from "./components/Footer";
 import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
-<<<<<<< HEAD
-//import DisplayQuestions from "./components/DisplayQuestions";
-import SubmitImage from './components/SubmitImage';
-=======
 import DisplayQuestions from "./components/DisplayQuestions";
 import UserQuestions from "./components/IndividualUserQuestion";
 import EditUserQues from "./components/editUserQues";
 import DeleteUserQues from "./components/deleteUserQues";
 import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
->>>>>>> origin/master
+import SubmitImage from './components/SubmitImage';
 
 // function App(props) {
 class App extends React.Component {
 
-  componentDidMount() {s
+  componentDidMount() {
     console.log(this.props);
   }
 
