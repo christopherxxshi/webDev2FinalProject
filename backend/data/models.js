@@ -54,7 +54,7 @@ const questionSchema = new mongoose.Schema({
 
 const imageSchema = new mongoose.Schema({
     _id: {type: String, 'require': true},
-    img: {type: String}
+    img: {type: String, 'require': true}
 })
 
 
