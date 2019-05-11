@@ -16,6 +16,7 @@ import DisplayQuestions from "./components/DisplayQuestions";
 import UserQuestions from "./components/IndividualUserQuestion";
 import EditUserQues from "./components/editUserQues";
 import DeleteUserQues from "./components/deleteUserQues";
+import SideNavBar from './components/SideNavBar';
 
 // function App(props) {
 class App extends React.Component {
@@ -32,6 +33,14 @@ class App extends React.Component {
 
           <Header />
           {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
+          <SideNavBar></SideNavBar>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
           <Switch>
             <Route path="/" exact component={DisplayPosts}></Route>
             <Route path="/askQuestion" component={DisplayQuestions}></Route>

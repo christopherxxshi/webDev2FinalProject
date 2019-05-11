@@ -192,3 +192,51 @@ text-align: center;
   display: inline;
 }
 /* ****************************************************** */
+
+/* ******************* SideBar CSS ******************* */
+.sidemenu{
+  position: fixed;
+  top: 67px;
+  left: 0px;
+  height: 100%;
+  width: 0px;
+  background-color: rgb(245, 145, 30);
+  z-index: 1;
+  padding-top: 70px;
+  overflow-x: hidden;
+  transition: .5s all;
+}
+
+.sidemenu a{
+  padding: 8px 8px 8px 64px;
+  text-decoration: none;
+  font-size: 20px;
+  color: white;
+  display: block;
+}
+
+.sidemenu a:hover {
+  color: black;
+  background-color: rgb(218, 118, 5);
+}
+
+.closebutton:hover{
+  background-color: rgb(245, 145, 30) !important;
+}
+
+.sidemenu .closebutton{
+  position: absolute;
+  top: 0px;
+  right: 8px;
+  font-size: 36px;
+  margin-left: 32px;
+}
+#mainbox{
+  font-size: 24px;
+  cursor: pointer;
+  transition: .5s all;
+}
+
+
+
+/* ****************************************************** */
