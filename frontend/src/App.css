@@ -181,4 +181,14 @@ text-align: center;
   display: inline-flex;
     width: 100%;
 }
+
+
+.userDateTime{
+  margin-bottom: 10px;
+  margin-left:10px
+}
+
+.btnEditDelete{
+  display: inline;
+}
 /* ****************************************************** */

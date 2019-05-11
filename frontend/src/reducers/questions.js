@@ -6,8 +6,11 @@ export default (state = {}, action) => {
 
         case "DISPLAY_QUESTIONS":
 
-            var obj = action.payload;
-            return { ...obj };
+            console.log("action reducer")
+            // console.log(action.payload);
+            var obj = {};
+            obj["question"] = action.payload;
+            return obj;
 
         default:
             return state;

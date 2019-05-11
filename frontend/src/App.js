@@ -13,34 +13,37 @@ import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
 import DisplayQuestions from "./components/DisplayQuestions";
+import UserQuestions from "./components/IndividualUserQuestion";
+
 
 // function App(props) {
 class App extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {
     console.log(this.props);
   }
 
-  render(){
+  render() {
 
-  return (
-    <div>
-      <Router history={history}>
-     
-        <Header />
-        {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
-        <Switch>
-          <Route path="/" exact component={DisplayPosts}></Route>
-          <Route path="/askQuestion" component={DisplayQuestions}></Route>
-        </Switch>
-      </Router>
+    return (
+      <div>
+        <Router history={history}>
 
-      <Footer></Footer>
+          <Header />
+          {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
+          <Switch>
+            <Route path="/" exact component={DisplayPosts}></Route>
+            <Route path="/askQuestion" component={DisplayQuestions}></Route>
+            <Route path="/userQuestions" component={UserQuestions}></Route>
+          </Switch>
+        </Router>
 
-    </div>
+        <Footer></Footer>
+
+      </div>
 
 
-  );
+    );
   }
 }
 

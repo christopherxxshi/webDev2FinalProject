@@ -35,8 +35,16 @@ class Header extends React.Component {
                                     <SocialMedia ></SocialMedia>
                                 </div>
                                 ) : (
+                                    <div className="float-left">
+                                        <Link to='/userQuestions'>
+                                            <button className="btn btn-primary">
+                                                My Questions
+                                        </button>
+                                        </Link>
 
-                                    <AuthUser></AuthUser>
+                                        <AuthUser className="float-right"></AuthUser>
+                                    </div>
+
                                     // <div className="d-flex">
 
                                     //     <div className="btn-group">

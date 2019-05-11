@@ -1,5 +1,6 @@
 import data from "../api";
 // import store from "../"
+import history from "../history";
 
 export const signIn = (user) => {
 
@@ -30,7 +31,7 @@ export const signOut = () => {
             email: "",
             emailVerified: "",
             imgUrl: "",
-            userId : ""
+            userId: ""
         };
 
         dispatch({ type: "SIGN_OUT", payload: signOutUser });
@@ -77,25 +78,52 @@ export const askQuestions = (authUser, questionDetails) => {
         let userId = authUser.userId
 
         let insertQuestion = {
-            title : questionDetails.title,
-            desc : questionDetails.description
+            title: questionDetails.title,
+            desc: questionDetails.description
         }
 
-        let addQuestion = await data.post(`/api/question/user/${userId}`,{
-            title : questionDetails.title,
-            desc : questionDetails.description
+        let addQuestion = await data.post(`/api/question/user/${userId}`, {
+            title: questionDetails.title,
+            desc: questionDetails.description
         });
-        console.log(addQuestion);
+
+
+        history.push("/");
+        // console.log(addQuestion);
 
     }
 }
 
-// export const getUserQuestions = ()=>{
+export const getUserQuestions = (userId) => {
 
-// return async (dispatch)=>{
+    return async (dispatch) => {
 
-// }
+        // console.log(userId);
 
-// }
+        let Questions = await data.get(`/api/question/user/${userId}`);
+
+        let length = Questions.data.length;
+        let userQuestions = [];
+        for (let i = 0; i < length; i++) {
+            let obj = {};
+            obj["title"] = Questions.data[i]["title"];
+            obj["quesId"] = Questions.data[i]["_id"];
+            obj["description"] = Questions.data[i]["desc"];
+            obj["ownerId"] = Questions.data[i]["OwnerId"];
+            obj["vote"] = Questions.data[i]["vote"];
+            obj["comments"] = Questions.data[i]["comments"];
+            obj["date"] = Questions.data[i]["date"];
+            obj["time"] = Questions.data[i]["time"];
+            obj["answers"] = Questions.data[i]["comments"].length;
+            userQuestions.push(obj);
+        }
+
+        // console.log(userQuestions);
+
+        dispatch({ type: "DISPLAY_QUESTIONS", payload: userQuestions });
+
+    }
+
+}
 
 

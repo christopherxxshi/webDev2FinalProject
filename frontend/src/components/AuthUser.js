@@ -26,9 +26,9 @@ class AuthUser extends React.Component {
             // An error happened.
         });
 
-      if(signOut){
-          this.props.signOut();
-      }
+        if (signOut) {
+            this.props.signOut();
+        }
 
     }
 
@@ -58,6 +58,8 @@ class AuthUser extends React.Component {
                         <div className="dropdown-divider"></div>
 
                         <button className="dropdown-item" onClick={this.signOut}>Sign Out</button>
+
+                        
 
                         {/* <a className="dropdown-item" href="#">Sign Out</a> */}
                     </div>
