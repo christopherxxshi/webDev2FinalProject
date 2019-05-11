@@ -17,11 +17,12 @@ import UserQuestions from "./components/IndividualUserQuestion";
 import EditUserQues from "./components/editUserQues";
 import DeleteUserQues from "./components/deleteUserQues";
 import SideNavBar from './components/SideNavBar';
+import SingleQuestion from "./components/SingleQuestion";
 
 // function App(props) {
 class App extends React.Component {
 
-  componentDidMount() {
+  componentDidMount() {s
     console.log(this.props);
   }
 
@@ -47,6 +48,7 @@ class App extends React.Component {
             <Route path="/userQuestions" component={UserQuestions}></Route>
             <Route path="/editUserQues/:quesId" component={EditUserQues}></Route>
             <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
+            <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
           </Switch>
         </Router>
 

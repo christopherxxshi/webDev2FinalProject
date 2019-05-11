@@ -48,12 +48,10 @@ export const displayQuestions = () => {
 
         let allQuestions = [];
 
-        for (let prop in getQuestions.data) {
-            // allQuestions.push(getQuestions.data[prop]);
-            for (let i = 0; i < getQuestions.data[prop].length; i++) {
-                allQuestions.push(getQuestions.data[prop][i]);
-            }
-            // console.log(allQuestions);
+        // console.log(getQuestions);
+
+        for(let i = 0;i<getQuestions.data.length;i++){
+            allQuestions.push(getQuestions.data[i]);
         }
 
         // console.log(allQuestions);
@@ -77,12 +75,12 @@ export const askQuestions = (authUser, questionDetails) => {
 
         let userId = authUser.userId
 
-        let insertQuestion = {
-            title: questionDetails.title,
-            desc: questionDetails.description
-        }
+        // let insertQuestion = {
+        //     title: questionDetails.title,
+        //     desc: questionDetails.description
+        // }
 
-        let addQuestion = await data.post(`/api/question/user/${userId}`, {
+         await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description
         });
@@ -129,12 +127,37 @@ export const getUserQuestions = (userId) => {
 export const updateUserQuestion = (quesdata) => {
     return async (dispatch) => {
 
+        // let updateObject = {
+        //     "title": quesdata.title,
+        //     "desc": quesdata.description,
+        //     "language": quesdata.language
+        // }
+
+        let updateQuestion = await data.patch(`/api/question/${quesdata.quesId}`, {
+            title: quesdata.title,
+            desc: quesdata.description
+            // "language": quesdata.language
+        });
+
+        console.log(updateQuestion);
+
     }
 }
 
 
 export const deleteUserQuestion = (quesdata) => {
     return async (dispatch) => {
+
+    }
+}
+
+export const getSignleQuestion = (quesId) => {
+    return async (dispatch) => {
+
+        let getQuesDetail = await data.get(`api/question/${quesId}`);
+        console.log(getQuesDetail);
+
+        dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
 
     }
 }

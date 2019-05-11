@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 // import Link from "next/link";
-import { Link } from "react-router-dom";
+// import { Link } from "react-router-dom";
 import auth from "../config/auth";
 import { signOut } from "../action/index";
 
@@ -53,7 +53,7 @@ class AuthUser extends React.Component {
                     </button>
 
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuReference">
-                        <Link to="/setting"><a>Setting</a></Link>
+                        {/* <Link to="/setting"><a>Setting</a></Link> */}
                         {/* <a className="dropdown-item" href="#">Setting</a> */}
                         <div className="dropdown-divider"></div>
 
