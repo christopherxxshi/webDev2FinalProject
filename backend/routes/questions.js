@@ -96,6 +96,7 @@ router.get('/user/:userId', async(req, res)=>{
 router.post('/uploadImg', cors(), async (req, res) => {
     let bitMap = fs.readFileSync(req.file);
     let img64 = new Buffer(bitMap).toString('base64');
+    console.log(img64);
     try{
         let result =  await images.addImg(img64);
         res.status(200).json(result);

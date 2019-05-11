@@ -27,7 +27,7 @@ module.exports = {
   },
 
   addImg = async function (data) {
-    if (imgData === undefined) {
+    if (data === undefined) {
       throw "Image needs to be not null";
     }
     newId = uuid();

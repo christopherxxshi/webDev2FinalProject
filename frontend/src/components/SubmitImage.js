@@ -34,7 +34,7 @@ class SubmitImage extends Component {
 
     if (this.state.imgFile.size / 1024 / 1024 >  3) {
       // Post to resize route
-      await fetch('http://localhost:3001/resizeImg', {
+      await fetch('http://localhost:3001/question/resizeImg', {
         method: 'POST',
         body: formData,
         headers: {
