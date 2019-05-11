@@ -157,11 +157,28 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
         userId: commentData.userId,
         comment: commentData.comment
     };
+
+
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
         throw 'Question not found';
     }
+    const mongoData = await this.getQuestionById(qId);
+    // console.log("He... "+mongoData);
+    // const gotData = await JSON.stringify(mongoData.comments);
+    // console.log("Hello "+gotData);
+
+    
+    // const redisUpdateComment = await redisClient.setAsync(JSON.stringify(qId), JSON.stringify({'comments': gotData}));
+    // console.log('Hello'+ await redisClient.getAsync(qId));
+    // console.log('Helo End');
+    // console.log(redisUpdateComment);
+
+    const deleteData = await redisClient.del(qId);
+    const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
+    console.log('Helo End');
+
     return await this.getQuestionById(qId);
 };
 
