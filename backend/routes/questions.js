@@ -80,6 +80,32 @@ router.delete('/:qId/comment/:cId', async (req, res)=>{
     }
 });
 
+router.delete('/:qId', async (req, res) => {
+    let qId = req.params.qId;
+    // console.log(qId);
+
+    try {
+        await questions.getQuestionById(qId);
+
+        try {
+            //remove the qustions
+            let rdata = await questions.deleteQuestion(qId);
+            
+            res.status(200).json(rdata);
+
+        } catch (e) {
+            res.status(500).json({
+                error: "Question not found / Error in deleting"
+            });
+        }
+
+    } catch (e) {
+        res.status(404).json({
+            error: "Question not found"
+        });
+    }
+});
+
 
 router.get('/user/:userId', async(req, res)=>{
     let userId = req.params.userId;

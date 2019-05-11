@@ -177,6 +177,25 @@ module.exports.deleteCommentByCommentId = async function (qId, commentId) {
     return await this.getQuestionById(qId);
 };
 
+module.exports.deleteQuestion = async function (qid) {
+    if (qid === undefined) {
+        throw "Invalid parameter"
+    }
+
+    let deletedDataRedis = await redisClient.del(qid);
+
+    const deletedInfo = await questionModel.findByIdAndRemove({_id: qid}, function(err) {
+        if(!err){
+            // console.log("Deleted");
+        } else {
+            // console.log("Not Deleted");
+        }
+    });
+
+    return await this.getQuestionById(qid);
+
+}
+
 module.exports.getQuestionsByOwnerId = async function (ownerId) {
     if (ownerId === undefined) {
         throw "Invalid params";
