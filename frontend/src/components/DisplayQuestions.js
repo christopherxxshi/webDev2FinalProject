@@ -1,10 +1,12 @@
 import React, { Component } from "react";
-
+import history from "../history";
+import { askQuestions } from "../action/index";
+import { connect } from "react-redux";
 
 class DisplayQuestions extends Component {
 
 
-    constructor(props){
+    constructor(props) {
         super(props);
 
         this.state = {
@@ -14,39 +16,34 @@ class DisplayQuestions extends Component {
         }
     }
 
-    handleChangeInput = (event)=>{
-        console.log(event.target);
-        console.log(event.target.value)
-        this.setState({title: event.target.value})
+    handleChangeInput = (event) => {
+        // console.log(event.target);
+        // console.log(event.target.value)
+        this.setState({ title: event.target.value })
         // this.setState({event})
     };
 
     handleChangeTextArea = (e) => {
         // e.preventDefault();
-        this.setState({description: e.target.value})
+        this.setState({ description: e.target.value })
 
     };
 
     handleChangeSelect = (e) => {
         // e.preventDefault()
-        console.log(e.target.value);
-        this.setState({language: e.target.value})
+        // console.log(e.target.value);
+        this.setState({ language: e.target.value })
     };
 
-    handleSubmit = (e) => {
+    handleSubmit = async (e) => {
         e.preventDefault()
-        
-        if(this.canbeSubmitted()) {
-            console.log(this.state.title);
-        console.log(this.state.description);
-        console.log(this.state.language);
-        } else {
-            alert('Please fill in the all values');
-        }
+
+        await this.props.askQuestions(this.props.auth, this.state);
+
     }
 
-    canbeSubmitted(){
-        if(this.state.title != null && this.state.description != null){
+    canbeSubmitted() {
+        if (this.state.title != null && this.state.description != null) {
             return true;
         }
         return false;
@@ -57,7 +54,11 @@ class DisplayQuestions extends Component {
             <div className="wrapper">
 
                 <div className="form-wrapper">
-                    <h1>Post your Question</h1>
+                    <div>
+                        <h1>Post your Question</h1>
+                        <hr />
+                    </div>
+
                     <form onSubmit={this.handleSubmit} noValidate>
                         <div className="title">
                             <label htmlFor="title">Enter your title</label>
@@ -83,23 +84,32 @@ class DisplayQuestions extends Component {
                                 <option value="C#">C#</option>
                                 <option value="Others">Others</option>
                             </select>
+                            <hr />
                         </div>
                         <span>
-                        <div className="post">
-                            <button type="submit">Post My Questions</button>
-                        </div>
+
+                            <div>
+
+
+                                <div className=" post tect-center float-left">
+                                    <button disabled={!(this.state.title && this.state.description && this.state.language)}
+                                        className=" btn" type="submit">Post</button>
+                                </div>
+
+
+                                <div className="float-right tect-center">
+                                    <button className="btn" onClick={() => history.push("/")}>Cancel</button>
+                                </div>
+                            </div>
+
                         </span>
-                        
+
                     </form>
-                    
+
                 </div>
 
 
-
-
-
-
-
+                {/* <br />
                 <br />
                 <br />
                 <br />
@@ -118,11 +128,17 @@ class DisplayQuestions extends Component {
                 <br />
                 <br />
                 <br />
-                <br />
-                <br />
+                <br /> */}
             </div>
         );
     }
 }
 
-export default DisplayQuestions;
+// export default DisplayQuestions;
+
+const mapsStsteToProps = (state) => {
+
+    return { auth: state.auth };
+}
+
+export default connect(mapsStsteToProps, { askQuestions })(DisplayQuestions)

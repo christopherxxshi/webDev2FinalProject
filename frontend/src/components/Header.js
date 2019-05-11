@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import Link from "next/link";
 import { Link } from "react-router-dom";
 import AuthUser from "./AuthUser";
-import EmailLogin from "./EmailLogin";
+// import EmailLogin from "./EmailLogin";
 
 class Header extends React.Component {
 
@@ -35,8 +35,16 @@ class Header extends React.Component {
                                     <SocialMedia ></SocialMedia>
                                 </div>
                                 ) : (
+                                    <div className="float-left">
+                                        <Link to='/userQuestions'>
+                                            <button className="btn btn-primary">
+                                                My Questions
+                                        </button>
+                                        </Link>
 
-                                    <AuthUser></AuthUser>
+                                        <AuthUser className="float-right"></AuthUser>
+                                    </div>
+
                                     // <div className="d-flex">
 
                                     //     <div className="btn-group">

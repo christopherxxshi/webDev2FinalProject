@@ -15,6 +15,17 @@ router.get('/:qId', async (req, res)=>{
     }
 });
 
+router.patch('/:qId', async(req, res)=>{
+    let qId = req.params.qId;
+    let updateData = req.body;
+    try{
+        let result =  await questions.updateQuestionById(qId, updateData);
+        res.status(200).json(result);
+    }catch (e) {
+        res.status(404).json({error: e});
+    }
+});
+
 router.get('/language/:language', async (req, res) => {
     let language = req.params.language;
     try{
@@ -27,7 +38,8 @@ router.get('/language/:language', async (req, res) => {
 
 router.get('/', async (req, res) =>{
     try{
-        let result = await questions.getAllQuestions();
+        // let result = await questions.getAllQuestions();
+        let result = await questions.getRecentQuestions();
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});
@@ -35,6 +47,7 @@ router.get('/', async (req, res) =>{
 });
 
 router.post('/user/:userId', async (req, res)=>{
+    console.log(req.params.userId);
     let userId = req.params.userId;
     let data = req.body;
     try{
@@ -78,15 +91,6 @@ router.get('/user/:userId', async(req, res)=>{
     }
 });
 
-router.patch('/:qId', async(req, res)=>{
-    let qId = req.params.qId;
-    let updateData = req.body;
-    try{
-        let result =  await questions.updateQuestionById(qId, updateData);
-        res.status(200).json(result);
-    }catch (e) {
-        res.status(404).json({error: e});
-    }
-});
+
 
 module.exports = router;

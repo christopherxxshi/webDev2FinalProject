@@ -12,34 +12,58 @@ import Footer from "./components/Footer";
 import { connect } from "react-redux";
 
 import AskQuestion from "./components/AskQuestion";
+<<<<<<< HEAD
 //import DisplayQuestions from "./components/DisplayQuestions";
 import SubmitImage from './components/SubmitImage';
+=======
+import DisplayQuestions from "./components/DisplayQuestions";
+import UserQuestions from "./components/IndividualUserQuestion";
+import EditUserQues from "./components/editUserQues";
+import DeleteUserQues from "./components/deleteUserQues";
+import SideNavBar from './components/SideNavBar';
+import SingleQuestion from "./components/SingleQuestion";
+>>>>>>> origin/master
 
 // function App(props) {
 class App extends React.Component {
 
-  componentDidMount(){
+  componentDidMount() {s
     console.log(this.props);
   }
 
-  render(){
+  render() {
 
-  return (
-    <div>
-      <Router history={history}>
-        <Header />
-        {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
-        <Switch>
-          <Route component={DisplayPosts}></Route>
-        </Switch>
-        <Route component={SubmitImage}></Route>
-      </Router>
-      <Footer></Footer>
+    return (
+      <div>
+        <Router history={history}>
 
-    </div>
+          <Header />
+          {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
+          <SideNavBar></SideNavBar>
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <br />
+          <Switch>
+            <Route path="/" exact component={DisplayPosts}></Route>
+            <Route path="/askQuestion" component={DisplayQuestions}></Route>
+            <Route path="/userQuestions" component={UserQuestions}></Route>
+            <Route path="/editUserQues/:quesId" component={EditUserQues}></Route>
+            <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
+            <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
+          </Switch>
+          <Route component={SubmitImage}></Route>
+        </Router>
+
+        <Footer></Footer>
+
+      </div>
 
 
-  );
+    );
   }
 }
 
