@@ -162,4 +162,9 @@ export const getSignleQuestion = (quesId) => {
     }
 }
 
+export const getAllImages = () => {
+    return async => {
+        
+    }
+}
 
