@@ -180,6 +180,7 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
 
     const deleteData = await redisClient.del(qId);
     const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
+    console.log(await redisClient.getAsync(qId));
     console.log('Helo End');
 
     return await this.getQuestionById(qId);
