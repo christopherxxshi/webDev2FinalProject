@@ -27,7 +27,8 @@ router.get('/language/:language', async (req, res) => {
 
 router.get('/', async (req, res) =>{
     try{
-        let result = await questions.getAllQuestions();
+        // let result = await questions.getAllQuestions();
+        let result = await questions.getRecentQuestions();
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});
