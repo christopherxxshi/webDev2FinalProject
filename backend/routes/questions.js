@@ -3,7 +3,9 @@ const router = express.Router();
 const data = require("../data");
 const users = data.users;
 const questions = data.questions;
-const images = data.images
+const images = data.images;
+const fs = require("fs");
+const cors = require('cors');
 
 router.get('/:qId', async (req, res)=>{
     let qId = req.params.qId;
@@ -91,16 +93,18 @@ router.get('/user/:userId', async(req, res)=>{
     }
 });
 
-router.post('/uploadImg', async (req, res) => {
+router.post('/uploadImg', cors(), async (req, res) => {
+    let bitMap = fs.readFileSync(req.file);
+    let img64 = new Buffer(bitMap).toString('base64');
     try{
-        let result =  await questions.addCommentByQuestionId(qId, commentData);
+        let result =  await images.addImg(img64);
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});
     }
 });
 
-router.post('/resizeImg', async (req, res) => {
+router.post('/resizeImg', cors(), async (req, res) => {
     let qId = req.params.qId;
     let commentData = req.body;
     try{

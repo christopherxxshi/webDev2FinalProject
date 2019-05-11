@@ -1,6 +1,6 @@
 const questionRoutes = require("./questions");
 const userRoute = require("./users");
-const techTypes = require("../data/techTypes");]
+const techTypes = require("../data/techTypes");
 const formData = require('express-form-data');
 
 const routes = app => {

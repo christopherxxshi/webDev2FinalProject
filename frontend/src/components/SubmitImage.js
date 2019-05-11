@@ -25,25 +25,31 @@ class SubmitImage extends Component {
 
   fileChangedHandler = (event) => {
     this.setState({ imgFile: event.target.files[0] });
+    console.log(this.state.imgFile);
   }
 
   uploadHandler = async () => {
-    console.log(this.state.imgFile.size);
     const formData = new FormData();
-    formData.append(this.state.imgFile);
+    formData.append('imgFile',this.state.imgFile);
 
     if (this.state.imgFile.size / 1024 / 1024 >  3) {
       // Post to resize route
-      await fetch('http://localhost:3000/resizeImg', {
+      await fetch('http://localhost:3001/resizeImg', {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:3001/resizeImg'
+        }
       });
       alert("Upload done");
     } else {
       // can just upload
-      await fetch('http://localhost:3000/resizeImg', {
+      await fetch('http://localhost:3001/question/uploadImg', {
         method: 'POST',
-        body: formData
+        body: formData,
+        headers: {
+          'Access-Control-Allow-Origin': 'http://localhost:3001/uploadImg'
+        }
       });
       alert("Upload done");
     }
