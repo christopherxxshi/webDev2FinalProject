@@ -7,6 +7,9 @@ import { displayQuestions, updateQuestion } from "../action/index";
 import { connect } from "react-redux";
 import NoContent from "./NoContent";
 import { Link } from "react-router-dom";
+import SideNavBar from "./SideNavBar";
+
+import "../style/DisplayPosts.css";
 
 class DisplayPosts extends React.Component {
 
@@ -14,7 +17,8 @@ class DisplayPosts extends React.Component {
         super(props);
         this.state = {
             upVote: null,
-            downVote: null
+            downVote: null,
+            language: "Recent Asked Questions"
         }
     }
 
@@ -55,7 +59,7 @@ class DisplayPosts extends React.Component {
                         <hr />
                         <div className="row">
                             <div className="col-lg-3 col-md-4 col-xs-12">
-                                <div className="row">
+                                {/* <div className="row">
                                     <div className="col-lg-4 col-sm-4  col-md-4 text-center">
                                         <div name="upVote" onClick={() => this.onClick.bind(this)(`upVote ${question._id} ${question.upVote}`)} >
                                             <FontAwesomeIcon
@@ -95,6 +99,9 @@ class DisplayPosts extends React.Component {
                                         <br />
                                         Awful
                                     </div>
+                                </div> */}
+                                <div className="text-center">
+                                    <h3>{question.language}</h3>
                                 </div>
 
                             </div>
@@ -104,6 +111,7 @@ class DisplayPosts extends React.Component {
                                         {question.title}
                                     </h2>
                                 </Link>
+                                <p>Comments : {question.comments.length}</p>
                             </div>
                         </div>
                         <hr />
@@ -120,7 +128,19 @@ class DisplayPosts extends React.Component {
         return (
             <div>
 
-                <div className="container">
+                <div className="container displayPostBody">
+
+
+                    <div className="plate">
+                        <p className="script"><span>{this.state.language}</span></p>
+                        {/* <p className="shadow text1">{this.state.language}</p> */}
+                        {/* <p className="shadow text2">{this.state.language}</p> */}
+                        {/* <p className="shadow text3">SAUCE</p> */}
+                        {/* <p className="script"><span>by Ibrahim</span></p> */}
+                    </div>
+
+                    {/* <h1 className="text-center">{this.state.language}</h1> */}
+                    <SideNavBar></SideNavBar>
                     {allQuestions}
                 </div>
 

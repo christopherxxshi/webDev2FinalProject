@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+import { searchLanguageQuestions } from "../action";
+import { connect } from "react-redux";
 
 class SideNavBar extends Component {
 
@@ -6,38 +8,44 @@ class SideNavBar extends Component {
         super(props);
 
         this.state = {
-            data: true
+            data: true,
+            language: null
         }
     }
 
     openFunction = (e) => {
         e.preventDefault();
         document.getElementById("menu").style.width = "200px";
-        document.getElementById("mainbox").style.marginLeft="200px";
-        this.setState({data: true});
+        document.getElementById("mainbox").style.marginLeft = "200px";
+        this.setState({ data: true });
     }
 
     closeFunction = (e) => {
         e.preventDefault()
         document.getElementById("menu").style.width = "0px";
-        document.getElementById("mainbox").style.marginLeft="0px";
+        document.getElementById("mainbox").style.marginLeft = "0px";
 
+    }
+
+    onSearchLang = async (event) => {
+
+        await this.props.searchLanguageQuestions(event);
     }
 
     render() {
         return (
             <div>
-                <div id="mainbox" onClick={this.openFunction}>&#9776; Open</div>
+                <div id="mainbox" onClick={this.openFunction}>&#9776; Select Language</div>
                 <div id="menu" className="sidemenu">
             
                     <a href="#">&#127968;</a>
-                    <a href="#">Java</a>
-                    <a href="#">JavaScript</a>
-                    <a href="#">HTML</a>
-                    <a href="#">Python</a>
-                    <a href="#">Others</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Java")}>Java</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("JavaScript")}>JavaScript</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("HTML")}>HTML</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Python")}>Python</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("TypeScript")}>TypeScript</a>
                     <a href="#" className="closebutton" onClick={this.closeFunction}>&times;</a>
-
                 </div>
             </div>
 
@@ -49,4 +57,4 @@ class SideNavBar extends Component {
 
 }
 
-export default SideNavBar;
+export default connect(null, { searchLanguageQuestions })(SideNavBar);

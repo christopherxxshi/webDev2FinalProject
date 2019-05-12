@@ -135,8 +135,10 @@ class SocialMedia extends React.Component {
 
         return (
             <div className="float-right" style={divStyle}>
-                {/* <div>or Sign-in with...</div> */}
-                <div>
+                <div className="log-in-text text-center">Sign-in with...</div>
+                
+                <div className="social-Media-logo">
+                
                     <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("facebook")}
                         icon={faFacebookSquare} size="2x"
                         className="mr-5 fbBrand" />

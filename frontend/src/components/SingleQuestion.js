@@ -1,5 +1,5 @@
 import React from "react";
-import { getSignleQuestion, addComment } from "../action";
+import { getSignleQuestion, addComment, updateQuestion } from "../action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
@@ -45,6 +45,19 @@ class SingleQuestion extends React.Component {
     }
 
 
+    onClick = async (event) => {
+
+        let arr = event.split(" ");
+
+        let obj = {};
+
+        obj[arr[0]] = Number(arr[2]) + 1;
+
+        await this.props.updateQuestion(arr[1], obj, this.props.auth.userId);
+
+    }
+
+
     comments = (data) => {
 
         // console.log(data);
@@ -55,15 +68,16 @@ class SingleQuestion extends React.Component {
                     {/* {comment.comment} */}
                     <div className="card">
                         <div className="card-header">
-                            {`{}`}
+                            <p>{`On ${comment.date} at ${comment.time}.`}</p>
                         </div>
                         <div className="card-body">
                             <blockquote className="blockquote mb-0">
                                 <p>{comment.comment}</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">{comment.userId}</cite></footer>
+                                <footer className="blockquote-footer"><cite title="Source Title">{comment.userDetails.username}</cite></footer>
                             </blockquote>
                         </div>
                     </div>
+                    <br />
                 </div>
             );
         });
@@ -86,7 +100,8 @@ class SingleQuestion extends React.Component {
                     <div className="row ">
                         <div className="col-lg-3 col-sm-12 col-md-3">
                             <div className="row text-center">
-                                <div className="col-lg-12">
+                                <div className="col-lg-12"
+                                    onClick={() => this.onClick.bind(this)(`upVote ${this.props.question._id} ${this.props.question.upVote}`)}>
                                     {this.props.question.upVote}
                                     <br />
                                     <FontAwesomeIcon
@@ -96,7 +111,9 @@ class SingleQuestion extends React.Component {
                                     <hr />
 
                                 </div>
-                                <div className="col-lg-12">
+
+                                <div className="col-lg-12"
+                                    onClick={() => this.onClick.bind(this)(`downVote ${this.props.question._id} ${this.props.question.downVote}`)}>
                                     {this.props.question.downVote}
                                     <br />
                                     <FontAwesomeIcon
@@ -124,10 +141,10 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        <img src={this.props.auth.imgUrl} className="userImg"></img>
+                                        {/* <img src={this.props.question.userDetail.imagePath} className="userImg"></img> */}
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
-                                        <p>{this.props.auth.name}</p>
+                                        {/* <p>{this.props.question.userDetail.username}</p> */}
                                     </div>
                                 </div>
                             </div>
@@ -137,11 +154,11 @@ class SingleQuestion extends React.Component {
                     <hr />
                     <div>
                         {this.props.question._id ?
-                         this.comments(this.props.question.comments)
-                         :
-                         null
-                         }
-                        
+                            this.comments(this.props.question.comments)
+                            :
+                            null
+                        }
+
                     </div>
 
                     <hr />
@@ -194,4 +211,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getSignleQuestion, addComment })(SingleQuestion);
+export default connect(mapStateToProps, { getSignleQuestion, addComment, updateQuestion })(SingleQuestion);

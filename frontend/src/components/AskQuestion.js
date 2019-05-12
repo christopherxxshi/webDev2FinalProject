@@ -13,7 +13,7 @@ return(
     <div className=" text-center">
           <div className="row">
             <div className="col-lg-2 text-center">
-              <img src={question} alt="ask question" width="50%"></img>
+              {/* <img src={question} alt="ask question" width="50%"></img> */}
             </div>
 
             <div className="col-lg-8">

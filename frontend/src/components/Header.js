@@ -36,11 +36,11 @@ class Header extends React.Component {
                                 </div>
                                 ) : (
                                     <div className="float-left">
-                                        <Link to='/userQuestions'>
+                                        {/* <Link to='/userQuestions'>
                                             <button className="btn btn-primary">
                                                 My Questions
                                         </button>
-                                        </Link>
+                                        </Link> */}
 
                                         <AuthUser className="float-right"></AuthUser>
                                     </div>

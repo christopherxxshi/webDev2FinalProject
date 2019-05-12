@@ -36,7 +36,7 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+      <div  className="displayPostBody">
         <Router history={history}>
 
           <Header />
@@ -46,10 +46,12 @@ class App extends React.Component {
           <br />
           <br />
           <br />
+          {/* <br />
           <br />
           <br />
           <br />
           <br />
+          <br /> */}
           <Switch>
             <Route path="/" exact component={DisplayPosts}></Route>
             <Route path="/askQuestion" component={DisplayQuestions}></Route>
@@ -60,8 +62,7 @@ class App extends React.Component {
             <Route path="/BarData" component={BarChart}></Route>
            
           </Switch>
-          <Route component={SubmitImage}></Route>
-          <Route component={DisplayImgs}></Route>
+          {/* <Route component={SubmitImage}></Route> */}
         </Router>
 
         <Footer></Footer>

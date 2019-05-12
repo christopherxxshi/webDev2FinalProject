@@ -4,7 +4,7 @@ import { connect } from "react-redux";
 // import { Link } from "react-router-dom";
 import auth from "../config/auth";
 import { signOut } from "../action/index";
-
+import { Link } from "react-router-dom";
 
 class AuthUser extends React.Component {
 
@@ -55,7 +55,16 @@ class AuthUser extends React.Component {
                     <div className="dropdown-menu" aria-labelledby="dropdownMenuReference">
                         {/* <Link to="/setting"><a>Setting</a></Link> */}
                         {/* <a className="dropdown-item" href="#">Setting</a> */}
+
+                        <Link to='/userQuestions'>
+                                            <button className="btn btn-primary dropdown-item">
+                                                My Questions
+                                        </button>
+                                        </Link>
+
                         <div className="dropdown-divider"></div>
+
+
 
                         <button className="dropdown-item" onClick={this.signOut}>Sign Out</button>
 

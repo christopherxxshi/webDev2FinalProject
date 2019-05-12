@@ -66,28 +66,47 @@ export const displayQuestions = () => {
 
     }
 }
+export const searchLanguageQuestions = (language) => {
+    return async (dispatch) => {
+
+
+        let getQuestions = await data.get(`/api/question/language/${language}`);
+
+        let allQuestions = [];
+
+
+
+        for (let i = 0; i < getQuestions.data.length; i++) {
+            allQuestions.push(getQuestions.data[i]);
+        }
+
+
+
+
+
+        dispatch({ type: "DISPLAY_QUESTIONS", payload: allQuestions });
+
+    }
+}
 
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
 
-        // console.log(questionDetails);
-        // console.log(authUser);
+        console.log(questionDetails);
+
 
         let userId = authUser.userId
 
-        // let insertQuestion = {
-        //     title: questionDetails.title,
-        //     desc: questionDetails.description
-        // }
 
         await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
-            desc: questionDetails.description
+            desc: questionDetails.description,
+            language: questionDetails.language
         });
 
 
         history.push("/");
-        // console.log(addQuestion);
+
 
     }
 }
@@ -187,7 +206,7 @@ export const addComment = (quesId, comment) => {
     }
 }
 
-export const updateQuestion = (quesId, updateDetails) => {
+export const updateQuestion = (quesId, updateDetails,userId) => {
     return async (dispatch) => {
 
         let obj = {};
@@ -195,6 +214,8 @@ export const updateQuestion = (quesId, updateDetails) => {
         for (let prop in updateDetails) {
             obj[prop] = updateDetails[prop];
         }
+
+        obj["userId"] = userId;
 
         // console.log(quesId);
         // console.log(updateDetails);

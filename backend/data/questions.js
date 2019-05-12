@@ -88,14 +88,42 @@ module.exports.getQuestionById = async function (qId) {
 };
 
 module.exports.updateQuestionById = async function (qId, questionData) {
-    console.log(questionData);
-    console.log(qId);
+    console.log(typeof questionData);
+    // console.log(qId);
     if (qId === undefined || Object.keys(questionData).length === 0) {
         throw "Invalid params";
     }
-    
+    var updateData = {
+
+        upVote: 0
+
+    };
+
+    // console.log(typeof questionData.hasOwnProperty("upVote") );
+    if (questionData.hasOwnProperty("upVote")) {
+        console.log(questionData);
+        let num = questionData.upVote;
+        updateData.upVote = num;
+        let questionData = await this.getQuestionById(qId);
+        console.log(questionData);
+        updateData.upVoteIds = questionData.upVoteIds.push(questionData.userId);
+    }
+    else if (questionData.hasOwnProperty("downVote")) {
+        updateData.downVote = Number(questionData.downVote);
+        let questionData = await this.getQuestionById(qId);
+        // console.log(updateData);
+        updateData["downVoteIds"] = questionData.downVoteIds.push(questionData.userId);
+    }
+
     await deleteCacheData(qId);
-    let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
+    console.log(updateData);
+    if (updateData) {
+        let result = await questionModel.updateOne({ _id: qId }, { $set: updateData });
+    }
+    else {
+        let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
+    }
+
     if (result.matchedCount === 0) {
         throw `Can't find question id: ${qId}`;
     }
@@ -203,8 +231,8 @@ module.exports.deleteQuestion = async function (qid) {
 
     let deletedDataRedis = await redisClient.del(qid);
 
-    const deletedInfo = await questionModel.findByIdAndRemove({_id: qid}, function(err) {
-        if(!err){
+    const deletedInfo = await questionModel.findByIdAndRemove({ _id: qid }, function (err) {
+        if (!err) {
             // console.log("Deleted");
         } else {
             // console.log("Not Deleted");
@@ -228,14 +256,14 @@ module.exports.getQuestionsByOwnerId = async function (ownerId) {
 
 module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
     let result = undefined;
-    if(searchText) {
+    if (searchText) {
         const regex = new RegExp(escapeReg(searchText), 'gi');
-        console.log("regex",regex);
-    
-    console.log("searchText",searchText);
-    console.log("regex",regex);
+        console.log("regex", regex);
 
-     result = await questionModel.find({"title":regex});
+        console.log("searchText", searchText);
+        console.log("regex", regex);
+
+        result = await questionModel.find({ "title": regex });
     }
     if (result && result.length > 0) {
         // let data = {};
@@ -255,7 +283,7 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
     }
 };
 
-const escapeReg= function(text) {
-    console.log("inside escape",text)
+const escapeReg = function (text) {
+    console.log("inside escape", text)
     return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };
