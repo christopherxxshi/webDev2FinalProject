@@ -5,10 +5,8 @@ const formData = require('express-form-data');
 
 const routes = app => {
     app.use(formData.parse());
-
     app.use("/api/user", userRoute);
     app.use("/api/question", questionRoutes);
-
     app.get("/api/language", (req, res)=>{
         res.status(200).json(techTypes);
     });

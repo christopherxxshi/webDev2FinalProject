@@ -61,7 +61,6 @@ module.exports.getUserById = async function (id) {
 
 
 module.exports.addUser = async function (data) {
-    
     if (typeof data === "undefined" || typeof data == null || typeof data.username === "undefined") {
         throw "invalid params";
     }
@@ -78,7 +77,6 @@ module.exports.addUser = async function (data) {
         'imagePath': data.imagePath
     });
     try {
-        // console.log(newUser);
         let userExist = await this.getUserById(data.firebaseId);
         console.log(userExist);
         if (userExist) {

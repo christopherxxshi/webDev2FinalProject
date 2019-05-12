@@ -3,7 +3,6 @@ const uuid = require("uuid/v4");
 const models = require("./models");
 const imageModel = models.getModel('Image');
 
-
 async function getImgById(id) {
   if(typeof id !== 'string'){
     throw "Invalid params when trying to getImgById";

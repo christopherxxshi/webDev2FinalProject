@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import questions from "../reducers/questions";
 import "../style/socialMedia.css";
 
+// Searching the questions using Fuzzy logic
 class SearchQuestion extends Component {
     constructor(props) {
         super(props);
