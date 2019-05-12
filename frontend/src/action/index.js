@@ -193,4 +193,16 @@ export const updateQuestion = (quesId, updateDetails) => {
 
     }
 }
+    // Searching the questions
+
+    export const searchQuestions = (questionDetails) => {
+        return async (dispatch) => {    
+
+            await data.post(`/api/question/search`, {
+                term: questionDetails.searchTerm,
+            });
+            history.push("/");    
+        }
+    }
+    
 

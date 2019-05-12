@@ -20,6 +20,7 @@ import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
 import SubmitImage from './components/SubmitImage';
 import BarChart from "./components/DataBars";
+import SearchQuestions from "./components/SearchQuestion";
 
 // function App(props) {
 class App extends React.Component {
@@ -38,6 +39,8 @@ class App extends React.Component {
           {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
           <SideNavBar></SideNavBar>
           <br />
+          <SearchQuestions></SearchQuestions>
+          <br />
           <br />
           <br />
           <br />
@@ -52,6 +55,7 @@ class App extends React.Component {
             <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
             <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
             <Route path="/BarData" component={BarChart}></Route>
+           
           </Switch>
           <Route component={SubmitImage}></Route>
         </Router>
