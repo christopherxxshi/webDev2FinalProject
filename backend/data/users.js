@@ -4,71 +4,110 @@ const models = require("./models");
 const userModel = models.getModel('User');
 const redisClient = models.redisClient;
 
-function convertUserId(id){
+function convertUserId(id) {
     return `user:${id}`;
 }
 
-module.exports.getUserById = async function (id){
-    if(typeof id !== 'string'){
+// module.exports.getUserById = async function (id) {
+//     if (typeof id !== 'string') {
+//         throw "Invalid params";
+//     }
+//     try {
+//         if (await redisClient.existsAsync(convertUserId(id))) {
+//             return JSON.parse(await redisClient.getAsync(convertUserId(id)))
+//         } else {
+//             let result = await userModel.findOne({ _id: id });
+//             if (result) {
+//                 await redisClient.setAsync(convertUserId(id), JSON.stringify(result));
+//                 return result;
+//             } else {
+//                 throw `Cannot find ${id}`;
+//             }
+//         }
+//     } catch (e) {
+//         throw e;
+//     }
+// };
+
+module.exports.getUserById = async function (id) {
+    console.log("hi");
+    if (typeof id !== 'string') {
         throw "Invalid params";
     }
-    try{
-        if(await redisClient.existsAsync(convertUserId(id))){
-            return JSON.parse(await redisClient.getAsync(convertUserId(id)))
-        }else{
-            let result = await userModel.findOne({_id:id});
-            if(result){
+    try {
+        
+        // if (await redisClient.existsAsync(convertUserId(id))) {
+        //     console.log(id);
+        //     return JSON.parse(await redisClient.getAsync(convertUserId(id)))
+        // } else {
+            // console.log(id);
+            let result = await userModel.findOne({ firebaseId: id });
+            console.log(result);
+            if (result) {
                 await redisClient.setAsync(convertUserId(id), JSON.stringify(result));
                 return result;
-            }else{
-                throw `Cannot find ${id}`;
+            } else {
+                // throw `Cannot find ${id}`;
+                console.log("error");
+                return null;
             }
-        }
-    }catch (e) {
+        // }
+    } catch (e) {
         throw e;
     }
 };
 
 
 
-module.exports.addUser =  async function(data){
-    if(typeof data === "undefined" || typeof data == null || typeof data.username === "undefined"){
+module.exports.addUser = async function (data) {
+    
+    if (typeof data === "undefined" || typeof data == null || typeof data.username === "undefined") {
         throw "invalid params";
     }
-    if(typeof data.languages === "undefined"){
+    if (typeof data.languages === "undefined") {
         data.languages = []
     }
     let newUser = await new userModel({
-        '_id':uuid.v4(),
+        '_id': uuid.v4(),
         'username': data.username,
         'imagePath': data.imagePath,
-        'languages': data.languages
+        'languages': data.languages,
+        'emailId': data.emailId,
+        'firebaseId': data.firebaseId,
+        'imagePath': data.imagePath
     });
-    try{
+    try {
+        // console.log(newUser);
+        let userExist = await this.getUserById(data.firebaseId);
+        console.log(userExist);
+        if (userExist) {
+            return { message: "User Already Exist" };
+        }
         await newUser.save();
         return newUser;
-    }catch (e) {
+    } catch (e) {
+        console.log(e);
         throw e;
     }
 };
 
-module.exports.updateUserById = async function (id, data){
-    if(typeof id !== 'string' || typeof data === "undefined" ){
-        throw  "invalid params";
+module.exports.updateUserById = async function (id, data) {
+    if (typeof id !== 'string' || typeof data === "undefined") {
+        throw "invalid params";
     }
-    try{
-        if(await redisClient.existsAsync(convertUserId(id))){
+    try {
+        if (await redisClient.existsAsync(convertUserId(id))) {
             await redisClient.delAsync(convertUserId(id));
         }
     }
     catch (e) {
         throw e;
     }
-    let result = await userModel.updateOne({'_id':id},{$set:data});
-    if(result.n > 0){
+    let result = await userModel.updateOne({ '_id': id }, { $set: data });
+    if (result.n > 0) {
 
         return await this.getUserById(id);
-    }else{
+    } else {
         throw `can't find ${id} in database or invalid params`;
     }
 };
