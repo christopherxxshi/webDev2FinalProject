@@ -7,6 +7,14 @@ router.get('/:qId', async (req, res)=>{
     let qId = req.params.qId;
     try{
         let result = await questions.getQuestionById(qId);
+
+        for(var i=0; i<result.comments.length ;i++){
+            // console.log(result.comments[i].userId);
+            const gettingData = await users.getUserById(result.comments[i].userId);
+            result.comments[i].userDetails = gettingData;
+            // console.log(gettingDAta);
+        }
+
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});

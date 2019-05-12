@@ -36,7 +36,9 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         downVote: 0,
         date: new Date().toLocaleDateString(),
         time: new Date().getHours() + ":" + new Date().getMinutes(),
-        comments: []
+        comments: [],
+        upVoteIds: [],
+        downVoteIds: []
     });
 
     const found = await redisClient.getAsync(newQuestion.id)
@@ -91,6 +93,7 @@ module.exports.updateQuestionById = async function (qId, questionData) {
     if (qId === undefined || Object.keys(questionData).length === 0) {
         throw "Invalid params";
     }
+    
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
     if (result.matchedCount === 0) {
@@ -160,7 +163,7 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     };
 
 
-    console.log(newComment);
+    // console.log(newComment);
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
@@ -179,8 +182,8 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
 
     const deleteData = await redisClient.del(qId);
     const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
-    console.log(await redisClient.getAsync(qId));
-    console.log('Helo End');
+    // console.log(await redisClient.getAsync(qId));
+    // console.log('Helo End');
 
     return await this.getQuestionById(qId);
 };

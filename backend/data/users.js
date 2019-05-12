@@ -30,7 +30,7 @@ function convertUserId(id) {
 // };
 
 module.exports.getUserById = async function (id) {
-    console.log("hi");
+    // console.log("hi");
     if (typeof id !== 'string') {
         throw "Invalid params";
     }
@@ -42,13 +42,14 @@ module.exports.getUserById = async function (id) {
         // } else {
             // console.log(id);
             let result = await userModel.findOne({ firebaseId: id });
-            console.log(result);
+            // console.log("hey");
+            // console.log(result);
             if (result) {
                 await redisClient.setAsync(convertUserId(id), JSON.stringify(result));
                 return result;
             } else {
                 // throw `Cannot find ${id}`;
-                console.log("error");
+                // console.log("error");
                 return null;
             }
         // }

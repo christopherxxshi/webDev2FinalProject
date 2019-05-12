@@ -39,7 +39,6 @@ class App extends React.Component {
           <Header />
           {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
           <SideNavBar></SideNavBar>
-          <br />
           <SearchQuestions></SearchQuestions>
           <br />
           <br />
