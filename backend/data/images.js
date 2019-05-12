@@ -42,5 +42,19 @@ async function addImg(data) {
   }
 }
 
+async function getAllImgs() {
+  try {
+    imageModel.find({}, function(err, imgs) {
+      let imgArr = [];
+      imgs.array.forEach(imag => {
+          imgArr.push(imag.img);
+      });
+    });
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports.addImg = addImg;
 module.exports.getImgById = getImgById;
+module.exports.getAllImgs = getAllImgs;

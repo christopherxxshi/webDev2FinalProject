@@ -163,8 +163,15 @@ export const getSignleQuestion = (quesId) => {
 }
 
 export const getAllImages = () => {
-    return async => {
-        
+    return async (dispatch )=> {
+        let imageStrings = await data.get('api/questions/getAllImages');
+        let imageStrs = [];
+
+        for(let i = 0;i<imageStrings.data.length;i++){
+            imageStrs.push(imageStrings.data[i]);
+        }
+
+        dispatch({ type: "DISPLAY_POSTS", payload: imageStrs})
     }
 }
 

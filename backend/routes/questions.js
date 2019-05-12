@@ -1,7 +1,6 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const users = data.users;
 const questions = data.questions;
 const images = data.images;
 const fs = require("fs");
@@ -133,6 +132,15 @@ router.post('/resizeImg', cors(), async (req, res) => {
         }
     } catch (error) {
         console.error(error);
+    }
+});
+
+router.get('/getAllImages', cors(), async (req, res) => {
+    try {
+        let imgArr = await images.getAllImgs();
+        res.status(200).json(imgArr);
+    } catch (e) {
+        console.error(e);
     }
 });
 
