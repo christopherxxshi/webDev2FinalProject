@@ -14,3 +14,12 @@
 .displayBtn{
     color:blue
 }
+.search {
+    align-content: center;
+    box-align: center; 
+    padding-left: 17%;
+ }
+ .searchTerm{
+     box-sizing: content-box;
+     width:80%;
+ }

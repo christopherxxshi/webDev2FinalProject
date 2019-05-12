@@ -29,6 +29,7 @@ class SideNavBar extends Component {
             <div>
                 <div id="mainbox" onClick={this.openFunction}>&#9776; Open</div>
                 <div id="menu" className="sidemenu">
+            
                     <a href="#">&#127968;</a>
                     <a href="#">Java</a>
                     <a href="#">JavaScript</a>
