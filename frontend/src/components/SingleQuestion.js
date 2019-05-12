@@ -53,7 +53,7 @@ class SingleQuestion extends React.Component {
 
         obj[arr[0]] = Number(arr[2]) + 1;
 
-        await this.props.updateQuestion(arr[1], obj);
+        await this.props.updateQuestion(arr[1], obj, this.props.auth.userId);
 
     }
 
@@ -73,11 +73,11 @@ class SingleQuestion extends React.Component {
                         <div className="card-body">
                             <blockquote className="blockquote mb-0">
                                 <p>{comment.comment}</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">{comment.userId}</cite></footer>
+                                <footer className="blockquote-footer"><cite title="Source Title">{comment.userDetails.username}</cite></footer>
                             </blockquote>
                         </div>
                     </div>
-                    <br/>
+                    <br />
                 </div>
             );
         });
@@ -141,10 +141,10 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        <img src={this.props.auth.imgUrl} className="userImg"></img>
+                                        {/* <img src={this.props.question.userDetail.imagePath} className="userImg"></img> */}
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
-                                        <p>{this.props.auth.name}</p>
+                                        {/* <p>{this.props.question.userDetail.username}</p> */}
                                     </div>
                                 </div>
                             </div>

@@ -2,6 +2,8 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const questions = data.questions;
+const cors = require("cors");
+const users = require("../data/users");
 
 router.get('/:qId', async (req, res) => {
     let qId = req.params.qId;
@@ -11,11 +13,12 @@ router.get('/:qId', async (req, res) => {
 
         let result = await questions.getQuestionById(qId);
 
+        result["userDetail"] = await users.getUserById(result.ownerId);
+
         for (var i = 0; i < result.comments.length; i++) {
-            // console.log(result.comments[i].userId);
             const gettingData = await users.getUserById(result.comments[i].userId);
-            result.comments[i].userDetails = gettingData;
-            // console.log(gettingDAta);
+            // console.log(gettingData);
+            result.comments[i]["userDetails"] = gettingData;
         }
 
         res.status(200).json(result);

@@ -206,7 +206,7 @@ export const addComment = (quesId, comment) => {
     }
 }
 
-export const updateQuestion = (quesId, updateDetails) => {
+export const updateQuestion = (quesId, updateDetails,userId) => {
     return async (dispatch) => {
 
         let obj = {};
@@ -214,6 +214,8 @@ export const updateQuestion = (quesId, updateDetails) => {
         for (let prop in updateDetails) {
             obj[prop] = updateDetails[prop];
         }
+
+        obj["userId"] = userId;
 
         // console.log(quesId);
         // console.log(updateDetails);
