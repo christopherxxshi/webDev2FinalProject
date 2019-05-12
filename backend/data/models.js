@@ -13,7 +13,6 @@ const redisClient = redis.createClient(config.redisPort, config.redisUrl);
 redisClient.on('connect', () => {
     console.log(`connected to redis: ${config.redisUrl}/${config.redisPort}`);
 });
-
 redisClient.on('error', (err) => {
     console.log('cannot connect to Redis! ' + err);
 });
@@ -53,14 +52,15 @@ const questionSchema = new mongoose.Schema({
         comment: { type: String, require: true },
         date: { type: String, 'require': true },
         time: { type: String, 'require': true }
-    }]
+    }],
+    upVoteIds: [],
+    downViteIds: []
 });
 
 const imageSchema = new mongoose.Schema({
     _id: { type: String, 'require': true },
     img: { type: String, 'require': true }
 })
-
 
 mongoose.model('User', userSchema);
 mongoose.model('Question', questionSchema);

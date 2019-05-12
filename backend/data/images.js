@@ -3,7 +3,6 @@ const uuid = require("uuid/v4");
 const models = require("./models");
 const imageModel = models.getModel('Image');
 
-
 async function getImgById(id) {
   if(typeof id !== 'string'){
     throw "Invalid params when trying to getImgById";
@@ -42,5 +41,20 @@ async function addImg(data) {
   }
 }
 
+async function getAllImgs() {
+  try {
+    let results = await imageModel.find({}, function(err, imgs) {
+      let imgArr = [];
+      for (let i = 0;i<imgs.length ;i++) {
+          imgArr.push(imgs[i].img);
+      }
+    });
+    return results;
+  } catch (error) {
+    throw error;
+  }
+}
+
 module.exports.addImg = addImg;
 module.exports.getImgById = getImgById;
+module.exports.getAllImgs = getAllImgs;

@@ -1,12 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const data = require("../data");
-const users = data.users;
 const questions = data.questions;
-const images = data.images;
-const fs = require("fs");
-const cors = require('cors');
-const im = require('imagemagick');
 
 router.get('/:qId', async (req, res) => {
     let qId = req.params.qId;
@@ -167,6 +162,17 @@ router.post('/resizeImg', cors(), async (req, res) => {
     // } catch (e) {
     //     res.status(404).json({error: e});
     // }
+});
+
+router.post('/search', async(req, res)=>{
+    let search = req.body.term;
+    console.log("Search term", search)
+    try{
+        let result =  await questions.getAllQuestionsBySearchCriteria(search);
+        res.status(200).json(result);
+    }catch (e) {
+        res.status(404).json({error: e});
+    }
 });
 
 module.exports = router;

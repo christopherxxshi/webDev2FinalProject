@@ -36,7 +36,9 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         downVote: 0,
         date: new Date().toLocaleDateString(),
         time: new Date().getHours() + ":" + new Date().getMinutes(),
-        comments: []
+        comments: [],
+        upVoteIds: [],
+        downVoteIds: []
     });
 
     const found = await redisClient.getAsync(newQuestion.id)
@@ -91,6 +93,7 @@ module.exports.updateQuestionById = async function (qId, questionData) {
     if (qId === undefined || Object.keys(questionData).length === 0) {
         throw "Invalid params";
     }
+    
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
     if (result.matchedCount === 0) {
@@ -116,8 +119,6 @@ module.exports.getRecentQuestions = async function () {
         return historyArray
     }
 };
-
-
 
 
 module.exports.getAllQuestions = async function () {
@@ -161,7 +162,7 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     };
 
 
-    console.log(newComment);
+    // console.log(newComment);
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
@@ -172,7 +173,6 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     // const gotData = await JSON.stringify(mongoData.comments);
     // console.log("Hello "+gotData);
 
-    
     // const redisUpdateComment = await redisClient.setAsync(JSON.stringify(qId), JSON.stringify({'comments': gotData}));
     // console.log('Hello'+ await redisClient.getAsync(qId));
     // console.log('Helo End');
@@ -180,8 +180,6 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
 
     const deleteData = await redisClient.del(qId);
     const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
-    console.log(await redisClient.getAsync(qId));
-    console.log('Helo End');
 
     return await this.getQuestionById(qId);
 };
@@ -226,4 +224,38 @@ module.exports.getQuestionsByOwnerId = async function (ownerId) {
         result = [];
     }
     return result;
+};
+
+module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
+    let result = undefined;
+    if(searchText) {
+        const regex = new RegExp(escapeReg(searchText), 'gi');
+        console.log("regex",regex);
+    
+    console.log("searchText",searchText);
+    console.log("regex",regex);
+
+     result = await questionModel.find({"title":regex});
+    }
+    if (result && result.length > 0) {
+        // let data = {};
+        // for (let i = 0; i < techTypes.length; i++) {
+        //     data[techTypes[i]] = [];
+        // }
+        // for (let i = 0; i < result.length; i++) {
+        //     if (!techTypes.includes(result[i].language)) {
+        //         data['Others'].push(result[i])
+        //     } else {
+        //         data[result[i].language].push(result[i]);
+        //     }
+        // }
+        return result;
+    } else {
+        throw "can't find any questions";
+    }
+};
+
+const escapeReg= function(text) {
+    console.log("inside escape",text)
+    return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };

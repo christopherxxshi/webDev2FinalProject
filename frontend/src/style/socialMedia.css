@@ -24,3 +24,12 @@
 color: black;
 font-weight:500;
 }
+.search {
+    align-content: center;
+    box-align: center; 
+    padding-left: 17%;
+ }
+ .searchTerm{
+     box-sizing: content-box;
+     width:80%;
+ }
