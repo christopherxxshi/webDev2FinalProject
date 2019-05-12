@@ -31,19 +31,19 @@ class App extends React.Component {
   render() {
 
     return (
-      <div>
+      <div  className="displayPostBody">
         <Router history={history}>
 
           <Header />
           {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
-          <SideNavBar></SideNavBar>
+          {/* <SideNavBar></SideNavBar> */}
+          <br />
+          {/* <br />
           <br />
           <br />
           <br />
           <br />
-          <br />
-          <br />
-          <br />
+          <br /> */}
           <Switch>
             <Route path="/" exact component={DisplayPosts}></Route>
             <Route path="/askQuestion" component={DisplayQuestions}></Route>
@@ -53,7 +53,7 @@ class App extends React.Component {
             <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
             <Route path="/BarData" component={BarChart}></Route>
           </Switch>
-          <Route component={SubmitImage}></Route>
+          {/* <Route component={SubmitImage}></Route> */}
         </Router>
 
         <Footer></Footer>

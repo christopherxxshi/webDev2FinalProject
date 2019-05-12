@@ -5,7 +5,9 @@
     width:250px;
     border-radius: 5px;
 }
-
+p{
+    color:#222;
+}
 
 .userImg{
     width:20px;
