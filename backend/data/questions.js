@@ -160,7 +160,7 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     };
 
 
-    console.log(newComment);
+    // console.log(newComment);
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
@@ -179,8 +179,8 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
 
     const deleteData = await redisClient.del(qId);
     const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
-    console.log(await redisClient.getAsync(qId));
-    console.log('Helo End');
+    // console.log(await redisClient.getAsync(qId));
+    // console.log('Helo End');
 
     return await this.getQuestionById(qId);
 };
