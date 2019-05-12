@@ -1,4 +1,4 @@
-import React, {Component, Item} from 'react';
+import React, {Component} from 'react';
 import data from '../api/'
 
 class DisplayImgs extends Component {
@@ -11,7 +11,6 @@ class DisplayImgs extends Component {
   }
 
   async getAllImages() {
-    console.log("about to get imgs")
     let resData = await data.get(`/api/image/getAllImages`);
     console.log(resData);
     let imageStrs = [];
@@ -24,7 +23,6 @@ class DisplayImgs extends Component {
   }
 
   async componentDidMount() {
-    console.log("imgs did mount");
     await this.getAllImages();
   }
 

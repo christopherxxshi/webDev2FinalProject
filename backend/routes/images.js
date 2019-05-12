@@ -12,7 +12,6 @@ router.post('/uploadImg', cors(), async (req, res) => {
   let img64 = new Buffer.from(bitMap).toString('base64');
   try {
       let result =  await images.addImg(img64);
-      console.log("This is result: ", result);
       res.status(200).json(result);
   } catch (e) {
       res.status(404).json({error: e});
@@ -23,6 +22,8 @@ router.post('/resizeImg', cors(), async (req, res) => {
   try {
       let srcText = req.files.imgFile.path;
       let dstText = process.cwd() + "/result.jpg"
+      // ImageMagick command to resize to at max 1080p
+      // Keeping original ratio
       await im.resize({
           srcPath: srcText,
           dstPath: dstText,
@@ -38,7 +39,6 @@ router.post('/resizeImg', cors(), async (req, res) => {
       let img64 = new Buffer.from(bitMap).toString('base64');
       try {
           let result =  await images.addImg(img64);
-          console.log("This is result: ", result);
           res.status(200).json(result);
       } catch (e) {
           res.status(404).json({error: e});
@@ -51,7 +51,6 @@ router.post('/resizeImg', cors(), async (req, res) => {
 router.get('/getAllImages', cors(), async (req, res) => {
   try {
       let imgArr = await images.getAllImgs();
-      console.log("routes imgArr result", imgArr);
       res.status(200).json(imgArr);
   } catch (e) {
       res.status(404).json({error: e});
