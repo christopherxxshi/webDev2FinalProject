@@ -1,5 +1,5 @@
 import React, {Component, Item} from 'react';
-import data from '../api/index'
+import data from '../api/'
 
 class DisplayImgs extends Component {
   constructor(props) {
@@ -18,7 +18,7 @@ class DisplayImgs extends Component {
     let imageStrs = [];
 
     for(let i = 0;i<imageStrings.data.length;i++){
-        imageStrs.push("data:image/jpeg;base64," + imageStrings.data[i]);
+        imageStrs.push("data:image/jpeg;base64, " + imageStrings.data[i]);
     }
     this.setState({data: imageStrs});
   }

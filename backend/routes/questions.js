@@ -174,7 +174,7 @@ router.post('/resizeImg', cors(), async (req, res) => {
     }
 });
 
-router.get('/getAllImages', cors(), async (req, res) => {
+router.get('/getAllImages', async (req, res) => {
     console.log("in getAllImg route");
     try {
         let imgArr = await images.getAllImgs();
