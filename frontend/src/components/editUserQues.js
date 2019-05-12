@@ -1,5 +1,5 @@
 import React from "react";
-import { getSignleQuestion, updateUserQuestion } from "../action";
+import { getSignleQuestionUser, updateUserQuestion } from "../action";
 import { connect } from "react-redux";
 import history from "../history";
 
@@ -16,12 +16,12 @@ class EditUserQues extends React.Component {
 
     async componentDidMount() {
         this.setState({ quesId: this.props.match.params.quesId });
-        await this.props.getSignleQuestion(this.props.match.params.quesId);
-
-        console.log(this.props.question.title);
+        let getQuestiondetails =  await this.props.getSignleQuestionUser(this.props.match.params.quesId);
+        console.log("hello");
+        console.log(getQuestiondetails);
         this.setState({ title: this.props.question.title });
         this.setState({ description: this.props.question.desc });
-        // this.setState({ language: this.props.question.language });
+        this.setState({ language: this.props.question.language });
 
 
     }
@@ -118,4 +118,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getSignleQuestion, updateUserQuestion })(EditUserQues);
+export default connect(mapStateToProps, { getSignleQuestionUser, updateUserQuestion })(EditUserQues);

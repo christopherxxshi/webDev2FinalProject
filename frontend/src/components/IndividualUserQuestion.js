@@ -42,6 +42,7 @@ class IndividualUserQuestion extends Component {
 
             for (let prop in userquestions) {
                 let indiQuestion = userquestions[prop];
+                if(indiQuestion !=null){
                 questions.push(
 
                     // <div className="centerAlign">
@@ -72,9 +73,9 @@ class IndividualUserQuestion extends Component {
 
                                     </div>
 
-                                    {/* {indiQuestion.answers > 0 ?
+                                    {indiQuestion.answers === 0 ?
 
-                                        ( */}
+                                        (
                                     <div className="col-lg-5 btnEditDelete" >
                                         <div>
                                             <Link to={`/editUserQues/${indiQuestion.quesId}`}><button className="btn btn-primary">Edit</button></Link>
@@ -83,10 +84,10 @@ class IndividualUserQuestion extends Component {
                                             <Link to={`/deleteUserQues/${indiQuestion.quesId}`}><button className="btn btn-primary">Delete</button></Link>
                                         </div>
                                     </div>
-                                    {/* )
+                                     )
                                         : null
 
-                                    } */}
+                                    } 
 
 
                                 </div>
@@ -113,6 +114,7 @@ class IndividualUserQuestion extends Component {
                     </div>
 
                 );
+                        }
             }
 
 

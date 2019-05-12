@@ -53,8 +53,10 @@ class DisplayPosts extends React.Component {
         if (this.props.questions) {
 
             allQuestions = this.props.questions.map(question => {
+                if(question != null){
                 return (
 
+                    
                     <div key={question._id}>
                         <hr />
                         <div className="row">
@@ -118,7 +120,10 @@ class DisplayPosts extends React.Component {
                     </div>
 
                 )
+                            }
             })
+
+        
 
         }
         else {

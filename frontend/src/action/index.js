@@ -14,7 +14,15 @@ export const signIn = (user) => {
 
         console.log(user);
 
-        user["notExist"] = true;
+        // user["notExist"] = true;
+
+        let insertUser = await data.post("/api/user/", {
+            username: user.name,
+            imagePath: user.imgUrl,
+            emailId: user.email,
+            firebaseId: user.userId
+        });
+
 
         dispatch({ type: "SIGN_IN", payload: user });
 
@@ -154,11 +162,13 @@ export const updateUserQuestion = (quesdata) => {
 
         let updateQuestion = await data.patch(`/api/question/${quesdata.quesId}`, {
             title: quesdata.title,
-            desc: quesdata.description
-            // "language": quesdata.language
+            desc: quesdata.description,
+            language: quesdata.language
         });
 
-        console.log(updateQuestion);
+        history.push("/userQuestions");
+        dispatch({ type: "SINGLE_QUESTION", payload: updateQuestion.data });
+
 
     }
 }
@@ -166,6 +176,14 @@ export const updateUserQuestion = (quesdata) => {
 
 export const deleteUserQuestion = (quesdata) => {
     return async (dispatch) => {
+        alert(quesdata);
+        let deleteQuestion = await data.delete(`/api/question/${quesdata}`);
+
+        console.log(deleteQuestion);
+
+        history.push("/userQuestions");
+
+        dispatch({ type: "DELETE_QUESTION" });
 
     }
 }
@@ -174,6 +192,19 @@ export const getSignleQuestion = (quesId) => {
     return async (dispatch) => {
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);
+        console.log("getSingleQuestion")
+        console.log(getQuesDetail);
+
+        dispatch({ type: "QUESTION", payload: getQuesDetail.data });
+
+    }
+}
+
+export const getSignleQuestionUser = (quesId) => {
+    return async (dispatch) => {
+
+        let getQuesDetail = await data.get(`api/question/${quesId}`);
+        console.log("getSingleQuestion")
         console.log(getQuesDetail);
 
         dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
@@ -202,7 +233,10 @@ export const addComment = (quesId, comment) => {
             comment: comment.comment
         });
 
-        dispatch({ type: "SINGLE_QUESTION", payload: addComment.data })
+        console.log(addComment);
+        // history.push(`/singleQuestion/${quesId}`);
+
+        dispatch({ type: "QUESTION", payload: addComment.data })
     }
 }
 

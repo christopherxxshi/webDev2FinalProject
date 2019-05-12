@@ -41,11 +41,9 @@ class App extends React.Component {
 
           <Header />
           {this.props.auth.email ? <AskQuestion></AskQuestion> : null}
-          <SideNavBar></SideNavBar>
+          {/* <SideNavBar></SideNavBar> */}
           <SearchQuestions></SearchQuestions>
-          <br />
-          <br />
-          <br />
+          
           {/* <br />
           <br />
           <br />
@@ -57,7 +55,7 @@ class App extends React.Component {
             <Route path="/askQuestion" component={DisplayQuestions}></Route>
             <Route path="/userQuestions" component={UserQuestions}></Route>
             <Route path="/editUserQues/:quesId" component={EditUserQues}></Route>
-            <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
+            <Route path="/deleteUserQues/:quesId" component={DeleteUserQues}></Route>
             <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
             <Route path="/BarData" component={BarChart}></Route>
            

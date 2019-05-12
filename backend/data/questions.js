@@ -100,29 +100,29 @@ module.exports.updateQuestionById = async function (qId, questionData) {
     };
 
     // console.log(typeof questionData.hasOwnProperty("upVote") );
-    if (questionData.hasOwnProperty("upVote")) {
-        console.log(questionData);
-        let num = questionData.upVote;
-        updateData.upVote = num;
-        let questionData = await this.getQuestionById(qId);
-        console.log(questionData);
-        updateData.upVoteIds = questionData.upVoteIds.push(questionData.userId);
-    }
-    else if (questionData.hasOwnProperty("downVote")) {
-        updateData.downVote = Number(questionData.downVote);
-        let questionData = await this.getQuestionById(qId);
-        // console.log(updateData);
-        updateData["downVoteIds"] = questionData.downVoteIds.push(questionData.userId);
-    }
+    // if (questionData.hasOwnProperty("upVote")) {
+    //     console.log(questionData);
+    //     let num = questionData.upVote;
+    //     updateData.upVote = num;
+    //     let questionData = await this.getQuestionById(qId);
+    //     console.log(questionData);
+    //     updateData.upVoteIds = questionData.upVoteIds.push(questionData.userId);
+    // }
+    // else if (questionData.hasOwnProperty("downVote")) {
+    //     updateData.downVote = Number(questionData.downVote);
+    //     let questionData = await this.getQuestionById(qId);
+    //     // console.log(updateData);
+    //     updateData["downVoteIds"] = questionData.downVoteIds.push(questionData.userId);
+    // }
 
     await deleteCacheData(qId);
-    console.log(updateData);
-    if (updateData) {
-        let result = await questionModel.updateOne({ _id: qId }, { $set: updateData });
-    }
-    else {
+    // console.log(updateData);
+    // if (updateData) {
+    //     let result = await questionModel.updateOne({ _id: qId }, { $set: updateData });
+    // }
+    // else {
         let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
-    }
+    // }
 
     if (result.matchedCount === 0) {
         throw `Can't find question id: ${qId}`;

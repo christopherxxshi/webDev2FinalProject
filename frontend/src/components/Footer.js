@@ -2,6 +2,7 @@ import React from "react";
 import { faFacebookF, faTwitter, faGooglePlusG, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faHome, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import "../style/footer.css";
 
 function Footer(props) {
 
@@ -17,7 +18,7 @@ function Footer(props) {
 
 
     return (
-        <div className="mt-5">
+        <div className="mt-5 footerDiv">
             <footer className="page-footer font-small blue-grey lighten-5">
                 {/* <div style="background-color: #21d192;"> */}
                 <div style={headerStyle}>
