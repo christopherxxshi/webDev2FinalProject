@@ -121,7 +121,6 @@ module.exports.getRecentQuestions = async function () {
 };
 
 
-
 module.exports.getAllQuestions = async function () {
     let result = await questionModel.find({});
     if (result && result.length > 0) {
@@ -174,7 +173,6 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     // const gotData = await JSON.stringify(mongoData.comments);
     // console.log("Hello "+gotData);
 
-    
     // const redisUpdateComment = await redisClient.setAsync(JSON.stringify(qId), JSON.stringify({'comments': gotData}));
     // console.log('Hello'+ await redisClient.getAsync(qId));
     // console.log('Helo End');
@@ -182,8 +180,6 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
 
     const deleteData = await redisClient.del(qId);
     const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
-    // console.log(await redisClient.getAsync(qId));
-    // console.log('Helo End');
 
     return await this.getQuestionById(qId);
 };

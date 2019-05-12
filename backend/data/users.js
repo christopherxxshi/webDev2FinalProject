@@ -40,7 +40,6 @@ module.exports.getUserById = async function (id) {
         //     console.log(id);
         //     return JSON.parse(await redisClient.getAsync(convertUserId(id)))
         // } else {
-            // console.log(id);
             let result = await userModel.findOne({ firebaseId: id });
             // console.log("hey");
             // console.log(result);
