@@ -12,18 +12,9 @@ export const signIn = (user) => {
             user.emailVerified = true;
         }
 
-        // console.log(user);
+        console.log(user);
 
-        let insertUser = await data.post("/api/user/", {
-            username: user.name,
-            imagePath: user.imgUrl,
-            emailId: user.email,
-            firebaseId: user.userId
-        });
-
-        console.log(insertUser);
-
-        // user["notExist"] = true;
+        user["notExist"] = true;
 
         dispatch({ type: "SIGN_IN", payload: user });
 
@@ -148,7 +139,7 @@ export const updateUserQuestion = (quesdata) => {
             // "language": quesdata.language
         });
 
-        // console.log(updateQuestion);
+        console.log(updateQuestion);
 
     }
 }
@@ -164,7 +155,6 @@ export const getSignleQuestion = (quesId) => {
     return async (dispatch) => {
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);
-        console.log("get single question");
         console.log(getQuesDetail);
 
         dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
@@ -172,6 +162,18 @@ export const getSignleQuestion = (quesId) => {
     }
 }
 
+export const getAllImages = () => {
+    return async (dispatch )=> {
+        let imageStrings = await data.get('api/questions/getAllImages');
+        let imageStrs = [];
+
+        for(let i = 0;i<imageStrings.data.length;i++){
+            imageStrs.push("data:image/jpeg;base64," + imageStrings.data[i]);
+        }
+
+        dispatch({ type: "DISPLAY_POSTS", payload: imageStrs})
+    }
+}
 
 export const addComment = (quesId, comment) => {
     return async (dispatch) => {
@@ -197,22 +199,10 @@ export const updateQuestion = (quesId, updateDetails) => {
         // console.log(quesId);
         // console.log(updateDetails);
 
-        let updateQuestion = await data.patch(`/api/question/${quesId}`, obj);
+        let updateQuestion = await data.patch(`/api/question/${quesId}`,obj);
 
         dispatch({ type: "UPDATE_QUESTIONS", payload: updateQuestion.data });
 
     }
 }
-    // Searching the questions
-
-    export const searchQuestions = (questionDetails) => {
-        return async (dispatch) => {    
-
-            await data.post(`/api/question/search`, {
-                term: questionDetails.searchTerm,
-            });
-            history.push("/");    
-        }
-    }
-    
 
