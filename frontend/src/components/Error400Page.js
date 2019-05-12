@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import '../style/ErrorDisplay.css'
 
 class Error400Page extends Component {
 
