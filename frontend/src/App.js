@@ -22,6 +22,9 @@ import SubmitImage from './components/SubmitImage';
 import BarChart from "./components/DataBars";
 import DisplayImgs from "./components/DisplayImgs";
 import SearchQuestions from "./components/SearchQuestion";
+import Error404Page from './components/Error404Page';
+import Error400Page from './components/Error400Page';
+import Error500Page from './components/Error500Page';
 
 // function App(props) {
 class App extends React.Component {
