@@ -63,8 +63,10 @@ router.post('/user/:userId', async (req, res)=>{
 router.post('/:qId/comment/', async (req, res)=>{
     let qId = req.params.qId;
     let commentData = req.body;
+
     try{
         let result =  await questions.addCommentByQuestionId(qId, commentData);
+ 
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});
@@ -79,6 +81,32 @@ router.delete('/:qId/comment/:cId', async (req, res)=>{
         res.status(200).json(result);
     }catch (e) {
         res.status(404).json({error: e});
+    }
+});
+
+router.delete('/:qId', async (req, res) => {
+    let qId = req.params.qId;
+    // console.log(qId);
+
+    try {
+        await questions.getQuestionById(qId);
+
+        try {
+            //remove the qustions
+            let rdata = await questions.deleteQuestion(qId);
+            
+            res.status(200).json(rdata);
+
+        } catch (e) {
+            res.status(500).json({
+                error: "Question not found / Error in deleting"
+            });
+        }
+
+    } catch (e) {
+        res.status(404).json({
+            error: "Question not found"
+        });
     }
 });
 

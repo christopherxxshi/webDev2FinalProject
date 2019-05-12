@@ -155,13 +155,34 @@ module.exports.addCommentByQuestionId = async function (qId, commentData) {
     let newComment = {
         _id: uuid.v4(),
         userId: commentData.userId,
-        comment: commentData.comment
+        comment: commentData.comment,
+        date: new Date().toLocaleDateString(),
+        time: new Date().getHours() + ":" + new Date().getMinutes()
     };
+
+
+    console.log(newComment);
     await deleteCacheData(qId);
     let result = await questionModel.updateOne({ _id: qId }, { $push: { comments: newComment } });
     if (result.matchedCount === 0) {
         throw 'Question not found';
     }
+    const mongoData = await this.getQuestionById(qId);
+    // console.log("He... "+mongoData);
+    // const gotData = await JSON.stringify(mongoData.comments);
+    // console.log("Hello "+gotData);
+
+    
+    // const redisUpdateComment = await redisClient.setAsync(JSON.stringify(qId), JSON.stringify({'comments': gotData}));
+    // console.log('Hello'+ await redisClient.getAsync(qId));
+    // console.log('Helo End');
+    // console.log(redisUpdateComment);
+
+    const deleteData = await redisClient.del(qId);
+    const putData = await redisClient.setAsync(qId, JSON.stringify(mongoData));
+    console.log(await redisClient.getAsync(qId));
+    console.log('Helo End');
+
     return await this.getQuestionById(qId);
 };
 
@@ -176,6 +197,25 @@ module.exports.deleteCommentByCommentId = async function (qId, commentId) {
     }
     return await this.getQuestionById(qId);
 };
+
+module.exports.deleteQuestion = async function (qid) {
+    if (qid === undefined) {
+        throw "Invalid parameter"
+    }
+
+    let deletedDataRedis = await redisClient.del(qid);
+
+    const deletedInfo = await questionModel.findByIdAndRemove({_id: qid}, function(err) {
+        if(!err){
+            // console.log("Deleted");
+        } else {
+            // console.log("Not Deleted");
+        }
+    });
+
+    return await this.getQuestionById(qid);
+
+}
 
 module.exports.getQuestionsByOwnerId = async function (ownerId) {
     if (ownerId === undefined) {

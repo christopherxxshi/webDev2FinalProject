@@ -36,9 +36,9 @@ class SocialMedia extends React.Component {
         await auth.auth().signInWithPopup(provider).then( async (result)=> {
             // var token = result.credential.accessToken;
             
-            // var user = result.user;
+            var user = result.user;
 
-            // console.log(result);
+            console.log(result);
 
             userDetails["name"] = result.user.displayName;
             userDetails["email"] = result.user.email;

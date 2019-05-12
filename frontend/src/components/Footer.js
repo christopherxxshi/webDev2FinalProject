@@ -21,7 +21,7 @@ function Footer(props) {
 
 
 
-        <div>
+        <div className="mt-5">
             <footer className="page-footer font-small blue-grey lighten-5">
                 {/* <div style="background-color: #21d192;"> */}
                 <div style={headerStyle}>

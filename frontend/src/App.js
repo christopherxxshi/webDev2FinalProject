@@ -19,6 +19,7 @@ import DeleteUserQues from "./components/deleteUserQues";
 import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
 import SubmitImage from './components/SubmitImage';
+import BarChart from "./components/DataBars";
 
 // function App(props) {
 class App extends React.Component {
@@ -50,6 +51,7 @@ class App extends React.Component {
             <Route path="/editUserQues/:quesId" component={EditUserQues}></Route>
             <Route path="/deleteUserQues" component={DeleteUserQues}></Route>
             <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
+            <Route path="/BarData" component={BarChart}></Route>
           </Switch>
           <Route component={SubmitImage}></Route>
         </Router>
