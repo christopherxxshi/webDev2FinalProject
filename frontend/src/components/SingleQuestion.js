@@ -16,8 +16,14 @@ class SingleQuestion extends React.Component {
     }
 
     async componentDidMount() {
+        console.log("get");
         await this.props.getSignleQuestion(this.props.match.params.quesId);
     }
+
+    // async componentDidUpdate(){
+    //     console.log("get");
+    //     await this.props.getSignleQuestion(this.props.match.params.quesId);
+    // }
 
 
     handleChange = (event) => {
@@ -118,7 +124,7 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        <img src={this.props.auth.imgUrl}></img>
+                                        <img src={this.props.auth.imgUrl} className="userImg"></img>
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
                                         <p>{this.props.auth.name}</p>
@@ -130,7 +136,12 @@ class SingleQuestion extends React.Component {
                     </div>
                     <hr />
                     <div>
-                        {this.comments(this.props.question.comments)}
+                        {this.props.question._id ?
+                         this.comments(this.props.question.comments)
+                         :
+                         null
+                         }
+                        
                     </div>
 
                     <hr />

@@ -121,6 +121,17 @@ router.get('/user/:userId', async(req, res)=>{
     }
 });
 
+router.post('/search', async(req, res)=>{
+    let search = req.body.term;
+    console.log("Search term", search)
+    try{
+        let result =  await questions.getAllQuestionsBySearchCriteria(search);
+        res.status(200).json(result);
+    }catch (e) {
+        res.status(404).json({error: e});
+    }
+});
+
 router.post('/uploadImg', cors(), async (req, res) => {
     let bitMap = fs.readFileSync(req.files.imgFile.path);
     // Convert to base64 for mongo storage

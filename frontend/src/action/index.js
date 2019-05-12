@@ -12,9 +12,18 @@ export const signIn = (user) => {
             user.emailVerified = true;
         }
 
-        console.log(user);
+        // console.log(user);
 
-        user["notExist"] = true;
+        let insertUser = await data.post("/api/user/", {
+            username: user.name,
+            imagePath: user.imgUrl,
+            emailId: user.email,
+            firebaseId: user.userId
+        });
+
+        console.log(insertUser);
+
+        // user["notExist"] = true;
 
         dispatch({ type: "SIGN_IN", payload: user });
 
@@ -155,6 +164,7 @@ export const getSignleQuestion = (quesId) => {
     return async (dispatch) => {
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);
+        console.log("get single question");
         console.log(getQuesDetail);
 
         dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
@@ -199,10 +209,22 @@ export const updateQuestion = (quesId, updateDetails) => {
         // console.log(quesId);
         // console.log(updateDetails);
 
-        let updateQuestion = await data.patch(`/api/question/${quesId}`,obj);
+        let updateQuestion = await data.patch(`/api/question/${quesId}`, obj);
 
         dispatch({ type: "UPDATE_QUESTIONS", payload: updateQuestion.data });
 
     }
 }
+    // Searching the questions
+
+    export const searchQuestions = (questionDetails) => {
+        return async (dispatch) => {    
+
+            await data.post(`/api/question/search`, {
+                term: questionDetails.searchTerm,
+            });
+            history.push("/");    
+        }
+    }
+    
 

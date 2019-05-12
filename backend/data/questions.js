@@ -119,7 +119,6 @@ module.exports.getRecentQuestions = async function () {
 
 
 
-
 module.exports.getAllQuestions = async function () {
     let result = await questionModel.find({});
     if (result && result.length > 0) {
@@ -226,4 +225,38 @@ module.exports.getQuestionsByOwnerId = async function (ownerId) {
         result = [];
     }
     return result;
+};
+
+module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
+    let result = undefined;
+    if(searchText) {
+        const regex = new RegExp(escapeReg(searchText), 'gi');
+        console.log("regex",regex);
+    
+    console.log("searchText",searchText);
+    console.log("regex",regex);
+
+     result = await questionModel.find({"title":regex});
+    }
+    if (result && result.length > 0) {
+        // let data = {};
+        // for (let i = 0; i < techTypes.length; i++) {
+        //     data[techTypes[i]] = [];
+        // }
+        // for (let i = 0; i < result.length; i++) {
+        //     if (!techTypes.includes(result[i].language)) {
+        //         data['Others'].push(result[i])
+        //     } else {
+        //         data[result[i].language].push(result[i]);
+        //     }
+        // }
+        return result;
+    } else {
+        throw "can't find any questions";
+    }
+};
+
+const escapeReg= function(text) {
+    console.log("inside escape",text)
+    return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };

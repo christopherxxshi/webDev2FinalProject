@@ -32,6 +32,8 @@ const userSchema = mongoose.Schema({
     _id: { type: String, 'require': true },
     username: { type: String, 'require': true },
     imagePath: String,
+    emailId: String,
+    firebaseId: { type: String, 'require': true },
     languages: { type: [String], default: [] }
 });
 
@@ -55,8 +57,8 @@ const questionSchema = new mongoose.Schema({
 });
 
 const imageSchema = new mongoose.Schema({
-    _id: {type: String, 'require': true},
-    img: {type: String, 'require': true}
+    _id: { type: String, 'require': true },
+    img: { type: String, 'require': true }
 })
 
 
