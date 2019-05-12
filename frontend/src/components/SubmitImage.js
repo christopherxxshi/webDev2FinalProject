@@ -26,7 +26,7 @@ class SubmitImage extends Component {
     if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
       // Post to resize route
       console.log("Resize route");
-      await fetch('http://localhost:3001/api/question/resizeImg', {
+      await fetch('http://localhost:3001/api/image/resizeImg', {
         method: 'POST',
         body: formData
       });
@@ -35,7 +35,7 @@ class SubmitImage extends Component {
       // can just upload
       console.log("Straight upload route");
       try {
-        await fetch('http://localhost:3001/api/question/uploadImg', {
+        await fetch('http://localhost:3001/api/image/uploadImg', {
           method: 'POST',
           body: formData
         });

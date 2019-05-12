@@ -44,12 +44,13 @@ async function addImg(data) {
 
 async function getAllImgs() {
   try {
-    imageModel.find({}, function(err, imgs) {
+    let results = await imageModel.find({}, function(err, imgs) {
       let imgArr = [];
-      imgs.array.forEach(imag => {
-          imgArr.push(imag.img);
-      });
+      for (let i = 0;i<imgs.length ;i++) {
+          imgArr.push(imgs[i].img);
+      }
     });
+    return results;
   } catch (error) {
     throw error;
   }

@@ -5,22 +5,22 @@ class DisplayImgs extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      data: [],
-      loading: false
+      data: []
     }
     this.getAllImages = this.getAllImages.bind(this);
   }
 
   async getAllImages() {
     console.log("about to get imgs")
-    let imageStrings = await data.get(`/api/question/getAllImages`);
-    console.log(imageStrings);
+    let resData = await data.get(`/api/image/getAllImages`);
+    console.log(resData);
     let imageStrs = [];
 
-    for(let i = 0;i<imageStrings.data.length;i++){
-        imageStrs.push("data:image/jpeg;base64, " + imageStrings.data[i]);
+    for (let i = 0;i<resData.data.length;i++) {
+        imageStrs.push("data:image/jpeg;base64, " + resData.data[i].img);
     }
-    this.setState({data: imageStrs});
+
+    this.setState({ data: imageStrs });
   }
 
   async componentDidMount() {
@@ -29,31 +29,13 @@ class DisplayImgs extends Component {
   }
 
   render() {
-    let images = this.props.images;
-    let imgs = [];
-
-    if (this.state.data !== undefined) {
-      for (let img in images) { 
-        imgs.push(
-          <div>
-            <img alt="a screenshot" src={img}/>
-          </div>
-        )
-      }
-    } else {
-      imgs.push(
-        <p>
-          weh no imgs found
-        </p>
-      )
-    }
-
     return (
       <div>
-        {imgs.map((item, index) => (
-          <Item key={index} item={item}/>
-        ))}
-        {imgs}
+        <ul>
+          {this.state.data.map(item => (
+            <li key={item}> <img src={item} alt="a screenshot"/> </li>
+          ))}
+        </ul>
       </div>
   )};
 }
