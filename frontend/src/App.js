@@ -62,7 +62,8 @@ class App extends React.Component {
             <Route path="/BarData" component={BarChart}></Route>
            
           </Switch>
-          {/* <Route component={SubmitImage}></Route> */}
+          { <Route component={SubmitImage}></Route> }
+          { <Route component={DisplayImgs}></Route> }
         </Router>
 
         <Footer></Footer>

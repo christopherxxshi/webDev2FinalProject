@@ -89,21 +89,24 @@ export const searchLanguageQuestions = (language) => {
     }
 }
 
-export const askQuestions = (authUser, questionDetails) => {
+export const askQuestions = (authUser, questionDetails, imgFile) => {
     return async (dispatch) => {
-
-        console.log(questionDetails);
+        console.log("imgFile: ", imgFile);
+        console.log("action index quesDetails: ", questionDetails);
 
 
         let userId = authUser.userId
 
 
-        await data.post(`/api/question/user/${userId}`, {
+       let createQues =  await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,
-            language: questionDetails.language
+            language: questionDetails.language,
+            screenshot: imgFile,
+            needResize: questionDetails.needResize
         });
 
+        console.log("createques: ", createQues);
 
         history.push("/");
 

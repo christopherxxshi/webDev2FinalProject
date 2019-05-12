@@ -2,8 +2,13 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const questions = data.questions;
-const cors = require("cors");
 const users = require("../data/users");
+
+// Image handling
+const images = data.images;
+const fs = require("fs");
+const cors = require('cors');
+const im = require('imagemagick');
 
 router.get('/:qId', async (req, res) => {
     let qId = req.params.qId;
@@ -60,6 +65,8 @@ router.get('/', async (req, res) => {
 
 router.post('/user/:userId', async (req, res) => {
     console.log(req.params.userId);
+    console.log(req.files);
+    console.log(req.body.screenshot);
     let userId = req.params.userId;
     let data = req.body;
     try {

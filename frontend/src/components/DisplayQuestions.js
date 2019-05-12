@@ -35,10 +35,44 @@ class DisplayQuestions extends Component {
         this.setState({ language: e.target.value })
     };
 
+    uploadHandler = async (event) => {
+        event.preventDefault();
+    
+        let formData = new FormData();
+        formData.append('imgFile', this.uploadInput.files[0]);
+        console.log(formData);
+
+        if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
+            // Post to resize route
+            try {
+                console.log("Resize route");
+                await fetch('http://localhost:3001/api/image/resizeImg', {
+                    method: 'POST',
+                    body: formData
+                });
+            } catch (error) {
+                console.error(error);
+            }
+        } else {
+            // Can just upload
+            console.log("Straight upload route");
+            try {
+                await fetch('http://localhost:3001/api/image/uploadImg', {
+                method: 'POST',
+                body: formData
+                });
+                console.log("Upload done");
+            } catch (error) {
+                console.error(error);
+            }
+        }
+    }
+
     handleSubmit = async (e) => {
         e.preventDefault()
 
         await this.props.askQuestions(this.props.auth, this.state);
+
 
     }
 
@@ -89,7 +123,7 @@ class DisplayQuestions extends Component {
                         <span>
 
                             <div>
-
+                                <input ref={(ref) => { this.uploadInput = ref;}} type="file"/>
 
                                 <div className=" post tect-center float-left">
                                     <button disabled={!(this.state.title && this.state.description && this.state.language)}
