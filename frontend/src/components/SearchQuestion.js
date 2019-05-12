@@ -1,7 +1,5 @@
 import React, { Component } from "react";
 import data from "../api";
-import { Link } from "react-router-dom";
-import questions from "../reducers/questions";
 
 class SearchQuestion extends Component {
   constructor(props) {

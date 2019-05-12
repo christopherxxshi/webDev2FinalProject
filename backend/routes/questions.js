@@ -175,10 +175,12 @@ router.post('/resizeImg', cors(), async (req, res) => {
 });
 
 router.get('/getAllImages', cors(), async (req, res) => {
+    console.log("in getAllImg route");
     try {
         let imgArr = await images.getAllImgs();
         res.status(200).json(imgArr);
     } catch (e) {
+        res.status(404).json({error: e});
         console.error(e);
     }
 });
