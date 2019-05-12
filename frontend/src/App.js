@@ -20,6 +20,7 @@ import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
 import SubmitImage from './components/SubmitImage';
 import BarChart from "./components/DataBars";
+import DisplayImgs from "./components/DisplayImgs";
 
 // function App(props) {
 class App extends React.Component {
@@ -54,6 +55,7 @@ class App extends React.Component {
             <Route path="/BarData" component={BarChart}></Route>
           </Switch>
           <Route component={SubmitImage}></Route>
+          <Route component={DisplayImgs}></Route>
         </Router>
 
         <Footer></Footer>
