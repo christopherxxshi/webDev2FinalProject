@@ -53,7 +53,9 @@ const questionSchema = new mongoose.Schema({
         comment: { type: String, require: true },
         date: { type: String, 'require': true },
         time: { type: String, 'require': true }
-    }]
+    }],
+    upVoteIds: [],
+    downViteIds: []
 });
 
 const imageSchema = new mongoose.Schema({
