@@ -49,15 +49,14 @@ class DisplayQuestions extends Component {
                     method: 'POST',
                     body: formData
                 });
-                fetch(request).then((response) => {
-                    //console.log(response);
-                    response.json().then((data) => {
-                        //console.log("this is data: ", data);
-                        let imgId_ = data.imgId;
-                        this.setState( {screenshotId: imgId_});
-                        return imgId_;
-                    });
-                });
+                const requestFetch = async () => {
+                    const res = await fetch(request);
+                    const resJSON = await res.json();
+                    let imgId_ = await resJSON.imgId;
+                    return imgId_;
+                }
+                
+                return requestFetch();
             } catch (error) {
                 console.error(error)
             }
@@ -70,22 +69,10 @@ class DisplayQuestions extends Component {
                     method: 'POST',
                     body: formData
                 });
-                
-                // fetch(request).then((response) => {
-                //     console.log("this is response: ", response);
-                //     response.json().then((data) => {
-                //         //console.log("this is data: ", data);
-                //         //console.log("this is data.imgId", data.imgId);
-                //         let imgId_ = data.imgId;
-                //         this.setState( {screenshotId: imgId_});
-                //         return imgId_;
-                //     });
-                // });
 
                 const requestFetch = async () => {
                     const res = await fetch(request);
                     const resJSON = await res.json();
-                    console.log("this is res: ", resJSON);
                     let imgId_ = await resJSON.imgId;
                     return imgId_;
                 }
@@ -99,15 +86,12 @@ class DisplayQuestions extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
-
-        // this.uploadHandler(e).then(function (imgId_) {
-        //     this.setState( {screenshotId: imgId_} );
-        //     console.log("abt to askquestions, this.state:", this.state);
-        // }).then(this.props.askQuestions(this.props.auth, this.state));
-
-        let imgId_ = await this.uploadHandler(e);
-        this.setState( {screenshotId: imgId_});
-        console.log("abt to askquestions, this.state:", this.state);
+        console.log(this.uploadInput.files.length !== 0);
+        if (this.uploadInput.files.length !== 0) {
+            let imgId_ = await this.uploadHandler(e);
+            this.setState( {screenshotId: imgId_});
+            console.log("abt to askquestions, this.state:", this.state);
+        }
         await this.props.askQuestions(this.props.auth, this.state);
     }
 
@@ -158,7 +142,7 @@ class DisplayQuestions extends Component {
                         <span>
 
                             <div>
-                                <input ref={(ref) => { this.uploadInput = ref;}} type="file"/>
+                                <input ref={(ref) => { this.uploadInput = ref;}} type="file" noValidate/>
 
                                 <div className=" post tect-center float-left">
                                     <button disabled={!(this.state.title && this.state.description && this.state.language)}

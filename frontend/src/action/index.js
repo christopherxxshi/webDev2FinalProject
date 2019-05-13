@@ -111,15 +111,12 @@ export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
         let userId = authUser.userId
         console.log("ques.screenshotId: ", questionDetails);
-        let ques = await data.post(`/api/question/user/${userId}`, {
+        await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,
             language: questionDetails.language,
             screenshotId: questionDetails.screenshotId
         });
-
-        console.log(ques);
-
         history.push("/");
     }
 }
@@ -278,7 +275,7 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
         console.log(userId);
         obj["userId"] = userId;
 
-        let updatedQues = await data.post(`/api/question/votes/${quesId}`, obj);
+        data.post(`/api/question/votes/${quesId}`, obj);
 
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);

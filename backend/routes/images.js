@@ -25,9 +25,7 @@ router.post('/uploadImg', cors(), async (req, res) => {
   let img64 = new Buffer.from(bitMap).toString('base64');
   try {
       let result =  await images.addImg(img64);
-    //   console.log("uploaded image:"+result)
       console.log(result.toString());
-      //res.status(200).json({"id":result});
       res.status(200).send({imgId: result});
   } catch (e) {
       res.status(404).json({error: e});
@@ -55,7 +53,7 @@ router.post('/resizeImg', cors(), async (req, res) => {
       let img64 = new Buffer.from(bitMap).toString('base64');
       try {
           let result =  await images.addImg(img64);
-          res.send(result);
+          res.send({imgId: result});
       } catch (e) {
           res.status(404).json({error: e});
       }

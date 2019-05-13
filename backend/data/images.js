@@ -8,7 +8,6 @@ async function getImgById(id) {
     throw "Invalid params when trying to getImgById";
   }
   try {
-    console.log("get img w id", id);
     let result = await imageModel.findById(id, function (err, imgData) {
       return imgData
     });
@@ -26,7 +25,6 @@ async function addImg(data) {
   if (data === undefined) {
     throw "Image needs to be not null";
   }
-  console.log("got to addImg");
   try {
     newId = uuid();
     let newImg = new imageModel({

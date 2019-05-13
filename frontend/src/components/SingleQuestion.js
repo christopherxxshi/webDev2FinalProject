@@ -16,7 +16,6 @@ class SingleQuestion extends React.Component {
     }
 
     async componentDidMount() {
-        console.log("get");
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
 
@@ -43,13 +42,10 @@ class SingleQuestion extends React.Component {
 
 
     handleChange = (event) => {
-        // console.log(event.target.value)
         this.setState({ comment: event.target.value });
     }
 
     onSubmit = async (event) => {
-        // console.log(this.state.comment);
-
         let obj = {
             userId: this.props.auth.userId,
             comment: this.state.comment
@@ -60,27 +56,15 @@ class SingleQuestion extends React.Component {
         await this.props.addComment(this.props.match.params.quesId, obj);
     }
 
-
     onClick = async (event) => {
-
-        console.log(event);
-
         let arr = event.split(" ");
-
         let obj = {};
-
         obj[arr[0]] = Number(arr[2]) + 1;
-
-        // console.log(this.props.auth.userId);
-
         await this.props.updateUpVote(arr[1], obj, this.props.auth.userId);
 
     }
 
-
     comments = (data) => {
-
-        console.log(data);
         if (data) {
             var comments = data.map(comment => {
                 return (
@@ -126,7 +110,6 @@ class SingleQuestion extends React.Component {
 
         if (this.props.question.screenshotData) {
             imageStr = "data:image/jpeg;base64, " + this.props.question.screenshotData;
-            console.log("imgstr: ", imageStr);
         }
 
         let indiQuestion;
@@ -246,14 +229,10 @@ class SingleQuestion extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
-    console.log(state);
-
     return {
         question: state.singleQuestion,
         auth: state.auth
     };
-
 }
 
 
