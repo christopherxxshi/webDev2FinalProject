@@ -18,7 +18,7 @@ class SingleQuestion extends React.Component {
     async componentDidMount() {
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
-
+        console.log(this.props.question);
         await this.props.languageChange("");
 
         // let question = await axios({
@@ -169,16 +169,22 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-sm-12 col-lg-12 text-center">
                                 {`${this.props.question.time} on ${this.props.question.date}`}
                             </div>
-                            <div className="col-md-12 col-lg-12 col-sm-12 ">
+                            { this.props.question.hasOwnProperty("userDetail") ?
+                                (
+<div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-3 col-lg-3 col-sm-12 text-center">
-                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
+                                        <img src={this.props.question.userDetail.imagePath} alt="userImg" className="userImg"></img>
                                     </div>
                                     <div className="col-md-9 col-lg-9 col-sm-12 ">
                                         <p>{this.props.question.userDetail.username}</p>
                                     </div>
                                 </div>
                             </div>
+                                ):
+                                null
+                            }
+                            
                         </div>
 
                     </div>

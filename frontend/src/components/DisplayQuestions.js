@@ -127,8 +127,8 @@ class DisplayQuestions extends Component {
                             <select onChange={this.handleChangeSelect}>
                                 <option value="Java">Java</option>
                                 <option value="JavaScript">JavaScript</option>
-                                <option value="Python">HTML</option>
-                                <option value="Objective-C">Python</option>
+                                <option value="HTML">HTML</option>
+                                <option value="Python">Python</option>
                                 <option value="TypeScript">TypeScript</option>
                                 <option value="Others">Others</option>
                             </select>
