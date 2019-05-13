@@ -102,8 +102,7 @@ textarea::placeholder {
   font-size: 1.2em;
   font-weight: lighter;
   color: #999;
-  
-  color: black;
+ 
 }
 .title, .description {
   margin-right: 1%;
@@ -241,7 +240,7 @@ text-align: center;
 
 .sidemenu{
   position: fixed;
-  top: 80px;
+  top: 77px;
   left: 0px;
   height: 100%;
   width: 0px;
@@ -322,4 +321,9 @@ text-align: center;
   width: 200px !important;
   height: 50px !important;
   font-size: 20px !important;
+}
+
+.sizeOfImage{
+  width: 700px !important;
+  height: 400px !important;
 }
