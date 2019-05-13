@@ -1,5 +1,4 @@
 import React from "react";
-import question from "../images/question.png"
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faArrowRight } from '@fortawesome/free-solid-svg-icons';
 import {  Link } from "react-router-dom";
