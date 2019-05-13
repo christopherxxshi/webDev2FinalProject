@@ -41,23 +41,31 @@ router.patch('/:qId', async (req, res) => {
 router.post('/:qId/votes', async (req, res) => {
     try{
     let fetchQuesition = await questions.getQuestionById(req.params.qId);
-    // console.log(fetchQuesition.upVoteIds);
-    // console.log(fetchQuesition.downVoteIds);
+    
+
+
+
 
     let bodyData = req.body;
-    // console.log(bodyData.userId);
+    
+
 
     if(bodyData.hasOwnProperty('upVote')){
-        console.log('Its upvote');
+        
+
+
 
         if(fetchQuesition.upVoteIds.includes(bodyData.userId)){
-            console.log("Alredy upvoted");
+            
+
             res.status(200).json({message: "Already Upvoted"});
         } else {
             console.log('Need to add to voted list');
             const updated = fetchQuesition.upVoteIds.push(bodyData.userId);
-            // console.log("Upvote");
-            // console.log(updated);
+            
+
+
+
             const upVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
             res.status(200).json(upVoteAdded);
         }
@@ -65,16 +73,19 @@ router.post('/:qId/votes', async (req, res) => {
 
 
     } else {
-        console.log('Its downvote');
+        
 
         if(fetchQuesition.downVoteIds.includes(bodyData.userId)){
-            console.log("Alrady downvoted");
+            
+
             res.status(200).json({message: "Already DownVoted"});
         } else {
-            console.log('Need to add to downvote list');
+            
+
             const updated = fetchQuesition.downVoteIds.push(bodyData.userId);
-            // console.log("DownVote");
-            // console.log(fetchQuesition);
+            
+
+
             const downVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
             res.status(200).json(downVoteAdded);
         }
@@ -82,7 +93,6 @@ router.post('/:qId/votes', async (req, res) => {
 
     }
 
-    
 
     } catch (e) {
         res.status(404).json({ error: "Error in Voting" });
@@ -127,8 +137,10 @@ router.post('/:qId/comment/', async (req, res) => {
 
     try {
         let result = await questions.addCommentByQuestionId(qId, commentData);
-        // console.log("HEllo...");
-        // console.log(result);
+
+
+
+
 
          result["userDetails"] = await users.getUserById(result.ownerId);
 
