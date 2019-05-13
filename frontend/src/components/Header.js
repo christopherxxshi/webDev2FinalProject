@@ -5,15 +5,20 @@ import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import AuthUser from "./AuthUser";
 // import EmailLogin from "./EmailLogin";
+import { displayQuestions } from "../action";
 
 class Header extends React.Component {
+
+    onSearchRedis = async () => {
+        await this.props.displayQuestions();
+    }
 
     render() {
         return (
             <div >
                 <div className="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm">
                     {/* <h5 className="my-0 mr-md-auto font-weight-normal ">Company name</h5> */}
-                    <h5 className="mx-5 mr-md-auto font-weight-normal "><Link to="/"><a>Company name</a></Link></h5>
+                    <h5 className="mx-5 mr-md-auto font-weight-normal script "><Link to="/" onClick={() => this.onSearchRedis.bind(this)()}><a>AskOverflow</a></Link></h5>
                     <nav className="my-2 my-md-0 mr-md-3">
                         <div className="float-right">
                             {!this.props.auth.emailVerified ?
@@ -100,4 +105,4 @@ const mapStateToProps = (state) => {
     return { auth: state.auth };
 };
 
-export default connect(mapStateToProps)(Header);
+export default connect(mapStateToProps,{displayQuestions})(Header);

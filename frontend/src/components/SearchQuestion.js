@@ -93,7 +93,7 @@ class SearchQuestion extends Component {
                             {/* <b>Question:</b> */}
                             
                             <Link className ="myLink" to={`/singleQuestion/${questions._id}`}  >                  
-                                (Q){questions.title} ({countAns} Answers)                 
+                                (Q) {questions.title} - ({countAns} Answers)                 
                                 </Link>
 <br />
                             {/* <b>Comments:</b>

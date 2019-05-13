@@ -1,5 +1,5 @@
 import React from "react";
-import { getSignleQuestion, addComment, updateQuestion ,updateUpVote} from "../action";
+import { getSignleQuestion, addComment, updateQuestion ,updateUpVote,languageChange} from "../action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
@@ -21,6 +21,8 @@ class SingleQuestion extends React.Component {
         console.log("get");
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
+
+        await this.props.languageChange("");
 
         // let question = await axios({
         //     url: `http://localhost:3001/api/question/${this.props.match.params.quesId}/`,
@@ -90,11 +92,11 @@ class SingleQuestion extends React.Component {
                         {/* {comment.comment} */}
                         <div className="card">
                             <div className="card-header">
-                                <p>{`On ${comment.date} at ${comment.time}.`}</p>
+                                <p className="blackColor">{`On ${comment.date} at ${comment.time}.`}</p>
                             </div>
                             <div className="card-body">
                                 <blockquote className="blockquote mb-0">
-                                    <p>{comment.comment}</p>
+                                    <p className="blackColor">{comment.comment}</p>
                                     <footer className="blockquote-footer"><cite title="Source Title">{comment.userDetails.emailId} ({comment.userDetails.username})</cite></footer>
                                 </blockquote>
                             </div>
@@ -181,11 +183,11 @@ class SingleQuestion extends React.Component {
                             </div>
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
-                                    <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        {/* <img src={this.props.question.userDetail.imagePath} className="userImg"></img> */}
+                                    <div className="col-md-3 col-lg-3 col-sm-12 text-center">
+                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
                                     </div>
-                                    <div className="col-md-6 col-lg-6 col-sm-12 ">
-                                        {/* <p>{this.props.question.userDetail.username}</p> */}
+                                    <div className="col-md-9 col-lg-9 col-sm-12 ">
+                                        <p>{this.props.question.userDetail.username}</p>
                                     </div>
                                 </div>
                             </div>
@@ -212,7 +214,7 @@ class SingleQuestion extends React.Component {
                                     <textarea rows="7" cols="67" value={this.state.comment} required
                                         placeholder="Enter comment" name="comment" onChange={this.handleChange.bind(this)} />
                                     <div>
-                                        <button className="btn btn-primary" onClick={this.onSubmit.bind(this)}>
+                                        <button className="btn btn-primary myPostCommentButton" onClick={this.onSubmit.bind(this)}>
                                             Post
                                         </button>
                                     </div>
@@ -255,4 +257,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getSignleQuestion, addComment, updateQuestion,updateUpVote })(SingleQuestion);
+export default connect(mapStateToProps, { getSignleQuestion, addComment, languageChange,updateQuestion,updateUpVote })(SingleQuestion);
