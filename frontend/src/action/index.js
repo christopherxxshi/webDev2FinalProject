@@ -276,12 +276,12 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
         console.log(userId);
         obj["userId"] = userId;
 
-        data.post(`/api/question/votes/${quesId}`, obj);
+        await data.post(`/api/question/votes/${quesId}`, obj);
 
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);
 
-        // console.log("upvoteids");
+        console.log(getQuesDetail);
 
         // console.log(updatedQues);
 
