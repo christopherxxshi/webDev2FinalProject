@@ -274,12 +274,8 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
     let result = undefined;
     if (searchText) {
         const regex = new RegExp(escapeReg(searchText), 'gi');
-        console.log("regex", regex);
-
-        console.log("searchText", searchText);
-        console.log("regex", regex);
-
         result = await questionModel.find({ "title": regex });
+        
     }
     if (result && result.length > 0) {
         // let data = {};
@@ -295,7 +291,7 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
         // }
         return result;
     } else {
-        throw "can't find any questions";
+        return result;
     }
 };
 

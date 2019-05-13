@@ -35,10 +35,13 @@ class SingleQuestion extends React.Component {
 
     }
 
-    // async componentDidUpdate(){
-    //     console.log("get");
-    //     await this.props.getSignleQuestion(this.props.match.params.quesId);
-    // }
+    async componentDidUpdate(prevProps){
+        
+        if (this.props.match.params.quesId !== prevProps.question._id) {
+            await this.props.getSignleQuestion(this.props.match.params.quesId);
+          }
+        
+    }
 
 
     handleChange = (event) => {

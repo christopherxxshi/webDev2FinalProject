@@ -42,6 +42,9 @@ class SearchQuestion extends Component {
 
     onSubmit(e) {
         e.preventDefault();
+    
+      //  e.target.reset();
+      //  this.handleChange(e);
     }
 
     async searchQuestions() {
@@ -63,13 +66,19 @@ class SearchQuestion extends Component {
     render() {
         let body = null;
         let li = null;
+        let length=0;
+        
+        console.log("len",length);
         if (this.state.searchTerm) {
             li =
                 this.state.searchData &&
                 this.state.searchData.map(questions => {
                     //let show = questions.desc;
+                    length++;
+                    let countAns=0;
                     let comments = questions.comments.length == 0 ? "No Comments" :
                         questions.comments.map(comments => {
+                            countAns++;
                             return (
                                 <li key={comments._id}>
                                     Comments:{comments.comment}
@@ -78,16 +87,17 @@ class SearchQuestion extends Component {
                         });
                     return (
                         <li key={questions._id}>
-                            <b>Language Category: </b>
-                            {questions.language}
+                            {/* <b>Language Category: </b> */}
+                            {/* {questions.language} */}
                             <br />
-                            <b>Question:</b>
-                            <Link className ="myLink" to={`/singleQuestion/${questions._id}`} >                  
-                                        {questions.title}                   
+                            {/* <b>Question:</b> */}
+                            
+                            <Link className ="myLink" to={`/singleQuestion/${questions._id}`}  >                  
+                                (Q){questions.title} ({countAns} Answers)                 
                                 </Link>
 <br />
-                            <b>Comments:</b>
-                            {comments}
+                            {/* <b>Comments:</b>
+                            {comments} */}
                             {/* <Link to={`/shows/${show.id}`}>{show.name}</Link> */}
                         </li>
                     );
@@ -96,9 +106,9 @@ class SearchQuestion extends Component {
         body = (
             <div className="search">
                 <form method="POST " name="formName" onSubmit={this.onSubmit}>
-                    <input type="text" name="searchTerm" className="searchTerm" placeholder=" Search Questions..." onChange={this.handleChange} />
-
+                    <input type="text" name="searchTerm" className="searchTerm"  placeholder=" Search Questions..." onChange={this.handleChange} />
                 </form>
+                {length > 0 ? length+" results" : ""}
                 <ul className="list-unstyled">{li}</ul>
             </div>
         );
