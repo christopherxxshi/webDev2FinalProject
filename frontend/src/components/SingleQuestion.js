@@ -62,11 +62,15 @@ class SingleQuestion extends React.Component {
 
     onClick = async (event) => {
 
+        console.log(event);
+
         let arr = event.split(" ");
 
         let obj = {};
 
         obj[arr[0]] = Number(arr[2]) + 1;
+
+        // console.log(this.props.auth.userId);
 
         await this.props.updateQuestion(arr[1], obj, this.props.auth.userId);
 
@@ -122,8 +126,8 @@ class SingleQuestion extends React.Component {
 
         let indiQuestion;
         console.log(this.props.question);
-        if ( this.props.question["_id"] === this.props.match.params.quesId) {
-        // if (this.state.question) {
+        if (this.props.question["_id"] === this.props.match.params.quesId) {
+            // if (this.state.question) {
 
             indiQuestion = (
                 <div>
@@ -175,10 +179,10 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        {/* <img src={this.props.question.userDetail.imagePath} className="userImg"></img> */}
+                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
-                                        {/* <p>{this.props.question.userDetail.username}</p> */}
+                                        <p>{this.props.question.userDetail.username}</p>
                                     </div>
                                 </div>
                             </div>

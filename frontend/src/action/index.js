@@ -97,16 +97,36 @@ export const searchLanguageQuestions = (language) => {
     }
 }
 
+export const languageChange = (language) => {
+    return async (dispatch) => {
+
+        console.log(language);
+
+        dispatch({ type: "LANGUAGE", payload: language });
+
+    }
+}
+
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
         let userId = authUser.userId
 
+<<<<<<< HEAD
         await data.post(`/api/question/user/${userId}`, {
+=======
+
+        let ques = await data.post(`/api/question/user/${userId}`, {
+>>>>>>> origin
             title: questionDetails.title,
             desc: questionDetails.description,
             language: questionDetails.language
         });
 
+<<<<<<< HEAD
+=======
+        console.log(ques);
+
+>>>>>>> origin
         history.push("/");
     }
 }
@@ -205,15 +225,15 @@ export const getSignleQuestionUser = (quesId) => {
 }
 
 export const getAllImages = () => {
-    return async (dispatch )=> {
+    return async (dispatch) => {
         let imageStrings = await data.get('api/questions/getAllImages');
         let imageStrs = [];
 
-        for(let i = 0;i<imageStrings.data.length;i++){
+        for (let i = 0; i < imageStrings.data.length; i++) {
             imageStrs.push("data:image/jpeg;base64," + imageStrings.data[i]);
         }
 
-        dispatch({ type: "DISPLAY_POSTS", payload: imageStrs})
+        dispatch({ type: "DISPLAY_POSTS", payload: imageStrs })
     }
 }
 
@@ -232,7 +252,7 @@ export const addComment = (quesId, comment) => {
     }
 }
 
-export const updateQuestion = (quesId, updateDetails,userId) => {
+export const updateQuestion = (quesId, updateDetails, userId) => {
     return async (dispatch) => {
 
         let obj = {};
@@ -246,9 +266,35 @@ export const updateQuestion = (quesId, updateDetails,userId) => {
         // console.log(quesId);
         // console.log(updateDetails);
 
-        let updateQuestion = await data.patch(`/api/question/${quesId}`,obj);
+        let updateQuestion = await data.patch(`/api/question/${quesId}`, obj);
 
         dispatch({ type: "UPDATE_QUESTIONS", payload: updateQuestion.data });
 
     }
 }
+<<<<<<< HEAD
+=======
+
+
+export const updateUpVote = (quesId, udateDetails, userId) => {
+    return async (dispatch) => {
+
+        let obj = {};
+
+        for (let prop in udateDetails) {
+            obj[prop] = udateDetails[prop];
+        }
+
+        console.log(userId);
+        obj["userId"] = userId;
+
+        let updatedQues = await data.patch(`/api/${quesId}/votes`, obj);
+
+        console.log("upvoteids");
+
+        console.log(updatedQues);
+
+    }
+}
+
+>>>>>>> origin

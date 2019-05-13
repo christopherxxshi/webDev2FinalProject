@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { searchLanguageQuestions } from "../action";
+import { searchLanguageQuestions, languageChange } from "../action";
 import { connect } from "react-redux";
 
 class SideNavBar extends Component {
@@ -30,6 +30,8 @@ class SideNavBar extends Component {
     onSearchLang = async (event) => {
 
         await this.props.searchLanguageQuestions(event);
+
+        await this.props.languageChange(event);
     }
 
     render() {
@@ -37,7 +39,7 @@ class SideNavBar extends Component {
             <div>
                 <div id="mainbox" onClick={this.openFunction}>&#9776; Select Language</div>
                 <div id="menu" className="sidemenu">
-            
+
                     <a href="#">&#127968;</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("Java")}>Java</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("JavaScript")}>JavaScript</a>
@@ -57,4 +59,4 @@ class SideNavBar extends Component {
 
 }
 
-export default connect(null, { searchLanguageQuestions })(SideNavBar);
+export default connect(null, { searchLanguageQuestions, languageChange })(SideNavBar);
