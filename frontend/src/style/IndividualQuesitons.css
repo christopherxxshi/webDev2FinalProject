@@ -6,3 +6,29 @@
     display: inline-block;
     float: right;
 }
+.redH3{
+    color: red;
+    font-size: 20px;
+}
+.individualH1{
+    font-size: 50px;
+    color: rgb(221, 132, 30)
+}
+
+.myIndiQuestions{
+
+    font-size: 20px;
+    color: rgb(161, 160, 160)
+
+}
+.indiDescription{
+    font-size: 25px;
+}
+
+.myIndiTitle{
+    font-size: 40px;
+    color: rgb(226, 206, 93);
+}
+.indiHR{
+    height: 3px;
+}
