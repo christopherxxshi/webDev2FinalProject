@@ -18,9 +18,9 @@ import EditUserQues from "./components/editUserQues";
 import DeleteUserQues from "./components/deleteUserQues";
 import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
-import SubmitImage from './components/SubmitImage';
+//import SubmitImage from './components/SubmitImage';
 import BarChart from "./components/DataBars";
-import DisplayImgs from "./components/DisplayImgs";
+//import DisplayImgs from "./components/DisplayImgs";
 import SearchQuestions from "./components/SearchQuestion";
 import Error404Page from './components/Error404Page';
 import Error400Page from './components/Error400Page';
@@ -60,8 +60,6 @@ class App extends React.Component {
             <Route path="/BarData" component={BarChart}></Route>
            
           </Switch>
-          { <Route component={SubmitImage}></Route> }
-          { <Route component={DisplayImgs}></Route> }
         </Router>
 
         <Footer></Footer>

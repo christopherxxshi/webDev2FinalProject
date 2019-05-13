@@ -6,19 +6,17 @@ const users = require("../data/users");
 
 // Image handling
 const images = data.images;
-const fs = require("fs");
-const cors = require('cors');
-const im = require('imagemagick');
 
 router.get('/:qId', async (req, res) => {
     let qId = req.params.qId;
     try {
-
-
-
         let result = await questions.getQuestionById(qId);
 
         result["userDetail"] = await users.getUserById(result.ownerId);
+
+        if (result.screenshotId) {
+            result["screenshotData"] = await images.getImgById(result.screenshotId);
+        }
 
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
@@ -95,12 +93,14 @@ router.get('/', async (req, res) => {
     }
 });
 
+// POST /user/:userId
 router.post('/user/:userId', async (req, res) => {
     console.log(req.params.userId);
     console.log(req.files);
     console.log(req.body.screenshot);
     let userId = req.params.userId;
     let data = req.body;
+
     try {
         let result = await questions.addQuestion(userId, data);
         res.status(200).json(result);
@@ -180,42 +180,6 @@ router.get('/user/:userId', async (req, res) => {
     } catch (e) {
         res.status(404).json({ error: e });
     }
-});
-
-router.post('/uploadImg', cors(), async (req, res) => {
-    console.log("HI this is req.files.imgFile", req.files.imgFile);
-    let bitMap = fs.readFileSync(req.files.imgFile.path);
-    // Convert to base64 for mongo storage
-    let img64 = new Buffer.from(bitMap).toString('base64');
-    try {
-        let result = await images.addImg(img64);
-        console.log("This is result: ", result);
-        res.status(200).json(result);
-    } catch (e) {
-        res.status(404).json({ error: e });
-    }
-});
-
-router.post('/resizeImg', cors(), async (req, res) => {
-    console.log("proc cwd: ", process.cwd());
-    await im.convert(
-        [req.files.imgFile.path, '-resize', '1920x1080', process.cwd() + '/processed.jpg'],
-        function (err, stdout) {
-            if (err) throw err;
-            console.log("im response: ", stdout);
-        }
-    );
-    console.log("Done converting img");
-    // let bitMap = fs.readFileSync(process.cwd() + '/processed.jpg');
-    // // Convert to base64 for mongo storage
-    // let img64 = new Buffer.from(bitMap).toString('base64');
-    // try {
-    //     let result =  await images.addImg(img64);
-    //     console.log("This is result: ", result);
-    //     res.status(200).json(result);
-    // } catch (e) {
-    //     res.status(404).json({error: e});
-    // }
 });
 
 router.post('/search', async (req, res) => {

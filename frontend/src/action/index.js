@@ -16,7 +16,7 @@ export const signIn = (user) => {
 
         // user["notExist"] = true;
 
-        let insertUser = await data.post("/api/user/", {
+        await data.post("/api/user/", {
             username: user.name,
             imagePath: user.imgUrl,
             emailId: user.email,
@@ -111,22 +111,15 @@ export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
         let userId = authUser.userId
 
-<<<<<<< HEAD
-        await data.post(`/api/question/user/${userId}`, {
-=======
-
         let ques = await data.post(`/api/question/user/${userId}`, {
->>>>>>> origin
             title: questionDetails.title,
             desc: questionDetails.description,
-            language: questionDetails.language
+            language: questionDetails.language,
+            screenshotId: questionDetails.screenshotId
         });
 
-<<<<<<< HEAD
-=======
         console.log(ques);
 
->>>>>>> origin
         history.push("/");
     }
 }
@@ -272,9 +265,6 @@ export const updateQuestion = (quesId, updateDetails, userId) => {
 
     }
 }
-<<<<<<< HEAD
-=======
-
 
 export const updateUpVote = (quesId, udateDetails, userId) => {
     return async (dispatch) => {
@@ -297,4 +287,3 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
     }
 }
 
->>>>>>> origin

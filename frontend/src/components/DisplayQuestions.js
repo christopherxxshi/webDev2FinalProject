@@ -10,7 +10,8 @@ class DisplayQuestions extends Component {
         this.state = {
             title: null,
             description: null,
-            language: "Java"
+            language: "Java",
+            screenshotId: null
         }
     }
 
@@ -38,16 +39,23 @@ class DisplayQuestions extends Component {
     
         let formData = new FormData();
         formData.append('imgFile', this.uploadInput.files[0]);
-        //console.log(formData);
 
         if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
             // Post to resize route
             try {
                 //console.log("Resize route");
-                console.log("resize route");
-                await fetch('http://localhost:3001/api/image/resizeImg', {
+                let request = new Request('http://localhost:3001/api/image/resizeImg',
+                {
                     method: 'POST',
                     body: formData
+                });
+                await fetch(request).then((response) => {
+                    //console.log(response);
+                    response.json().then((data) => {
+                        //console.log("this is data: ", data);
+                        let imgId_ = data.imgId;
+                        this.setState( {screenshotId: imgId_});
+                    });
                 });
             } catch (error) {
                 console.error(error)
@@ -62,29 +70,27 @@ class DisplayQuestions extends Component {
                     body: formData
                 });
                 await fetch(request).then((response) => {
-                    console.log(response);
+                    console.log("this is response: ", response);
                     response.json().then((data) => {
-                        console.log(data);
+                        //console.log("this is data: ", data);
+                        //console.log("this is data.imgId", data.imgId);
+                        let imgId_ = data.imgId;
+                        this.setState( {screenshotId: imgId_});
                     });
                 });
-                // await fetch('http://localhost:3001/api/image/uploadImg', {
-                // method: 'POST',
-                // body: formData
-                // });
 
                 console.log("Upload done");
             } catch (error) {
                 console.error(error);
             }
         }
+        return;
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
         await this.uploadHandler(e);
         await this.props.askQuestions(this.props.auth, this.state);
-
-
     }
 
     canbeSubmitted() {

@@ -3,9 +3,7 @@ import { getSignleQuestion, addComment, updateQuestion } from "../action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
-import axios from "axios";
 import "../style/SingleQuestion.css";
-import Axios from "axios";
 
 class SingleQuestion extends React.Component {
 
@@ -121,8 +119,10 @@ class SingleQuestion extends React.Component {
     // }
 
     render() {
-
-
+        let imageStr = "";
+        if (this.props.question.screenshotData) {
+            imageStr = "data:image/jpeg;base64, " + this.props.question.screenshotData;
+        }
 
         let indiQuestion;
         console.log(this.props.question);
@@ -164,9 +164,13 @@ class SingleQuestion extends React.Component {
                             </div>
                         </div>
 
-
+                        
                         <div className="col-lg-8 col-md-9 col-sm-12">
                             {this.props.question.desc}
+                            {this.props.screenshotData ?
+                            <img src={imageStr} alt="a screenshot"/> :
+                            null
+                            }
                         </div>
                     </div>
                     <br />
@@ -179,7 +183,7 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
+                                        <img src={this.props.question.userDetail.imagePath} alt="userImg" className="userImg"></img>
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
                                         <p>{this.props.question.userDetail.username}</p>
