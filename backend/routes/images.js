@@ -6,13 +6,27 @@ const fs = require("fs");
 const cors = require('cors');
 const im = require('imagemagick');
 
+router.get('/getImgById/:id', cors(), async (req, res) => {  
+    try {
+        if (!req.params.id) {
+            console.error("ID required to getImgById");
+        }
+        let img = await images.getImgById(req.params.id);
+        res.status(200).send(img);
+    } catch (e) {
+        res.status(404).json({error: e});
+        console.error(e);
+    }
+});
+
 router.post('/uploadImg', cors(), async (req, res) => {
   let bitMap = fs.readFileSync(req.files.imgFile.path);
   // Convert to base64 for mongo storage
   let img64 = new Buffer.from(bitMap).toString('base64');
   try {
       let result =  await images.addImg(img64);
-      res.status(200).json(result);
+      console.log(result.toString());
+      res.status(200).send({imgId: result});
   } catch (e) {
       res.status(404).json({error: e});
   }
@@ -39,7 +53,7 @@ router.post('/resizeImg', cors(), async (req, res) => {
       let img64 = new Buffer.from(bitMap).toString('base64');
       try {
           let result =  await images.addImg(img64);
-          res.status(200).json(result);
+          res.send({imgId: result});
       } catch (e) {
           res.status(404).json({error: e});
       }

@@ -12,7 +12,6 @@ class DisplayImgs extends Component {
 
   async getAllImages() {
     let resData = await data.get(`/api/image/getAllImages`);
-    console.log(resData);
     let imageStrs = [];
 
     for (let i = 0;i<resData.data.length;i++) {

@@ -3,9 +3,7 @@ import { getSignleQuestion, addComment, updateQuestion ,updateUpVote,languageCha
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
-import axios from "axios";
 import "../style/SingleQuestion.css";
-import Axios from "axios";
 
 class SingleQuestion extends React.Component {
 
@@ -18,10 +16,9 @@ class SingleQuestion extends React.Component {
     }
 
     async componentDidMount() {
-        console.log("get");
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
-
+        console.log(this.props.question);
         await this.props.languageChange("");
 
         // let question = await axios({
@@ -47,13 +44,10 @@ class SingleQuestion extends React.Component {
 
 
     handleChange = (event) => {
-        // console.log(event.target.value)
         this.setState({ comment: event.target.value });
     }
 
     onSubmit = async (event) => {
-        // console.log(this.state.comment);
-
         let obj = {
             userId: this.props.auth.userId,
             comment: this.state.comment
@@ -64,27 +58,15 @@ class SingleQuestion extends React.Component {
         await this.props.addComment(this.props.match.params.quesId, obj);
     }
 
-
     onClick = async (event) => {
-
-        console.log(event);
-
         let arr = event.split(" ");
-
         let obj = {};
-
         obj[arr[0]] = Number(arr[2]) + 1;
-
-        // console.log(this.props.auth.userId);
-
         await this.props.updateUpVote(arr[1], obj, this.props.auth.userId);
 
     }
 
-
     comments = (data) => {
-
-        console.log(data);
         if (data) {
             var comments = data.map(comment => {
                 return (
@@ -126,11 +108,13 @@ class SingleQuestion extends React.Component {
     // }
 
     render() {
+        let imageStr = "";
 
-
+        if (this.props.question.screenshotData) {
+            imageStr = "data:image/jpeg;base64, " + this.props.question.screenshotData;
+        }
 
         let indiQuestion;
-        console.log(this.props.question);
         if (this.props.question["_id"] === this.props.match.params.quesId) {
             // if (this.state.question) {
 
@@ -169,9 +153,13 @@ class SingleQuestion extends React.Component {
                             </div>
                         </div>
 
-
+                        
                         <div className="col-lg-8 col-md-9 col-sm-12">
                             {this.props.question.desc}
+                            {imageStr !== "" ?
+                            <img src={imageStr} alt="a screenshot"/>
+                            :
+                            null}
                         </div>
                     </div>
                     <br />
@@ -181,16 +169,22 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-sm-12 col-lg-12 text-center">
                                 {`${this.props.question.time} on ${this.props.question.date}`}
                             </div>
-                            <div className="col-md-12 col-lg-12 col-sm-12 ">
+                            { this.props.question.hasOwnProperty("userDetail") ?
+                                (
+<div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-3 col-lg-3 col-sm-12 text-center">
-                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
+                                        <img src={this.props.question.userDetail.imagePath} alt="userImg" className="userImg"></img>
                                     </div>
                                     <div className="col-md-9 col-lg-9 col-sm-12 ">
                                         <p>{this.props.question.userDetail.username}</p>
                                     </div>
                                 </div>
                             </div>
+                                ):
+                                null
+                            }
+                            
                         </div>
 
                     </div>
@@ -246,14 +240,10 @@ class SingleQuestion extends React.Component {
 }
 
 const mapStateToProps = (state) => {
-
-    console.log(state);
-
     return {
         question: state.singleQuestion,
         auth: state.auth
     };
-
 }
 
 

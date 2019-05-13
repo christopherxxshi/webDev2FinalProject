@@ -16,15 +16,13 @@ import DisplayQuestions from "./components/DisplayQuestions";
 import UserQuestions from "./components/IndividualUserQuestion";
 import EditUserQues from "./components/editUserQues";
 import DeleteUserQues from "./components/deleteUserQues";
-import SideNavBar from './components/SideNavBar';
+//import SideNavBar from './components/SideNavBar';
 import SingleQuestion from "./components/SingleQuestion";
-import SubmitImage from './components/SubmitImage';
 import BarChart from "./components/DataBars";
-import DisplayImgs from "./components/DisplayImgs";
 import SearchQuestions from "./components/SearchQuestion";
-import Error404Page from './components/Error404Page';
-import Error400Page from './components/Error400Page';
-import Error500Page from './components/Error500Page';
+//import Error404Page from './components/Error404Page';
+//import Error400Page from './components/Error400Page';
+//import Error500Page from './components/Error500Page';
 
 // function App(props) {
 class App extends React.Component {
@@ -60,7 +58,6 @@ class App extends React.Component {
             <Route path="/BarData" component={BarChart}></Route>
            
           </Switch>
-          {/* <Route component={SubmitImage}></Route> */}
         </Router>
 
         <Footer></Footer>

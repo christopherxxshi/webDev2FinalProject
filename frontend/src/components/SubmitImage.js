@@ -16,6 +16,7 @@ class SubmitImage extends Component {
     
     let formData = new FormData();
     formData.append('imgFile', this.uploadInput.files[0]);
+    console.log(formData);
 
     if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
       // Post to resize route

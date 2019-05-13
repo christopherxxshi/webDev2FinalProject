@@ -8,11 +8,11 @@ async function getImgById(id) {
     throw "Invalid params when trying to getImgById";
   }
   try {
-    let result = await imageModel.findOne({
-      id_: id
+    let result = await imageModel.findById(id, function (err, imgData) {
+      return imgData
     });
     if (result) {
-      return result;
+      return result.img;
     } else {
       throw `Can't find image with id ${id}`;
     }
@@ -25,7 +25,6 @@ async function addImg(data) {
   if (data === undefined) {
     throw "Image needs to be not null";
   }
-  console.log("got to addImg");
   try {
     newId = uuid();
     let newImg = new imageModel({
@@ -35,7 +34,7 @@ async function addImg(data) {
     await newImg.save(function (err) {
       if (err) throw err;
     });
-    return getImgById(newId);
+    return newId;
   } catch (error) {
     throw error;
   }

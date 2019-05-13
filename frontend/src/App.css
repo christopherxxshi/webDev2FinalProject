@@ -80,12 +80,14 @@ input {
   outline: none;
   border: 1px solid #cfcfcf;
   margin-bottom: 20px;
+  background-color: white;
+  color: black;
 }
 
 input::placeholder {
   font-size: 1.2em;
   font-weight: lighter;
-  color: #999;
+  color: black;
 }
 textarea {
   padding: 10px 10px;
@@ -93,11 +95,15 @@ textarea {
   outline: none;
   border: 1px solid #cfcfcf;
   margin-bottom: 20px;
+  background-color: white;
+  color: black;
 }
 textarea::placeholder {
   font-size: 1.2em;
   font-weight: lighter;
   color: #999;
+  
+  color: black;
 }
 .title, .description {
   margin-right: 1%;

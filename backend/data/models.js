@@ -54,7 +54,8 @@ const questionSchema = new mongoose.Schema({
         time: { type: String, 'require': true }
     }],
     upVoteIds: [],
-    downVoteIds: []
+    downVoteIds: [],
+    screenshotId: { type: String }
 });
 
 const imageSchema = new mongoose.Schema({

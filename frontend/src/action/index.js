@@ -16,7 +16,7 @@ export const signIn = (user) => {
 
         // user["notExist"] = true;
 
-        let insertUser = await data.post("/api/user/", {
+        await data.post("/api/user/", {
             username: user.name,
             imagePath: user.imgUrl,
             emailId: user.email,
@@ -109,24 +109,15 @@ export const languageChange = (language) => {
 
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
-
-        console.log(questionDetails);
-
-
         let userId = authUser.userId
-
-
-        let ques = await data.post(`/api/question/user/${userId}`, {
+        console.log("ques.screenshotId: ", questionDetails);
+        await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,
-            language: questionDetails.language
+            language: questionDetails.language,
+            screenshotId: questionDetails.screenshotId
         });
-
-        console.log(ques);
-
         history.push("/");
-
-
     }
 }
 
@@ -272,7 +263,6 @@ export const updateQuestion = (quesId, updateDetails, userId) => {
     }
 }
 
-
 export const updateUpVote = (quesId, udateDetails, userId) => {
     return async (dispatch) => {
 
@@ -285,7 +275,7 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
         console.log(userId);
         obj["userId"] = userId;
 
-        let updatedQues = await data.post(`/api/question/votes/${quesId}`, obj);
+        data.post(`/api/question/votes/${quesId}`, obj);
 
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);

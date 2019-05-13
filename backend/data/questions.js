@@ -21,7 +21,6 @@ async function deleteCacheData(id) {
 
 }
 module.exports.addQuestion = async function (ownerId, questionData) {
-    // console.log(questionData);
     if (ownerId === undefined || questionData.title === undefined || questionData.desc === undefined) {
         throw "Invalid params";
     }
@@ -38,7 +37,8 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         time: new Date().getHours() + ":" + new Date().getMinutes(),
         comments: [],
         upVoteIds: [],
-        downVoteIds: []
+        downVoteIds: [],
+        screenshotId: questionData.screenshotId
     });
 
     const found = await redisClient.getAsync(newQuestion.id)
@@ -49,7 +49,6 @@ module.exports.addQuestion = async function (ownerId, questionData) {
             // console.log(setInput);
             if (setInput == "OK") {
                 const some = await redisClient.lpushAsync("ids", newQuestion.id);
-                console.log(some);
             }
         } catch (e) {
             console.log("Error occurred while saving data to redis");
@@ -131,8 +130,6 @@ module.exports.updateQuestionById = async function (qId, questionData) {
 };
 
 module.exports.updateQuestionByIdVotes = async function (qId, allData) {
-    console.log("hi");
-    console.log(allData);
     if (qId === undefined || Object.keys(allData).length === 0) {
         throw "Invalid params";
     }
