@@ -135,7 +135,7 @@ class SingleQuestion extends React.Component {
                                         className="displayBtn"
                                         icon={faThumbsUp}
                                         style={{ fontSize: '1.75em' }} />
-                                    <hr />
+                                    <hr className="myHrSize" />
 
                                 </div>
 
@@ -153,11 +153,13 @@ class SingleQuestion extends React.Component {
                             </div>
                         </div>
 
-                        
                         <div className="col-lg-8 col-md-9 col-sm-12">
                             {this.props.question.desc}
+                            <br />
+                            <br />
+                            <br />
                             {imageStr !== "" ?
-                            <img src={imageStr} alt="a screenshot"/>
+                            <img src={imageStr} alt="a screenshot" className="sizeOfImage"/>
                             :
                             null}
                         </div>
@@ -189,6 +191,8 @@ class SingleQuestion extends React.Component {
 
                     </div>
                     <hr />
+                    <br />
+                    <br />
                     <div>
                         {/* {this.props.question.comments.length > 0 ? */}
                         {this.props.question.comments.length > 0 ?

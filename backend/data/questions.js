@@ -300,7 +300,6 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
                 console.log("Sorting");
             }
         }
-
         }
         return result;
 

@@ -164,7 +164,7 @@ router.post('/:qId/comment/', async (req, res) => {
         }
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
-            console.log(gettingData);
+            // console.log(gettingData);
             result.comments[i]["userDetails"] = gettingData;
             lastuser = result.comments[i]["userDetails"].username;
         }
