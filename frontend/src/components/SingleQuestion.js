@@ -123,12 +123,13 @@ class SingleQuestion extends React.Component {
 
     render() {
         let imageStr = "";
+
         if (this.props.question.screenshotData) {
             imageStr = "data:image/jpeg;base64, " + this.props.question.screenshotData;
+            console.log("imgstr: ", imageStr);
         }
 
         let indiQuestion;
-        console.log(this.props.question);
         if (this.props.question["_id"] === this.props.match.params.quesId) {
             // if (this.state.question) {
 
@@ -170,10 +171,7 @@ class SingleQuestion extends React.Component {
                         
                         <div className="col-lg-8 col-md-9 col-sm-12">
                             {this.props.question.desc}
-                            {this.props.screenshotData ?
-                            <img src={imageStr} alt="a screenshot"/> :
-                            null
-                            }
+                            <img src={imageStr} alt="a screenshot"/>
                         </div>
                     </div>
                     <br />

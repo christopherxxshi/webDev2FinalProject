@@ -8,11 +8,12 @@ async function getImgById(id) {
     throw "Invalid params when trying to getImgById";
   }
   try {
-    let result = await imageModel.findOne({
-      id_: id
+    console.log("get img w id", id);
+    let result = await imageModel.findById(id, function (err, imgData) {
+      return imgData
     });
     if (result) {
-      return result;
+      return result.img;
     } else {
       throw `Can't find image with id ${id}`;
     }

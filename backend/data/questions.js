@@ -38,8 +38,11 @@ module.exports.addQuestion = async function (ownerId, questionData) {
         time: new Date().getHours() + ":" + new Date().getMinutes(),
         comments: [],
         upVoteIds: [],
-        downVoteIds: []
+        downVoteIds: [],
+        screenshotId: questionData.screenshotId
     });
+
+    console.log("In addQuestion, newQ: ", newQuestion);
 
     const found = await redisClient.getAsync(newQuestion.id)
     if (found == null) {

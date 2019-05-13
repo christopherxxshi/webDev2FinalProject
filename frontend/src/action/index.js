@@ -110,7 +110,7 @@ export const languageChange = (language) => {
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
         let userId = authUser.userId
-
+        console.log("ques.screenshotId: ", questionDetails);
         let ques = await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,

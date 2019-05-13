@@ -9,24 +9,24 @@ const nodemailer=require("nodemailer");
 const images = data.images;
 
 router.get('/:qId', async (req, res) => {
+    console.log("in get");
     let qId = req.params.qId;
     try {
         let result = await questions.getQuestionById(qId);
         result["userDetail"] = await users.getUserById(result.ownerId);
-<<<<<<< HEAD
 
-        if (result.screenshotId) {
-            result["screenshotData"] = await images.getImgById(result.screenshotId);
-        }
-
-=======
->>>>>>> origin
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             console.log(gettingData);
             result.comments[i]["userDetails"] = gettingData;
         }
 
+        if (result.screenshotId) {
+            console.log("screenshotID found");
+            result["screenshotData"] = await images.getImgById(result.screenshotId);
+        }
+
+        console.log("This is the res of get: ", result);
         res.status(200).json(result);
     } catch (e) {
         res.status(404).json({ error: e });
@@ -142,6 +142,7 @@ router.post('/user/:userId', async (req, res) => {
     console.log(req.body.screenshot);
     let userId = req.params.userId;
     let data = req.body;
+    console.log("data in user/uid POST: ", data);
 
     try {
         let result = await questions.addQuestion(userId, data);

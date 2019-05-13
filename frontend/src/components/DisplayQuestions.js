@@ -49,12 +49,13 @@ class DisplayQuestions extends Component {
                     method: 'POST',
                     body: formData
                 });
-                await fetch(request).then((response) => {
+                fetch(request).then((response) => {
                     //console.log(response);
                     response.json().then((data) => {
                         //console.log("this is data: ", data);
                         let imgId_ = data.imgId;
                         this.setState( {screenshotId: imgId_});
+                        return imgId_;
                     });
                 });
             } catch (error) {
@@ -69,27 +70,44 @@ class DisplayQuestions extends Component {
                     method: 'POST',
                     body: formData
                 });
-                await fetch(request).then((response) => {
-                    console.log("this is response: ", response);
-                    response.json().then((data) => {
-                        //console.log("this is data: ", data);
-                        //console.log("this is data.imgId", data.imgId);
-                        let imgId_ = data.imgId;
-                        this.setState( {screenshotId: imgId_});
-                    });
-                });
+                
+                // fetch(request).then((response) => {
+                //     console.log("this is response: ", response);
+                //     response.json().then((data) => {
+                //         //console.log("this is data: ", data);
+                //         //console.log("this is data.imgId", data.imgId);
+                //         let imgId_ = data.imgId;
+                //         this.setState( {screenshotId: imgId_});
+                //         return imgId_;
+                //     });
+                // });
 
-                console.log("Upload done");
+                const requestFetch = async () => {
+                    const res = await fetch(request);
+                    const resJSON = await res.json();
+                    console.log("this is res: ", resJSON);
+                    let imgId_ = await resJSON.imgId;
+                    return imgId_;
+                }
+                
+                return requestFetch();
             } catch (error) {
                 console.error(error);
             }
         }
-        return;
     }
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        await this.uploadHandler(e);
+
+        // this.uploadHandler(e).then(function (imgId_) {
+        //     this.setState( {screenshotId: imgId_} );
+        //     console.log("abt to askquestions, this.state:", this.state);
+        // }).then(this.props.askQuestions(this.props.auth, this.state));
+
+        let imgId_ = await this.uploadHandler(e);
+        this.setState( {screenshotId: imgId_});
+        console.log("abt to askquestions, this.state:", this.state);
         await this.props.askQuestions(this.props.auth, this.state);
     }
 
