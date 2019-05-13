@@ -174,7 +174,7 @@ class SingleQuestion extends React.Component {
 <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-3 col-lg-3 col-sm-12 text-center">
-                                        <img src={this.props.question.userDetail.imagePath} alt="userImg" className="userImg"></img>
+                                        <img src={this.props.question.userDetail.imagePath} className="userImg"></img>
                                     </div>
                                     <div className="col-md-9 col-lg-9 col-sm-12 ">
                                         <p>{this.props.question.userDetail.username}</p>

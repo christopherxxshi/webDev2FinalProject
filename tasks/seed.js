@@ -41,7 +41,7 @@ async function main() {
     //POSTING QUESTIONS
     var seedQuestions = [
         {
-            title: "What is the use of strict in ES7?",
+            title: "What is the use of strict in ES7 ?",
             desc: "I'm trying to learn ES7 but don't know the exact use of strict!!!",
             language: "JavaScript"
         },

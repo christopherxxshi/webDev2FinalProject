@@ -76,6 +76,7 @@ class SearchQuestion extends Component {
                     //let show = questions.desc;
                     length++;
                     let countAns=0;
+                    let upVotes = questions.upVote;
                     let comments = questions.comments.length == 0 ? "No Comments" :
                         questions.comments.map(comments => {
                             countAns++;
@@ -93,7 +94,7 @@ class SearchQuestion extends Component {
                             {/* <b>Question:</b> */}
                             
                             <Link className ="myLink" to={`/singleQuestion/${questions._id}`}  >                  
-                                (Q) {questions.title} - ({countAns} Answers)                 
+                                (Q) {questions.title} - ({countAns} Answers) - ({upVotes} upVotes)                
                                 </Link>
 <br />
                             {/* <b>Comments:</b>

@@ -138,7 +138,7 @@ module.exports.updateQuestionByIdVotes = async function (qId, allData) {
 
     let myresult = await questionModel.updateOne({ _id: qId }, { $set: allData });
 
-    if(myresult.matchedCount === 0) {
+    if (myresult.matchedCount === 0) {
         throw `Issues when adding votes for: ${qId}`;
     }
     return await this.getQuestionById(qId);
@@ -270,10 +270,11 @@ module.exports.getQuestionsByOwnerId = async function (ownerId) {
 
 module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
     let result = undefined;
+    let sortedResult = undefined;
     if (searchText) {
         const regex = new RegExp(escapeReg(searchText), 'gi');
         result = await questionModel.find({ "title": regex });
-        
+
     }
     if (result && result.length > 0) {
         // let data = {};
@@ -287,7 +288,22 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
         //         data[result[i].language].push(result[i]);
         //     }
         // }
+
+        //Sorting the result according the upvotes
+        
+        for (let i = 0; i < result.length -1; i++) {
+            for (let j = 1; j < result.length ; j++) {
+            if (result[j].upVote > result[i].upVote) {
+                let temp = result[i];
+                result[i] = result[j];
+                result[j] = temp;
+                console.log("Sorting");
+            }
+        }
+
+        }
         return result;
+
     } else {
         return result;
     }
