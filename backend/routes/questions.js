@@ -39,61 +39,31 @@ router.patch('/:qId', async (req, res) => {
 });
 
 router.post('/:qId/votes', async (req, res) => {
-    try{
-    let fetchQuesition = await questions.getQuestionById(req.params.qId);
-    
+    try {
+        let fetchQuesition = await questions.getQuestionById(req.params.qId);
+        let bodyData = req.body;
+        if (bodyData.hasOwnProperty('upVote')) {
 
+            if (fetchQuesition.upVoteIds.includes(bodyData.userId)) {
+                res.status(200).json({ message: "Already Upvoted" });
+            } else {
+                console.log('Need to add to voted list');
+                const updated = fetchQuesition.upVoteIds.push(bodyData.userId);
 
+                const upVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
+                res.status(200).json(upVoteAdded);
+            }
 
-
-    let bodyData = req.body;
-    
-
-
-    if(bodyData.hasOwnProperty('upVote')){
-        
-
-
-
-        if(fetchQuesition.upVoteIds.includes(bodyData.userId)){
-            
-
-            res.status(200).json({message: "Already Upvoted"});
         } else {
-            console.log('Need to add to voted list');
-            const updated = fetchQuesition.upVoteIds.push(bodyData.userId);
-            
 
-
-
-            const upVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
-            res.status(200).json(upVoteAdded);
+            if (fetchQuesition.downVoteIds.includes(bodyData.userId)) {
+                res.status(200).json({ message: "Already DownVoted" });
+            } else {
+                const updated = fetchQuesition.downVoteIds.push(bodyData.userId);
+                const downVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
+                res.status(200).json(downVoteAdded);
+            }
         }
-
-
-
-    } else {
-        
-
-        if(fetchQuesition.downVoteIds.includes(bodyData.userId)){
-            
-
-            res.status(200).json({message: "Already DownVoted"});
-        } else {
-            
-
-            const updated = fetchQuesition.downVoteIds.push(bodyData.userId);
-            
-
-
-            const downVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
-            res.status(200).json(downVoteAdded);
-        }
-
-
-    }
-
-
     } catch (e) {
         res.status(404).json({ error: "Error in Voting" });
     }
@@ -142,12 +112,12 @@ router.post('/:qId/comment/', async (req, res) => {
 
 
 
-         result["userDetails"] = await users.getUserById(result.ownerId);
+        result["userDetails"] = await users.getUserById(result.ownerId);
 
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             console.log(gettingData);
-             result.comments[i]["userDetail"] = gettingData;
+            result.comments[i]["userDetail"] = gettingData;
         }
 
         res.status(200).json(result);
@@ -240,14 +210,14 @@ router.post('/resizeImg', cors(), async (req, res) => {
     // }
 });
 
-router.post('/search', async(req, res)=>{
+router.post('/search', async (req, res) => {
     let search = req.body.term;
     console.log("Search term", search)
-    try{
-        let result =  await questions.getAllQuestionsBySearchCriteria(search);
+    try {
+        let result = await questions.getAllQuestionsBySearchCriteria(search);
         res.status(200).json(result);
-    }catch (e) {
-        res.status(404).json({error: e});
+    } catch (e) {
+        res.status(404).json({ error: e });
     }
 });
 
