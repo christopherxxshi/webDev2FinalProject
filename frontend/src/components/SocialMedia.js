@@ -139,18 +139,18 @@ class SocialMedia extends React.Component {
                 
                 <div className="social-Media-logo">
                 
-                    <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("facebook")}
+                    {/* <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("facebook")}
                         icon={faFacebookSquare} size="2x"
-                        className="mr-5 fbBrand" />
+                        className="mr-5 fbBrand" /> */}
 
                     <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("google")}
                         icon={faGooglePlusSquare} size="2x"
                         className="mr-5 gBrand" />
 
-                    <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("github")}
+                    {/* <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("github")}
                         icon={faGithubSquare}
                         className="ghBrand"
-                        size="2x" />
+                        size="2x" /> */}
                 </div>
 
 
