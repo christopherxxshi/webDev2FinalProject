@@ -90,10 +90,15 @@ render(){
                 <div className="container text-center text-md-left mt-5">
                     <div className="row mt-3 dark-grey-text">
                         <div className="col-md-3 col-lg-4 col-xl-3 mb-4">
-                            <h6 className="text-uppercase font-weight-bold">Work OverFlow</h6>
+                            <h6 className="text-uppercase font-weight-bold">Ask OverFlow</h6>
                             {/* <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" /> */}
                             <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style={contentStyle} />
-                            <p>Hope you could have extended the deadline for 2 days. We did not sleep for past 2 days. We learned that a "4 week long" project can be done in 3 days if you just don't sleep.</p>
+                            {/* <p>Hope you could have extended the deadline for 2 days. We did not sleep for past 2 days. We learned that a "4 week long" project can be done in 3 days if you just don't sleep.</p> */}
+                            <p>Ask Overflow is the best place to post your questions and get back great answers from
+                                highly talented people. The users can upvote the question if they find its relevant one and
+                                do the vice versa.
+                                Askoverflow is made with intension to specificall target the questions based on language category.
+                            </p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                             <h6 className="text-uppercase font-weight-bold">Members</h6>
