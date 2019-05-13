@@ -87,7 +87,7 @@ input {
 input::placeholder {
   font-size: 1.2em;
   font-weight: lighter;
-  color: black;
+  color: rgb(119, 118, 118);
 }
 textarea {
   padding: 10px 10px;

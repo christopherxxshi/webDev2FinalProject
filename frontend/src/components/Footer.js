@@ -97,7 +97,7 @@ render(){
                             <p>Ask Overflow is the best place to post your questions and get back great answers from
                                 highly talented people. The users can upvote the question if they find its relevant one and
                                 do the vice versa.
-                                Askoverflow is made with intension to specificall target the questions based on language category.
+                                Askoverflow is made with intension to specifically target the questions based on language category.
                             </p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">

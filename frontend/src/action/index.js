@@ -235,6 +235,7 @@ export const addComment = (quesId, comment) => {
             comment: comment.comment
         });
 
+
         console.log(addComment);
         // history.push(`/singleQuestion/${quesId}`);
 
