@@ -40,13 +40,12 @@ class SideNavBar extends Component {
                 <div id="mainbox" onClick={this.openFunction}>&#9776; Select Language</div>
                 <div id="menu" className="sidemenu">
 
-                    <a href="#">&#127968;</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("Java")}>Java</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("JavaScript")}>JavaScript</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("HTML")}>HTML</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("Python")}>Python</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("TypeScript")}>TypeScript</a>
+                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
                     <a href="#" className="closebutton" onClick={this.closeFunction}>&times;</a>
                 </div>
             </div>

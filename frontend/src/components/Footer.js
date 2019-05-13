@@ -1,22 +1,48 @@
-import React from "react";
+import React, {Component} from "react";
 import { faFacebookF, faTwitter, faGooglePlusG, faLinkedinIn, faInstagram } from '@fortawesome/free-brands-svg-icons';
 import { faHome, faEnvelope, faPhone } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import "../style/footer.css";
 
-function Footer(props) {
+const headerStyle = {
 
-    const headerStyle = {
+    backgroundColor: "#21d192"
 
-        backgroundColor: "#21d192"
+}
 
+const contentStyle = {
+    width: "60px"
+}
+
+class Footer extends Component {
+
+openFb = (e) => {
+
+    var a = ['https://www.facebook.com/allan.shivji', 'https://www.facebook.com/harish.indalkar.3', 'https://www.facebook.com/amelg.rathappillil', 'https://www.facebook.com/gabby.padriga'];
+
+    for(var i=0; i<a.length; i++){
+        window.open(a[i]);
     }
+    
+}
 
-    const contentStyle = {
-        width: "60px"
-    }
+openLnk = () => {
+    var a = ['https://www.linkedin.com/in/harish-indalkar', 'https://www.linkedin.com/in/allan-shivji-a14a18a7/', 'https://www.linkedin.com/in/amel-rathappillil/', 'https://www.linkedin.com/in/gabrielle-padriga/'];
 
+    a.forEach(element => {
+        window.open(element);
+    });
+}
 
+openInsta = () => {
+    var a = ['https://www.instagram.com/gab.pad/?hl=en', 'https://www.instagram.com/iallan_s/?hl=en', 'https://www.instagram.com/haribhau_indalkar/?hl=en', 'https://www.instagram.com/_amel_g/?hl=en'];
+
+    a.forEach(element => {
+        window.open(element);
+    })
+}
+
+render(){
     return (
         <div className="mt-5 footerDiv">
             <footer className="page-footer font-small blue-grey lighten-5">
@@ -30,7 +56,7 @@ function Footer(props) {
 
                             <div className="col-md-6 col-lg-7 text-center text-md-right">
 
-                                <a className="fb-ic" href="https://www.facebook.com/harish.indalkar.3" target="_blank">
+                                <a className="fb-ic" onClick={this.openFb} target="_blank">
                                     {/* <i className="fab fa-facebook-f white-text mr-4"> </i> */}
                                     <FontAwesomeIcon cursor="pointer" icon={faFacebookF}
                                         className=" white-text mr-4" />
@@ -47,12 +73,12 @@ function Footer(props) {
                                         className=" white-text mr-4" />
                                 </a>
 
-                                <a className="li-ic" href="https://www.linkedin.com/in/harish-indalkar" target="_blank">
+                                <a className="li-ic" onClick={this.openLnk} target="_blank">
                                     {/* <i className="fab fa-linkedin-in white-text mr-4"> </i> */}
                                     <FontAwesomeIcon cursor="pointer" icon={faLinkedinIn}
                                         className=" white-text mr-4" />
                                 </a>
-                                <a className="ins-ic" href="https://www.instagram.com/haribhau_indalkar/?hl=en" target="_blank">
+                                <a className="ins-ic" onClick={this.openInsta} target="_blank">
                                     {/* <i className="fab fa-instagram white-text"> </i> */}
                                     <FontAwesomeIcon cursor="pointer" icon={faInstagram}
                                         className=" white-text mr-4" />
@@ -67,9 +93,7 @@ function Footer(props) {
                             <h6 className="text-uppercase font-weight-bold">Work OverFlow</h6>
                             {/* <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style="width: 60px;" /> */}
                             <hr className="teal accent-3 mb-4 mt-0 d-inline-block mx-auto" style={contentStyle} />
-                            <p>Here you can use rows and columns to organize your footer content. Lorem ipsum dolor sit amet,
-                              consectetur
-          adipisicing elit.</p>
+                            <p>Hope you could have extended the deadline for 2 days. We did not sleep for past 2 days. We learned that a "4 week long" project can be done in 3 days if you just don't sleep.</p>
                         </div>
                         <div className="col-md-2 col-lg-2 col-xl-2 mx-auto mb-4">
                             <h6 className="text-uppercase font-weight-bold">Members</h6>
@@ -134,7 +158,7 @@ function Footer(props) {
                         </div>
                     </div>
                 </div>
-                <div className="footer-copyright text-center text-black-50 py-3">© 2019 Copyright:
+                <div className="footer-copyright text-center text-black-50 py-3 cpyRight">© 2019 Copyright
     <a className="dark-grey-text" target="_blank" href="https://github.com/gpadriga/webDev2FinalProject"> CS554-group-9.com</a>
                 </div>
 
@@ -142,6 +166,7 @@ function Footer(props) {
 
         </div>
     )
+}
 }
 
 export default Footer;

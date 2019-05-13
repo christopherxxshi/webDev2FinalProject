@@ -18,17 +18,18 @@ class DisplayPosts extends React.Component {
         this.state = {
             upVote: null,
             downVote: null,
-            language: "Recent Asked Questions"
+            language: "Recent Asked Questions",
+            render: false
         }
     }
 
 
     async componentDidMount() {
 
+
+        // this.setState({ render: true });
+
         await this.props.displayQuestions();
-
-
-
 
 
 
@@ -47,27 +48,30 @@ class DisplayPosts extends React.Component {
 
     }
 
+    // async componentDidUpdate() {
+    //     console.log(this.props);
+    // }
 
 
 
     render() {
 
         var allQuestions = [];
-console.log(this.props.questions);
-        if (this.props.questions !== undefined  ) {
+        //  console.log(this.props.questions);
+        if (this.props.questions !== undefined) {
 
-            if(this.props.questions.length != 0){
+            if (this.props.questions.length != 0) {
 
-            allQuestions = this.props.questions.map(question => {
-                if (question != null) {
-                    return (
+                allQuestions = this.props.questions.map(question => {
+                    if (question != null) {
+                        return (
 
 
-                        <div key={question._id}>
-                            <hr />
-                            <div className="row">
-                                <div className="col-lg-3 col-md-4 col-xs-12">
-                                    {/* <div className="row">
+                            <div key={question._id}>
+                                <hr />
+                                <div className="row">
+                                    <div className="col-lg-3 col-md-4 col-xs-12">
+                                        {/* <div className="row">
                                     <div className="col-lg-4 col-sm-4  col-md-4 text-center">
                                         <div name="upVote" onClick={() => this.onClick.bind(this)(`upVote ${question._id} ${question.upVote}`)} >
                                             <FontAwesomeIcon
@@ -108,37 +112,37 @@ console.log(this.props.questions);
                                         Awful
                                     </div>
                                 </div> */}
-                                    <div className="text-center">
-                                        <h3>{question.language}</h3>
+                                        <div className="text-center">
+                                            <h3>{question.language}</h3>
+                                        </div>
+
                                     </div>
-
+                                    <div className="col-lg-9  col-md-8 col-xs-12">
+                                        <Link to={`/singleQuestion/${question._id}`}>
+                                            <h2>
+                                                {question.title}
+                                            </h2>
+                                        </Link>
+                                        <p>Comments : {question.comments.length}</p>
+                                    </div>
                                 </div>
-                                <div className="col-lg-9  col-md-8 col-xs-12">
-                                    <Link to={`/singleQuestion/${question._id}`}>
-                                        <h2>
-                                            {question.title}
-                                        </h2>
-                                    </Link>
-                                    <p>Comments : {question.comments.length}</p>
-                                </div>
+                                <hr />
                             </div>
-                            <hr />
-                        </div>
 
-                    )
-                }
-            })
+                        )
+                    }
+                })
 
-        }
-        else{
-            allQuestions = (
+            }
+            else {
+                allQuestions = (
 
-                <div>
-                    <NoContent ></NoContent>
-                </div>
+                    <div>
+                        <NoContent ></NoContent>
+                    </div>
 
-            )
-        }
+                )
+            }
 
         }
         else {

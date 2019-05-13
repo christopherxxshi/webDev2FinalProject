@@ -1,0 +1,8 @@
+.btn-primary{
+    width: 110px;   
+}
+.forButtons{
+    width: 300px;
+    display: inline-block;
+    float: right;
+}

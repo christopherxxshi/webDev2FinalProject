@@ -102,6 +102,9 @@ textarea::placeholder {
 .title, .description {
   margin-right: 1%;
 }
+.headingForForm{
+  color: black;
+}
 .language{
   display: block;
   width: 100%;
@@ -123,6 +126,48 @@ textarea::placeholder {
   background-color: #fff;
   border: 2px solid #519e8a;
 }
+
+.one button {
+  width: 200px;
+  height: 50px;
+  background-color: #519e8a;
+  color: #fff;
+  border: 2px solid #fff;
+  margin-top: 1em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+ 
+}
+
+.one button:hover {
+  color: #519e8a;
+  background-color: #fff;
+  border: 2px solid #519e8a;
+}
+
+.two button {
+  width: 150px;
+  height: 50px;
+  background-color: #f50000;
+  color: #fff;
+  border: 2px solid #fff;
+  margin-top: 1em;
+  font-size: 1em;
+  font-weight: lighter;
+  letter-spacing: 1px;
+ 
+}
+
+.two button:hover {
+  color: #519e8a;
+  background-color: #fff;
+  border: 2px solid #f50000;
+}
+.cpyRight{
+  color: white !important;
+}
+
 
 
 /* ****************************************************** */
@@ -190,7 +235,7 @@ text-align: center;
 
 .sidemenu{
   position: fixed;
-  top: 67px;
+  top: 80px;
   left: 0px;
   height: 100%;
   width: 0px;
@@ -241,4 +286,34 @@ text-align: center;
 .displayPostBody {
   background-color: #222;
   color:white;
+}
+.floatingRight{
+  float: right;
+}
+
+.alignment{
+  width: 698px;
+  display: inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin: 0px auto;
+  border: 1px white solid;
+}
+.one{
+  float: left;
+}
+.two{
+  float: right;
+}
+
+.askHere{
+  width: 300px !important;
+  height: 70px !important;
+  font-size: 25px !important;
+}
+
+.myPostCommentButton{
+  width: 200px !important;
+  height: 50px !important;
+  font-size: 20px !important;
 }

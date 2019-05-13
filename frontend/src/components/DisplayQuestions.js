@@ -106,7 +106,7 @@ class DisplayQuestions extends Component {
 
                 <div className="form-wrapper">
                     <div>
-                        <h1>Post your Question</h1>
+                        <h1 className="headingForForm">Post your Question</h1>
                         <hr />
                     </div>
 
@@ -114,7 +114,7 @@ class DisplayQuestions extends Component {
                         <div className="title">
                             <label htmlFor="title">Enter your title</label>
                             <br />
-                            <input type="text" required className="" placeholder="title" name="title" onChange={this.handleChangeInput.bind(this)}></input>
+                            <input type="text" required className="" placeholder="Title" name="title" onChange={this.handleChangeInput.bind(this)}></input>
                         </div>
                         <div className="description">
                             <label htmlFor="description">Enter your Description</label>
@@ -127,12 +127,9 @@ class DisplayQuestions extends Component {
                             <select onChange={this.handleChangeSelect}>
                                 <option value="Java">Java</option>
                                 <option value="JavaScript">JavaScript</option>
-                                <option value="Python">Python</option>
-                                <option value="Objective-C">Objective-C</option>
+                                <option value="Python">HTML</option>
+                                <option value="Objective-C">Python</option>
                                 <option value="TypeScript">TypeScript</option>
-                                <option value="C++">C++</option>
-                                <option value="C">C</option>
-                                <option value="C#">C#</option>
                                 <option value="Others">Others</option>
                             </select>
                             <hr />
@@ -142,15 +139,28 @@ class DisplayQuestions extends Component {
                             <div>
                                 <input ref={(ref) => { this.uploadInput = ref;}} type="file" noValidate/>
 
-                                <div className=" post tect-center float-left">
+                                {/* <div className=" post tect-center float-left">
                                     <button disabled={!(this.state.title && this.state.description && this.state.language)}
                                         className=" btn" type="submit">Post</button>
-                                </div>
+                                        <button className="btn floatingRight" onClick={() => history.push("/")}>Cancel</button>
+                                </div> */}
 
 
-                                <div className="float-right tect-center">
-                                    <button className="btn" onClick={() => history.push("/")}>Cancel</button>
+                                <div className="alignment">
+                                    <div className="one">
+                                        <button disabled={!(this.state.title && this.state.description && this.state.language)}
+                                            className=" btn" type="submit">Post</button>
+                                    </div>
+                                    <div className="two">
+                                    <button className="btn floatingRight" onClick={() => history.push("/")}>Cancel</button>
+                                    </div>
+
+
                                 </div>
+
+                                {/* <div className="float-right tect-center">
+                                    
+                                </div> */}
                             </div>
 
                         </span>

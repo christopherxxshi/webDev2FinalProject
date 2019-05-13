@@ -66,7 +66,7 @@ export const displayQuestions = () => {
         // let allQuestions = JSON.parser(JSON.stringify(getQuestions) );
         // console.log(allQuestions);
 
-
+        // history.push("/");
 
 
 
