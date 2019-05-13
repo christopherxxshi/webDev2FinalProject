@@ -1,5 +1,5 @@
 import React from "react";
-import { getSignleQuestion, addComment, updateQuestion } from "../action";
+import { getSignleQuestion, addComment, updateQuestion ,updateUpVote} from "../action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
@@ -33,10 +33,13 @@ class SingleQuestion extends React.Component {
 
     }
 
-    // async componentDidUpdate(){
-    //     console.log("get");
-    //     await this.props.getSignleQuestion(this.props.match.params.quesId);
-    // }
+    async componentDidUpdate(prevProps){
+        
+        if (this.props.match.params.quesId !== prevProps.question._id) {
+            await this.props.getSignleQuestion(this.props.match.params.quesId);
+          }
+        
+    }
 
 
     handleChange = (event) => {
@@ -70,7 +73,7 @@ class SingleQuestion extends React.Component {
 
         // console.log(this.props.auth.userId);
 
-        await this.props.updateQuestion(arr[1], obj, this.props.auth.userId);
+        await this.props.updateUpVote(arr[1], obj, this.props.auth.userId);
 
     }
 
@@ -183,10 +186,10 @@ class SingleQuestion extends React.Component {
                             <div className="col-md-12 col-lg-12 col-sm-12 ">
                                 <div className="row">
                                     <div className="col-md-6 col-lg-6 col-sm-12 text-center">
-                                        <img src={this.props.question.userDetail.imagePath} alt="userImg" className="userImg"></img>
+                                        {/* <img src={this.props.question.userDetail.imagePath} className="userImg"></img> */}
                                     </div>
                                     <div className="col-md-6 col-lg-6 col-sm-12 ">
-                                        <p>{this.props.question.userDetail.username}</p>
+                                        {/* <p>{this.props.question.userDetail.username}</p> */}
                                     </div>
                                 </div>
                             </div>
@@ -256,4 +259,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getSignleQuestion, addComment, updateQuestion })(SingleQuestion);
+export default connect(mapStateToProps, { getSignleQuestion, addComment, updateQuestion,updateUpVote })(SingleQuestion);

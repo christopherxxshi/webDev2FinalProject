@@ -31,7 +31,7 @@ constructor(props){
     async componentDidMount() {
 
         await this.props.getSignleQuestionUser(this.props.match.params.quesId);
-        // console.log(getQuestion);
+        console.log(this.props.match.params.quesId);
         // this.setState({title : this.props.question})
 
     }
@@ -100,6 +100,8 @@ constructor(props){
 
 
 const mapStateToProps = (state) => {
+
+    console.log(state);
 
     return { question: state.question };
 

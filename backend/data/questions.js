@@ -131,7 +131,8 @@ module.exports.updateQuestionById = async function (qId, questionData) {
 };
 
 module.exports.updateQuestionByIdVotes = async function (qId, allData) {
-
+    console.log("hi");
+    console.log(allData);
     if (qId === undefined || Object.keys(allData).length === 0) {
         throw "Invalid params";
     }
@@ -274,12 +275,8 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
     let result = undefined;
     if (searchText) {
         const regex = new RegExp(escapeReg(searchText), 'gi');
-        console.log("regex", regex);
-
-        console.log("searchText", searchText);
-        console.log("regex", regex);
-
         result = await questionModel.find({ "title": regex });
+        
     }
     if (result && result.length > 0) {
         // let data = {};
@@ -295,7 +292,7 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
         // }
         return result;
     } else {
-        throw "can't find any questions";
+        return result;
     }
 };
 
