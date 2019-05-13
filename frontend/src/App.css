@@ -173,6 +173,10 @@ textarea::placeholder {
   color: white !important;
 }
 
+.screenshot img {
+  object-fit: contain;
+}
+
 
 
 /* ****************************************************** */
@@ -289,7 +293,7 @@ text-align: center;
 /* //no removal */
 
 .displayPostBody {
-  background-color: #222;
+  background-color: rgb(51, 51, 51);
   color:white;
 }
 .floatingRight{

@@ -178,7 +178,7 @@ export const updateUserQuestion = (quesdata) => {
 
 export const deleteUserQuestion = (quesdata) => {
     return async (dispatch) => {
-        alert(quesdata);
+        //alert(quesdata);
         let deleteQuestion = await data.delete(`/api/question/${quesdata}`);
 
         console.log(deleteQuestion);
