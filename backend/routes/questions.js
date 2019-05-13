@@ -4,17 +4,13 @@ const data = require("../data");
 const questions = data.questions;
 const cors = require("cors");
 const users = require("../data/users");
+const nodemailer=require("nodemailer");
 
 router.get('/:qId', async (req, res) => {
     let qId = req.params.qId;
     try {
-
-
-
         let result = await questions.getQuestionById(qId);
-
         result["userDetail"] = await users.getUserById(result.ownerId);
-
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             // console.log(gettingData);
@@ -105,21 +101,49 @@ router.post('/user/:userId', async (req, res) => {
 router.post('/:qId/comment/', async (req, res) => {
     let qId = req.params.qId;
     let commentData = req.body;
+    let lastuser = "";
 
     try {
         let result = await questions.addCommentByQuestionId(qId, commentData);
-
-
-
-
-
         result["userDetail"] = await users.getUserById(result.ownerId);
-
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             console.log(gettingData);
             result.comments[i]["userDetails"] = gettingData;
+            lastuser = result.comments[i]["userDetails"].username;
         }
+        
+//Sending notifications to the user who poster the question
+
+let transporter =nodemailer.createTransport(
+    {
+        service: 'gmail',
+        auth: {
+            user: 'askoverflow2019@gmail.com',
+            pass: 'team9@cs554'
+        }
+    }
+);
+
+let reciptant = result["userDetail"].emailId;
+
+let mail = {
+    from:'askoverflow2019@gmail.com',
+    to:`${reciptant}`,
+    subject: `${lastuser} has commented`,
+    text:`${lastuser} has commented to your question you have posted in askoverflow.com`
+
+}
+console.log("mail details",mail)
+transporter.sendMail(mail,(err,info) => {
+
+    if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+
+});
 
         res.status(200).json(result);
     } catch (e) {
