@@ -88,7 +88,7 @@ module.exports.getQuestionById = async function (qId) {
 };
 
 module.exports.updateQuestionById = async function (qId, questionData) {
-    console.log(typeof questionData);
+    // console.log(typeof questionData);
     // console.log(qId);
     if (qId === undefined || Object.keys(questionData).length === 0) {
         throw "Invalid params";
@@ -121,7 +121,7 @@ module.exports.updateQuestionById = async function (qId, questionData) {
     //     let result = await questionModel.updateOne({ _id: qId }, { $set: updateData });
     // }
     // else {
-        let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
+    let result = await questionModel.updateOne({ _id: qId }, { $set: questionData });
     // }
 
     if (result.matchedCount === 0) {
@@ -129,6 +129,22 @@ module.exports.updateQuestionById = async function (qId, questionData) {
     }
     return await this.getQuestionById(qId);
 };
+
+module.exports.updateQuestionByIdVotes = async function (qId, allData) {
+
+    if (qId === undefined || Object.keys(allData).length === 0) {
+        throw "Invalid params";
+    }
+
+    await deleteCacheData(qId);
+
+    let myresult = await questionModel.updateOne({ _id: qId }, { $set: allData });
+
+    if(myresult.matchedCount === 0) {
+        throw `Issues when adding votes for: ${qId}`;
+    }
+    return await this.getQuestionById(qId);
+}
 
 
 //Getting recent question from redis
