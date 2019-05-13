@@ -131,7 +131,8 @@ module.exports.updateQuestionById = async function (qId, questionData) {
 };
 
 module.exports.updateQuestionByIdVotes = async function (qId, allData) {
-
+    console.log("hi");
+    console.log(allData);
     if (qId === undefined || Object.keys(allData).length === 0) {
         throw "Invalid params";
     }

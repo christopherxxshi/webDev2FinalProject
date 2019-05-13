@@ -194,7 +194,7 @@ export const deleteUserQuestion = (quesdata) => {
 
         history.push("/userQuestions");
 
-        dispatch({ type: "DELETE_QUESTION" });
+        // dispatch({ type: "DELETE_QUESTION" });
 
     }
 }
@@ -285,11 +285,17 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
         console.log(userId);
         obj["userId"] = userId;
 
-        let updatedQues = await data.patch(`/api/${quesId}/votes`, obj);
+        let updatedQues = await data.post(`/api/question/votes/${quesId}`, obj);
 
-        console.log("upvoteids");
 
-        console.log(updatedQues);
+        let getQuesDetail = await data.get(`api/question/${quesId}`);
+
+        // console.log("upvoteids");
+
+        // console.log(updatedQues);
+
+
+        dispatch({ type: "QUESTION", payload: getQuesDetail.data });
 
     }
 }
