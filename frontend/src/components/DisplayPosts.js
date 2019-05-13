@@ -28,6 +28,10 @@ class DisplayPosts extends React.Component {
         await this.props.displayQuestions();
 
 
+
+
+
+
     }
 
 
@@ -49,19 +53,21 @@ class DisplayPosts extends React.Component {
     render() {
 
         var allQuestions = [];
+console.log(this.props.questions);
+        if (this.props.questions !== undefined  ) {
 
-        if (this.props.questions) {
+            if(this.props.questions.length != 0){
 
             allQuestions = this.props.questions.map(question => {
-                if(question != null){
-                return (
+                if (question != null) {
+                    return (
 
-                    
-                    <div key={question._id}>
-                        <hr />
-                        <div className="row">
-                            <div className="col-lg-3 col-md-4 col-xs-12">
-                                {/* <div className="row">
+
+                        <div key={question._id}>
+                            <hr />
+                            <div className="row">
+                                <div className="col-lg-3 col-md-4 col-xs-12">
+                                    {/* <div className="row">
                                     <div className="col-lg-4 col-sm-4  col-md-4 text-center">
                                         <div name="upVote" onClick={() => this.onClick.bind(this)(`upVote ${question._id} ${question.upVote}`)} >
                                             <FontAwesomeIcon
@@ -102,32 +108,47 @@ class DisplayPosts extends React.Component {
                                         Awful
                                     </div>
                                 </div> */}
-                                <div className="text-center">
-                                    <h3>{question.language}</h3>
+                                    <div className="text-center">
+                                        <h3>{question.language}</h3>
+                                    </div>
+
                                 </div>
-
+                                <div className="col-lg-9  col-md-8 col-xs-12">
+                                    <Link to={`/singleQuestion/${question._id}`}>
+                                        <h2>
+                                            {question.title}
+                                        </h2>
+                                    </Link>
+                                    <p>Comments : {question.comments.length}</p>
+                                </div>
                             </div>
-                            <div className="col-lg-9  col-md-8 col-xs-12">
-                                <Link to={`/singleQuestion/${question._id}`}>
-                                    <h2>
-                                        {question.title}
-                                    </h2>
-                                </Link>
-                                <p>Comments : {question.comments.length}</p>
-                            </div>
+                            <hr />
                         </div>
-                        <hr />
-                    </div>
 
-                )
-                            }
+                    )
+                }
             })
 
-        
+        }
+        else{
+            allQuestions = (
+
+                <div>
+                    <NoContent ></NoContent>
+                </div>
+
+            )
+        }
 
         }
         else {
-            allQuestions = <NoContent msg="There are no Posts."></NoContent>
+            allQuestions = (
+
+                <div>
+                    <NoContent ></NoContent>
+                </div>
+
+            )
         }
 
         return (
@@ -137,7 +158,7 @@ class DisplayPosts extends React.Component {
 
 
                     <div className="plate">
-                        <p className="script"><span>{this.state.language}</span></p>
+                        <p className="script"><span>Recently Asked Question</span></p>
                         {/* <p className="shadow text1">{this.state.language}</p> */}
                         {/* <p className="shadow text2">{this.state.language}</p> */}
                         {/* <p className="shadow text3">SAUCE</p> */}
@@ -167,7 +188,9 @@ const mapStateToProps = (state) => {
 
     // console.log(state.questions);
 
-    return { questions: state.questions.question };
+
+
+    return { questions: state.questions.question, language: state.language.language };
 };
 
 export default connect(mapStateToProps, { displayQuestions, updateQuestion })(DisplayPosts);

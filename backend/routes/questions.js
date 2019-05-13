@@ -48,8 +48,9 @@ router.post('/:qId/votes', async (req, res) => {
                 res.status(200).json({ message: "Already Upvoted" });
             } else {
                 console.log('Need to add to voted list');
-                const updated = fetchQuesition.upVoteIds.push(bodyData.userId);
-
+                console.log(bodyData.userId);
+                const updated = await fetchQuesition.upVoteIds.push(bodyData.userId);
+                console.log(updated);
                 const upVoteAdded = await questions.updateQuestionByIdVotes(req.params.qId, fetchQuesition);
                 res.status(200).json(upVoteAdded);
             }
@@ -112,12 +113,12 @@ router.post('/:qId/comment/', async (req, res) => {
 
 
 
-        result["userDetails"] = await users.getUserById(result.ownerId);
+        result["userDetail"] = await users.getUserById(result.ownerId);
 
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             console.log(gettingData);
-            result.comments[i]["userDetail"] = gettingData;
+            result.comments[i]["userDetails"] = gettingData;
         }
 
         res.status(200).json(result);
