@@ -154,7 +154,10 @@ class SingleQuestion extends React.Component {
                         
                         <div className="col-lg-8 col-md-9 col-sm-12">
                             {this.props.question.desc}
+                            {imageStr !== "" ?
                             <img src={imageStr} alt="a screenshot"/>
+                            :
+                            null}
                         </div>
                     </div>
                     <br />

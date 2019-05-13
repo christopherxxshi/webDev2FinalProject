@@ -86,11 +86,9 @@ class DisplayQuestions extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
-        console.log(this.uploadInput.files.length !== 0);
         if (this.uploadInput.files.length !== 0) {
             let imgId_ = await this.uploadHandler(e);
             this.setState( {screenshotId: imgId_});
-            console.log("abt to askquestions, this.state:", this.state);
         }
         await this.props.askQuestions(this.props.auth, this.state);
     }
