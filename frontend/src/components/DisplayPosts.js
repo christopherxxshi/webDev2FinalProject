@@ -62,7 +62,7 @@ class DisplayPosts extends React.Component {
         //  console.log(this.props.questions);
         if (this.props.questions !== undefined) {
 
-            if (this.props.questions.length != 0) {
+            if (this.props.questions.length !== 0) {
 
                 allQuestions = this.props.questions.map(question => {
                     if (question != null) {

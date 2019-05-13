@@ -16,7 +16,7 @@ return(
             </div>
 
             <div className="col-lg-8">
-              <h2>Have a Question ask here...?</h2>
+              <h2>Have a Question?</h2>
               <Link to="/askQuestion">
                 <button className="btn btn-primary askHere">
                   Ask Here

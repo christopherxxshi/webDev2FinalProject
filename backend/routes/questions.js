@@ -26,7 +26,6 @@ router.get('/:qId', async (req, res) => {
             result["screenshotData"] = await images.getImgById(result.screenshotId);
         }
 
-        console.log("This is the res of get: ", result);
         res.status(200).json(result);
     } catch (e) {
         res.status(404).json({ error: e });
@@ -160,7 +159,9 @@ router.post('/:qId/comment/', async (req, res) => {
     try {
         let result = await questions.addCommentByQuestionId(qId, commentData);
         result["userDetail"] = await users.getUserById(result.ownerId);
-        result["screenshotData"] = await images.getImgById(result.screenshotId);
+        if (result.screenshotId) {
+            result["screenshotData"] = await images.getImgById(result.screenshotId);
+        }
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
             console.log(gettingData);
