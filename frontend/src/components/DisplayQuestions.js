@@ -4,8 +4,6 @@ import { askQuestions } from "../action/index";
 import { connect } from "react-redux";
 
 class DisplayQuestions extends Component {
-
-
     constructor(props) {
         super(props);
 
@@ -40,27 +38,40 @@ class DisplayQuestions extends Component {
     
         let formData = new FormData();
         formData.append('imgFile', this.uploadInput.files[0]);
-        console.log(formData);
+        //console.log(formData);
 
         if (this.uploadInput.files[0].size / 1024 / 1024 >  3) {
             // Post to resize route
             try {
-                console.log("Resize route");
+                //console.log("Resize route");
+                console.log("resize route");
                 await fetch('http://localhost:3001/api/image/resizeImg', {
                     method: 'POST',
                     body: formData
                 });
             } catch (error) {
-                console.error(error);
+                console.error(error)
             }
         } else {
             // Can just upload
             console.log("Straight upload route");
             try {
-                await fetch('http://localhost:3001/api/image/uploadImg', {
-                method: 'POST',
-                body: formData
+                let request = new Request('http://localhost:3001/api/image/uploadImg',
+                {
+                    method: 'POST',
+                    body: formData
                 });
+                await fetch(request).then((response) => {
+                    console.log(response);
+                    response.json().then((data) => {
+                        console.log(data);
+                    });
+                });
+                // await fetch('http://localhost:3001/api/image/uploadImg', {
+                // method: 'POST',
+                // body: formData
+                // });
+
                 console.log("Upload done");
             } catch (error) {
                 console.error(error);
@@ -70,7 +81,7 @@ class DisplayQuestions extends Component {
 
     handleSubmit = async (e) => {
         e.preventDefault()
-
+        await this.uploadHandler(e);
         await this.props.askQuestions(this.props.auth, this.state);
 
 

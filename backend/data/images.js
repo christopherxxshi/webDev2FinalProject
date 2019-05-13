@@ -35,7 +35,7 @@ async function addImg(data) {
     await newImg.save(function (err) {
       if (err) throw err;
     });
-    return getImgById(newId);
+    return newId;
   } catch (error) {
     throw error;
   }

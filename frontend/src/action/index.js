@@ -89,28 +89,17 @@ export const searchLanguageQuestions = (language) => {
     }
 }
 
-export const askQuestions = (authUser, questionDetails, imgFile) => {
+export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
-        console.log("imgFile: ", imgFile);
-        console.log("action index quesDetails: ", questionDetails);
-
-
         let userId = authUser.userId
 
-
-       let createQues =  await data.post(`/api/question/user/${userId}`, {
+        await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,
-            language: questionDetails.language,
-            screenshot: imgFile,
-            needResize: questionDetails.needResize
+            language: questionDetails.language
         });
 
-        console.log("createques: ", createQues);
-
         history.push("/");
-
-
     }
 }
 
@@ -229,4 +218,3 @@ export const updateQuestion = (quesId, updateDetails,userId) => {
 
     }
 }
-
