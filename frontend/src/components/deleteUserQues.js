@@ -1,7 +1,7 @@
 import React from "react";
 import ReactModal from 'react-modal';
 import { Link } from "react-router-dom";
-import { getSignleQuestion, deleteUserQuestion } from "../action";
+import { getSignleQuestionUser, deleteUserQuestion } from "../action";
 import { connect } from "react-redux";
 
 
@@ -22,18 +22,23 @@ const customStyles = {
 
 
 class DeleteUserQues extends React.Component {
-
+constructor(props){
+    super(props)
+    
+}
 
 
     async componentDidMount() {
 
-        await this.props.getSignleQuestion(this.props.match.params.quesId);
+        await this.props.getSignleQuestionUser(this.props.match.params.quesId);
+        // console.log(getQuestion);
         // this.setState({title : this.props.question})
 
     }
 
     handleSubmit = async () => {
 
+        console.log(this.props.match.params);
         await this.props.deleteUserQuestion(this.props.match.params.quesId);
 
     }
@@ -101,4 +106,4 @@ const mapStateToProps = (state) => {
 }
 
 
-export default connect(mapStateToProps, { getSignleQuestion, deleteUserQuestion })(DeleteUserQues);
+export default connect(mapStateToProps, { getSignleQuestionUser, deleteUserQuestion })(DeleteUserQues);

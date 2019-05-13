@@ -1,8 +1,9 @@
 import React, { Component } from "react";
 import data from "../api";
-import { Link } from "react-router-dom";
+import { Link, } from "react-router-dom";
 import questions from "../reducers/questions";
 import "../style/socialMedia.css";
+// 
 
 // Searching the questions using Fuzzy logic
 class SearchQuestion extends Component {
@@ -56,6 +57,9 @@ class SearchQuestion extends Component {
             }
         }
     }
+    // async historyPush(to) {
+    //     RedirectProps.push(to);
+    // }
     render() {
         let body = null;
         let li = null;
@@ -68,7 +72,7 @@ class SearchQuestion extends Component {
                         questions.comments.map(comments => {
                             return (
                                 <li key={comments._id}>
-                                    Comments:{comments}
+                                    Comments:{comments.comment}
                                 </li>
                             )
                         });
@@ -77,9 +81,11 @@ class SearchQuestion extends Component {
                             <b>Language Category: </b>
                             {questions.language}
                             <br />
-                            <b>Answer:</b>
-                            {questions.desc}
-                            <br />
+                            <b>Question:</b>
+                            <Link className ="myLink" to={`/singleQuestion/${questions._id}`} >                  
+                                        {questions.title}                   
+                                </Link>
+<br />
                             <b>Comments:</b>
                             {comments}
                             {/* <Link to={`/shows/${show.id}`}>{show.name}</Link> */}

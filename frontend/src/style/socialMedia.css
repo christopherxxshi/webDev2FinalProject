@@ -33,3 +33,6 @@ font-weight:500;
      box-sizing: content-box;
      width:80%;
  }
+ .myLink {
+  font-size: 1em;
+}

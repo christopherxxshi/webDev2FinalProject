@@ -3,14 +3,16 @@ import { getSignleQuestion, addComment, updateQuestion } from "../action";
 import { connect } from "react-redux";
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/free-regular-svg-icons';
-
+import axios from "axios";
 import "../style/SingleQuestion.css";
+import Axios from "axios";
 
 class SingleQuestion extends React.Component {
 
     constructor(props) {
         super(props)
         this.state = {
+            question: {},
             comment: ""
         }
     }
@@ -18,6 +20,19 @@ class SingleQuestion extends React.Component {
     async componentDidMount() {
         console.log("get");
         await this.props.getSignleQuestion(this.props.match.params.quesId);
+
+
+        // let question = await axios({
+        //     url: `http://localhost:3001/api/question/${this.props.match.params.quesId}/`,
+        //     method: 'get',
+
+        // });
+
+
+        // this.setState({ question: question.data });
+        // console.log(this.state.question)
+
+
     }
 
     // async componentDidUpdate(){
@@ -60,41 +75,60 @@ class SingleQuestion extends React.Component {
 
     comments = (data) => {
 
-        // console.log(data);
-
-        var comments = data.map(comment => {
-            return (
-                <div key={comment._id}>
-                    {/* {comment.comment} */}
-                    <div className="card">
-                        <div className="card-header">
-                            <p>{`On ${comment.date} at ${comment.time}.`}</p>
+        console.log(data);
+        if (data) {
+            var comments = data.map(comment => {
+                return (
+                    <div key={comment._id}>
+                        {/* {comment.comment} */}
+                        <div className="card">
+                            <div className="card-header">
+                                <p>{`On ${comment.date} at ${comment.time}.`}</p>
+                            </div>
+                            <div className="card-body">
+                                <blockquote className="blockquote mb-0">
+                                    <p>{comment.comment}</p>
+                                    <footer className="blockquote-footer"><cite title="Source Title">{comment.userDetails.emailId} ({comment.userDetails.username})</cite></footer>
+                                </blockquote>
+                            </div>
                         </div>
-                        <div className="card-body">
-                            <blockquote className="blockquote mb-0">
-                                <p>{comment.comment}</p>
-                                <footer className="blockquote-footer"><cite title="Source Title">{comment.userDetails.username}</cite></footer>
-                            </blockquote>
-                        </div>
+                        <br />
                     </div>
-                    <br />
-                </div>
-            );
-        });
+                );
+            });
 
-        return comments;
+            return comments;
+        } else {
+            return (
+                <div>
+                    <p>
+                        No Comments
+                    </p>
+                </div>
+            )
+        }
 
     }
 
+    // componentDidUpdate() {
+    //     if (this.props.match.params.quesId === this.state.question._id) {
+    //         this.setState({ question: this.props.question });
+    //     }
+    // }
+
     render() {
 
-        var indiQuestion;
 
-        if (this.props.question || this.props.question["_id"] === this.props.match.params.quesId) {
+
+        let indiQuestion;
+        console.log(this.props.question);
+        if ( this.props.question["_id"] === this.props.match.params.quesId) {
+        // if (this.state.question) {
 
             indiQuestion = (
                 <div>
                     <h1>{this.props.question.title}</h1>
+                    {/* <h1>{this.state.question.title}</h1> */}
                     <hr />
 
                     <div className="row ">
@@ -153,7 +187,8 @@ class SingleQuestion extends React.Component {
                     </div>
                     <hr />
                     <div>
-                        {this.props.question._id ?
+                        {/* {this.props.question.comments.length > 0 ? */}
+                        {this.props.question.comments.length > 0 ?
                             this.comments(this.props.question.comments)
                             :
                             null
@@ -203,8 +238,10 @@ class SingleQuestion extends React.Component {
 
 const mapStateToProps = (state) => {
 
+    console.log(state);
+
     return {
-        question: state.question,
+        question: state.singleQuestion,
         auth: state.auth
     };
 

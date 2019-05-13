@@ -83,6 +83,16 @@ router.post('/:qId/comment/', async (req, res) => {
 
     try {
         let result = await questions.addCommentByQuestionId(qId, commentData);
+        console.log("HEllo...");
+        console.log(result);
+
+         result["userDetails"] = await users.getUserById(result.ownerId);
+
+        for (var i = 0; i < result.comments.length; i++) {
+            const gettingData = await users.getUserById(result.comments[i].userId);
+            console.log(gettingData);
+             result.comments[i]["userDetails"] = gettingData;
+        }
 
         res.status(200).json(result);
     } catch (e) {
