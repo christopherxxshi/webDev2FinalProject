@@ -178,7 +178,7 @@ export const updateUserQuestion = (quesdata) => {
 
 export const deleteUserQuestion = (quesdata) => {
     return async (dispatch) => {
-        alert(quesdata);
+        // alert(quesdata);
         let deleteQuestion = await data.delete(`/api/question/${quesdata}`);
 
         console.log(deleteQuestion);
@@ -193,23 +193,35 @@ export const deleteUserQuestion = (quesdata) => {
 export const getSignleQuestion = (quesId) => {
     return async (dispatch) => {
 
-        let getQuesDetail = await data.get(`api/question/${quesId}`);
-        console.log("getSingleQuestion")
-        console.log(getQuesDetail);
-
-        dispatch({ type: "QUESTION", payload: getQuesDetail.data });
+        try{
+            let getQuesDetail = await data.get(`api/question/${quesId}`);
+            console.log("getSingleQuestion")
+            console.log(getQuesDetail);
+    
+            dispatch({ type: "QUESTION", payload: getQuesDetail.data });
+        }catch(e){
+            history.push("/serverError");
+        }
+        
 
     }
 }
 
 export const getSignleQuestionUser = (quesId) => {
     return async (dispatch) => {
+        try {
+            console.log("hello");
+            let getQuesDetail = await data.get(`api/question/${quesId}`);
 
-        let getQuesDetail = await data.get(`api/question/${quesId}`);
-        console.log("getSingleQuestion")
-        console.log(getQuesDetail);
+            console.log("getSingleQuestion");
+            console.log(getQuesDetail);
 
-        dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
+            dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
+        }
+        catch (e) {
+            history.push("/BarData");
+        }
+
 
     }
 }

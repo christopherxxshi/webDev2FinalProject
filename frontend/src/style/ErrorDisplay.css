@@ -29,22 +29,22 @@
   color: #fff;
   font-family: sans-serif;
 }
-/* h1{
+.errorh1{
   font-size: 105pt;
   margin: 0;
   color: #fff;
-} */
-p{
+}
+.errorP{
   text-align: center;
   width:425px;
   font-size: 14pt;
   margin-bottom: 15px;
   color: #fff;
 }
-a{
+.errorA{
   text-decoration: none;
 }
-.btn{
+.btnerror{
  padding: 10px 0;
   width: 425px;
   color: #fff;
@@ -54,15 +54,15 @@ a{
   border-radius: 10px;
   transition: .4s;
 }
-.btn:hover{
+.btnerror:hover{
   background-color: #fff;
   color: #000;
 }
 
-.displayPostBody {
+/* .displayPostBody {
   background-color: #222;
   color:white;
-}
+} */
 
 
 /* ****************************************************** */

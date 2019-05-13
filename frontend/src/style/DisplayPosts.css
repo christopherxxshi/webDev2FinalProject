@@ -48,7 +48,7 @@ hr{
   margin:0;
 }
 .script span {
-  background-color: #222;
+  /* background-color: #222; */
   padding: 0 0.3em;
   color:white;
 }

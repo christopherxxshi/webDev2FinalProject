@@ -289,7 +289,7 @@ text-align: center;
 /* //no removal */
 
 .displayPostBody {
-  background-color: #222;
+  background-color: rgb(26, 51, 63);
   color:white;
 }
 .floatingRight{
@@ -326,4 +326,22 @@ text-align: center;
 .sizeOfImage{
   width: 700px !important;
   height: 400px !important;
+}
+
+.shadowEffect {
+  box-shadow: 0 8px 21px -2px rgb(46, 206, 255) !important;
+}
+
+
+input:hover{
+  border-color: blueviolet;
+}
+
+.alignment2{
+  width: 600px;
+  display: inline-block;
+  overflow: auto;
+  white-space: nowrap;
+  margin: 0px auto;
+  border: 1px white solid;
 }

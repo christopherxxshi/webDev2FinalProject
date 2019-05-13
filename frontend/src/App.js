@@ -20,9 +20,9 @@ import DeleteUserQues from "./components/deleteUserQues";
 import SingleQuestion from "./components/SingleQuestion";
 import BarChart from "./components/DataBars";
 import SearchQuestions from "./components/SearchQuestion";
-//import Error404Page from './components/Error404Page';
+import Error404Page from './components/Error404Page';
 //import Error400Page from './components/Error400Page';
-//import Error500Page from './components/Error500Page';
+import Error500Page from './components/Error500Page';
 
 // function App(props) {
 class App extends React.Component {
@@ -56,6 +56,8 @@ class App extends React.Component {
             <Route path="/deleteUserQues/:quesId" component={DeleteUserQues}></Route>
             <Route path="/singleQuestion/:quesId" component={SingleQuestion}></Route>
             <Route path="/BarData" component={BarChart}></Route>
+            <Route path="/serverError" component={Error500Page}></Route>
+            <Route path="**" component={Error404Page} status={404}></Route>
            
           </Switch>
         </Router>

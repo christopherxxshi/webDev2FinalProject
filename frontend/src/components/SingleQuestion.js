@@ -120,7 +120,7 @@ class SingleQuestion extends React.Component {
 
             indiQuestion = (
                 <div>
-                    <h1>{this.props.question.title}</h1>
+                    <h1 className="titleOfSingleQuestion">{this.props.question.title}</h1>
                     {/* <h1>{this.state.question.title}</h1> */}
                     <hr />
 

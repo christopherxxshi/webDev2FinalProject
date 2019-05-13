@@ -223,7 +223,7 @@ class IndividualUserQuestion extends Component {
                         Here are your all the questions which you posted
                 </h1>
                     <h3>
-                        Note : You can only edit and delete your Questio when there are zero answers.
+                        Note : You can only edit and delete your Question when there are zero answers.
                 </h3>
                 </div>
 

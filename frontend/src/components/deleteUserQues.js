@@ -3,6 +3,7 @@ import ReactModal from 'react-modal';
 import { Link } from "react-router-dom";
 import { getSignleQuestionUser, deleteUserQuestion } from "../action";
 import { connect } from "react-redux";
+import { brotliDecompress } from "zlib";
 
 
 ReactModal.setAppElement("#root");
@@ -22,10 +23,10 @@ const customStyles = {
 
 
 class DeleteUserQues extends React.Component {
-constructor(props){
-    super(props)
-    
-}
+    constructor(props) {
+        super(props)
+
+    }
 
 
     async componentDidMount() {
@@ -72,15 +73,24 @@ constructor(props){
 
                         <hr />
 
+                        <div className="alignment2">
+                            <div className="two">
+                                <button className="btn " onClick={this.handleSubmit.bind(this)}>
+                                    Delete
+                                </button>
+                            </div>
+                            <div className="one">
+                                <Link className="link" to="/userQuestions">
+                                    <button className="btn ">
+                                        Cancel
+                        </button>
+                                </Link>
+                            </div>
+                        </div>
+
                         <div className="float-right">
-                            <button className="btn " onClick={this.handleSubmit.bind(this)}>
-                                Delete
-                        </button>
-                            <Link className="link" to="/userQuestions">
-                                <button className="btn ">
-                                    Cancel
-                        </button>
-                            </Link>
+
+
 
                         </div>
 
