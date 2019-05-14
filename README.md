@@ -43,7 +43,7 @@ __React__:
 We​​ will ​​use ​​React ​​as ​​our​​ single-page web​ ​application ​​framework.​​We ​​will ​​create components ​​for ​​the ​​elements ​​that ​​we ​​include ​​on ​​our ​​pages.
 
 __Firebase Auth__:
-This technology will be used for user authentication. We will use this authentication technology to authenticate users using email/password. Using this we will authorize users for our website. User can login using Google, Facebook or GitHub.
+This technology will be used for user authentication. We will use this authentication technology to authenticate users using email/password. Using this we will authorize users for our website. User can login using Google account.
 
 __Redis__:
 We will use Redis to fetch recently asked questions when a user hits the home page.
@@ -64,4 +64,4 @@ We use this to find out the current trend, the top asked questions. D3.js is the
 
 ## Github Repo
 
-[Link] https://github.com/gpadriga/webDev2FinalProject
+[Find repository here](https://github.com/gpadriga/webDev2FinalProject)
