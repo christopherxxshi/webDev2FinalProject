@@ -1,4 +1,3 @@
-const multer = require('multer');
 const uuid = require("uuid/v4");
 const models = require("./models");
 const imageModel = models.getModel('Image');
