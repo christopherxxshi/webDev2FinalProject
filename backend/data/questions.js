@@ -291,8 +291,8 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
 
         //Sorting the result according the upvotes
         
-        for (let i = 0; i < result.length -1; i++) {
-            for (let j = 1; j < result.length ; j++) {
+        for (let i = 0; i < result.length ; i++) {
+            for (let j = i+1; j < result.length ; j++) {
             if (result[j].upVote > result[i].upVote) {
                 let temp = result[i];
                 result[i] = result[j];
