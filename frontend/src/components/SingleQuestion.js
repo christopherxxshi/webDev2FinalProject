@@ -159,6 +159,7 @@ class SingleQuestion extends React.Component {
                             <br />
                             <br />
                             {imageStr !== "" ?
+                            
                             <img src={imageStr} alt="a screenshot" className="sizeOfImage"/>
                             :
                             null}
