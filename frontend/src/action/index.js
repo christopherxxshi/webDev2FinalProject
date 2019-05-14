@@ -15,7 +15,7 @@ export const signIn = (user) => {
         // console.log(user);
 
         // user["notExist"] = true;
-
+        try{
         await data.post("/api/user/", {
             username: user.name,
             imagePath: user.imgUrl,
@@ -25,6 +25,9 @@ export const signIn = (user) => {
 
 
         dispatch({ type: "SIGN_IN", payload: user });
+    }catch(e){
+        history.push("/serverError");
+    }
 
     }
 
@@ -52,6 +55,8 @@ export const displayQuestions = () => {
 
         // console.log("display questions");
 
+        try{
+
         let getQuestions = await data.get("/api/question");
 
         let allQuestions = [];
@@ -71,11 +76,16 @@ export const displayQuestions = () => {
 
 
         dispatch({ type: "DISPLAY_QUESTIONS", payload: allQuestions });
+    }catch(e){
+        history.push("/serverError");
+    }
 
     }
 }
 export const searchLanguageQuestions = (language) => {
     return async (dispatch) => {
+
+        try{
 
 
         let getQuestions = await data.get(`/api/question/language/${language}`);
@@ -89,10 +99,10 @@ export const searchLanguageQuestions = (language) => {
         }
 
 
-
-
-
         dispatch({ type: "DISPLAY_QUESTIONS", payload: allQuestions });
+    }catch(e){
+        history.push("/serverError");
+    }
 
     }
 }
@@ -109,6 +119,8 @@ export const languageChange = (language) => {
 
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
+
+        try{
         let userId = authUser.userId
         // console.log("ques.screenshotId: ", questionDetails);
         await data.post(`/api/question/user/${userId}`, {
@@ -118,6 +130,10 @@ export const askQuestions = (authUser, questionDetails) => {
             screenshotId: questionDetails.screenshotId
         });
         history.push("/");
+
+    }catch(e){
+        history.push("/serverError");
+    }
     }
 }
 
@@ -126,6 +142,8 @@ export const getUserQuestions = (userId) => {
     return async (dispatch) => {
 
         // console.log(userId);
+
+        try{
 
         let Questions = await data.get(`/api/question/user/${userId}`);
 
@@ -149,6 +167,10 @@ export const getUserQuestions = (userId) => {
 
         dispatch({ type: "DISPLAY_QUESTIONS", payload: userQuestions });
 
+    }catch(e){
+        history.push("/serverError");
+    }
+
     }
 
 }
@@ -162,6 +184,7 @@ export const updateUserQuestion = (quesdata) => {
         //     "language": quesdata.language
         // }
 
+        try{
         let updateQuestion = await data.patch(`/api/question/${quesdata.quesId}`, {
             title: quesdata.title,
             desc: quesdata.description,
@@ -171,6 +194,10 @@ export const updateUserQuestion = (quesdata) => {
         history.push("/userQuestions");
         dispatch({ type: "SINGLE_QUESTION", payload: updateQuestion.data });
 
+    }catch(e){
+        history.push("/serverError");
+    }
+
 
     }
 }
@@ -178,6 +205,9 @@ export const updateUserQuestion = (quesdata) => {
 
 export const deleteUserQuestion = (quesdata) => {
     return async (dispatch) => {
+
+try{
+
         // alert(quesdata);
         let deleteQuestion = await data.delete(`/api/question/${quesdata}`);
 
@@ -186,6 +216,9 @@ export const deleteUserQuestion = (quesdata) => {
         history.push("/userQuestions");
 
         // dispatch({ type: "DELETE_QUESTION" });
+    }catch(e){
+        history.push("/serverError");
+    }
 
     }
 }
@@ -219,7 +252,7 @@ export const getSignleQuestionUser = (quesId) => {
             dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
         }
         catch (e) {
-            history.push("/BarData");
+            history.push("/serverError");
         }
 
 
@@ -242,6 +275,8 @@ export const getAllImages = () => {
 export const addComment = (quesId, comment) => {
     return async (dispatch) => {
 
+        try{
+
         let addComment = await data.post(`api/question/${quesId}/comment`, {
             userId: comment.userId,
             comment: comment.comment
@@ -251,12 +286,18 @@ export const addComment = (quesId, comment) => {
         // console.log(addComment);
         // history.push(`/singleQuestion/${quesId}`);
 
-        dispatch({ type: "QUESTION", payload: addComment.data })
+        dispatch({ type: "QUESTION", payload: addComment.data });
+    }
+    catch (e) {
+        history.push("/serverError");
+    }
     }
 }
 
 export const updateQuestion = (quesId, updateDetails, userId) => {
     return async (dispatch) => {
+
+        try{
 
         let obj = {};
 
@@ -274,10 +315,17 @@ export const updateQuestion = (quesId, updateDetails, userId) => {
         dispatch({ type: "UPDATE_QUESTIONS", payload: updateQuestion.data });
 
     }
+    catch (e) {
+        history.push("/serverError");
+    }
+
+    }
 }
 
 export const updateUpVote = (quesId, udateDetails, userId) => {
     return async (dispatch) => {
+
+        try{
 
         let obj = {};
 
@@ -299,6 +347,10 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
 
 
         dispatch({ type: "QUESTION", payload: getQuesDetail.data });
+    }
+    catch (e) {
+        history.push("/serverError");
+    }
 
     }
 }

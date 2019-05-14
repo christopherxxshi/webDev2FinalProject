@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Link} from "react-router-dom";
 
 class Error500Page extends Component {
 
@@ -13,7 +14,7 @@ class Error500Page extends Component {
                     <p>Internl server Error. We will be back soon... :-)</p>
                     <br />
 
-                    <a href="#" className="errorA"><div className="btnerror">Go Home</div></a>
+                    <Link to="/" className="errorA"><div className="btnerror">Go Home</div></Link>
                 </div>
 
 
