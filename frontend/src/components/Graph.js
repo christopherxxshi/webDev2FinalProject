@@ -9,6 +9,8 @@ import '../style/Graph.css'
 
 var num = 0;
 var colors = d3.schemeCategory10;
+// const width = 1265;
+// const height = 500;
 
 class Graph extends Component {
     constructor(props) {
@@ -165,10 +167,13 @@ class Graph extends Component {
         x.domain(langArr.map((d) => d.letter));
         y.domain([0, d3.max(langArr, (d) => d.frequency)]);
 
+
+        // For X-axis
         svg.append("g")
             .attr("class", "x axis")
             .attr("transform", `translate(0,${height})`)
             .call(xAxis);
+
 
         svg.append("g")
             .attr("class", "y axis")
