@@ -59,6 +59,8 @@ module.exports.addQuestion = async function (ownerId, questionData) {
     // const found = await redisClient.getAsync(newQuestion.id);
     // console.log(found);
     await newQuestion.save();
+    // console.log(ownerId);
+    // console.log(questionData);
     return newQuestion;
 };
 

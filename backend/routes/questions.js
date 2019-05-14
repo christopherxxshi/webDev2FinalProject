@@ -157,6 +157,8 @@ router.post('/:qId/comment/', async (req, res) => {
     let qId = req.params.qId;
     let commentData = req.body;
     let lastuser = "";
+    // console.log('Allan');
+    // console.log(commentData);
 
     try {
         let result = await questions.addCommentByQuestionId(qId, commentData);
@@ -202,6 +204,8 @@ transporter.sendMail(mail,(err,info) => {
       }
 
 });
+// console.log("Hello");
+// console.log(result);
 
         res.status(200).json(result);
     } catch (e) {

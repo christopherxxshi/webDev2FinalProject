@@ -80,6 +80,7 @@ module.exports.addUser = async function (data) {
             return { message: "User Already Exist" };
         }
         await newUser.save();
+        // console.log(newUser);
         return newUser;
     } catch (e) {
         // console.log(e);
