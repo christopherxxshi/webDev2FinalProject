@@ -121,7 +121,7 @@ class DisplayPosts extends React.Component {
                                     </div>
                                     <div className="col-lg-9  col-md-8 col-xs-12">
                                         <Link to={`/singleQuestion/${question._id}`}>
-                                            <h2>
+                                            <h2 className="frontBigtitle">
                                                 {question.title}
                                             </h2>
                                         </Link>

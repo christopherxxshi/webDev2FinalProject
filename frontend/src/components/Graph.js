@@ -185,10 +185,9 @@ class Graph extends Component {
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", (d) => x(d.letter))
-            .attr("width", 60)
+            .attr("width", 70)
             .attr("y", (d) => y(d.frequency))
             .attr("height", (d) => { return height - y(d.frequency) })
-            .style("margin", function(d) { return "20px"; })
             .attr("fill", function (d, i) {
                 if(i>=6){
                     if (i.toString().includes("0")) {

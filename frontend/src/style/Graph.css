@@ -4,3 +4,6 @@
 .bar:hover {
     fill: white;
 }
+.bar{
+    margin: 10px;
+}
