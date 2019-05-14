@@ -135,7 +135,6 @@ class SocialMedia extends React.Component {
 
         return (
             <div className="float-right" style={divStyle}>
-                <div className="log-in-text text-center">Sign-in with...</div>
                 
                 <div className="social-Media-logo">
                 
@@ -145,7 +144,7 @@ class SocialMedia extends React.Component {
 
                     <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("google")}
                         icon={faGooglePlusSquare} size="2x"
-                        className="mr-5 gBrand" />
+                        className="mr-5 gBrand myGoogleIcon" />
 
                     {/* <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("github")}
                         icon={faGithubSquare}

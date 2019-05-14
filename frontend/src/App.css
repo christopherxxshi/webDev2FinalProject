@@ -346,7 +346,18 @@ input:hover{
   border: 1px white solid;
 }
 
-.dropdown-item:hover{
-  background-color: rgb(219, 82, 82) !important;
-  color: white;
+
+
+.mydropDown{
+  background-color: black;
+}
+.mydropDown:hover{
+  background-color: rgb(39, 39, 39);
+}
+
+.myGoogleIcon{
+  color: rgb(245, 50, 50);
+}
+.myGoogleIcon:hover{
+  color: rgb(202, 12, 12) !important;
 }
