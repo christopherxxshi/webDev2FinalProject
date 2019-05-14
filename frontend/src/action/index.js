@@ -12,7 +12,7 @@ export const signIn = (user) => {
             user.emailVerified = true;
         }
 
-        console.log(user);
+        // console.log(user);
 
         // user["notExist"] = true;
 
@@ -33,7 +33,7 @@ export const signIn = (user) => {
 export const signOut = () => {
     return async (dispatch) => {
 
-        console.log("signOut");
+        // console.log("signOut");
         var signOutUser = {
             name: "",
             email: "",
@@ -100,7 +100,7 @@ export const searchLanguageQuestions = (language) => {
 export const languageChange = (language) => {
     return async (dispatch) => {
 
-        console.log(language);
+        // console.log(language);
 
         dispatch({ type: "LANGUAGE", payload: language });
 
@@ -110,7 +110,7 @@ export const languageChange = (language) => {
 export const askQuestions = (authUser, questionDetails) => {
     return async (dispatch) => {
         let userId = authUser.userId
-        console.log("ques.screenshotId: ", questionDetails);
+        // console.log("ques.screenshotId: ", questionDetails);
         await data.post(`/api/question/user/${userId}`, {
             title: questionDetails.title,
             desc: questionDetails.description,
@@ -181,7 +181,7 @@ export const deleteUserQuestion = (quesdata) => {
         // alert(quesdata);
         let deleteQuestion = await data.delete(`/api/question/${quesdata}`);
 
-        console.log(deleteQuestion);
+        // console.log(deleteQuestion);
 
         history.push("/userQuestions");
 
@@ -195,8 +195,8 @@ export const getSignleQuestion = (quesId) => {
 
         try{
             let getQuesDetail = await data.get(`api/question/${quesId}`);
-            console.log("getSingleQuestion")
-            console.log(getQuesDetail);
+            // console.log("getSingleQuestion")
+            // console.log(getQuesDetail);
     
             dispatch({ type: "QUESTION", payload: getQuesDetail.data });
         }catch(e){
@@ -210,11 +210,11 @@ export const getSignleQuestion = (quesId) => {
 export const getSignleQuestionUser = (quesId) => {
     return async (dispatch) => {
         try {
-            console.log("hello");
+            // console.log("hello");
             let getQuesDetail = await data.get(`api/question/${quesId}`);
 
-            console.log("getSingleQuestion");
-            console.log(getQuesDetail);
+            // console.log("getSingleQuestion");
+            // console.log(getQuesDetail);
 
             dispatch({ type: "SINGLE_QUESTION", payload: getQuesDetail.data });
         }
@@ -248,7 +248,7 @@ export const addComment = (quesId, comment) => {
         });
 
 
-        console.log(addComment);
+        // console.log(addComment);
         // history.push(`/singleQuestion/${quesId}`);
 
         dispatch({ type: "QUESTION", payload: addComment.data })
@@ -285,7 +285,7 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
             obj[prop] = udateDetails[prop];
         }
 
-        console.log(userId);
+        // console.log(userId);
         obj["userId"] = userId;
 
         await data.post(`/api/question/votes/${quesId}`, obj);
@@ -293,7 +293,7 @@ export const updateUpVote = (quesId, udateDetails, userId) => {
 
         let getQuesDetail = await data.get(`api/question/${quesId}`);
 
-        console.log(getQuesDetail);
+        // console.log(getQuesDetail);
 
         // console.log(updatedQues);
 

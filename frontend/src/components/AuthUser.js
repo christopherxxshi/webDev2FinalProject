@@ -11,7 +11,7 @@ class AuthUser extends React.Component {
 
     signOut = async () => {
 
-        console.log("signOut in AuthUser");
+        // console.log("signOut in AuthUser");
 
         var signOut = false;
 

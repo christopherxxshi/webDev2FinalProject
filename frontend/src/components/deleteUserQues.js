@@ -32,14 +32,14 @@ class DeleteUserQues extends React.Component {
     async componentDidMount() {
 
         await this.props.getSignleQuestionUser(this.props.match.params.quesId);
-        console.log(this.props.match.params.quesId);
+        // console.log(this.props.match.params.quesId);
         // this.setState({title : this.props.question})
 
     }
 
     handleSubmit = async () => {
 
-        console.log(this.props.match.params);
+        // console.log(this.props.match.params);
         await this.props.deleteUserQuestion(this.props.match.params.quesId);
 
     }
@@ -111,7 +111,7 @@ class DeleteUserQues extends React.Component {
 
 const mapStateToProps = (state) => {
 
-    console.log(state);
+    // console.log(state);
 
     return { question: state.question };
 

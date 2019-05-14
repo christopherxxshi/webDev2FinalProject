@@ -297,7 +297,7 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
                 let temp = result[i];
                 result[i] = result[j];
                 result[j] = temp;
-                console.log("Sorting");
+                // console.log("Sorting");
             }
         }
         }
@@ -309,6 +309,6 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
 };
 
 const escapeReg = function (text) {
-    console.log("inside escape", text)
+    // console.log("inside escape", text)
     return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };

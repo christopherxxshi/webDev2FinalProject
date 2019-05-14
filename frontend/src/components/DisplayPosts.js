@@ -29,7 +29,7 @@ class DisplayPosts extends React.Component {
 
         // this.setState({ render: true });
 
-        console.log("single question");
+        // console.log("single question");
 
         await this.props.displayQuestions();
 
@@ -194,7 +194,7 @@ const mapStateToProps = (state) => {
 
     // console.log(state.questions);
 
-    console.log("state.questions.question");
+    // console.log("state.questions.question");
 
     return { questions: state.questions.question, language: state.language.language };
 };

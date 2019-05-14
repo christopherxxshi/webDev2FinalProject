@@ -34,7 +34,7 @@ class SearchQuestion extends Component {
 
     handleChange = e => {
         let value = e.target.value;
-        console.log("Search term", value);
+        // console.log("Search term", value);
         this.setState({ searchTerm: value }, () => {
             this.searchQuestions();
         });
@@ -53,7 +53,7 @@ class SearchQuestion extends Component {
                 const response = await data.post(`/api/question/search`, {
                     term: this.state.searchTerm,
                 });
-                console.log("response", response);
+                // console.log("response", response);
                 this.setState({ searchData: response.data });
             } catch (e) {
                 console.log(e);
@@ -68,7 +68,7 @@ class SearchQuestion extends Component {
         let li = null;
         let length=0;
         
-        console.log("len",length);
+        // console.log("len",length);
         if (this.state.searchTerm) {
             li =
                 this.state.searchData &&

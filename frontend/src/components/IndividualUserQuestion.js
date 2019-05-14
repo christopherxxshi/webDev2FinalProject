@@ -33,13 +33,13 @@ class IndividualUserQuestion extends Component {
 
 
     commentsIndi = async (comments) => {
-        console.log("indi comments");
-        console.log(comments[0]);
+        // console.log("indi comments");
+        // console.log(comments[0]);
         var comm = [];
 
         for (let prop in comments) {
             let indi = comments[prop];
-            console.log(indi);
+            // console.log(indi);
             comm.push(
                 <div className="box1" key={indi._id}>
                     <p>{indi.comment}</p>
@@ -65,7 +65,7 @@ class IndividualUserQuestion extends Component {
         // });
 
         // console.log(comm);
-        console.log("return")
+        // console.log("return")
         return <h1>hello</h1>;
 
     }
@@ -243,7 +243,7 @@ class IndividualUserQuestion extends Component {
 
 const mapStsteToProps = (state) => {
 
-    console.log("individual question");
+    // console.log("individual question");
     var arr = [];
     for (let prop in state.questions.question) {
         arr.push(state.questions.question[prop]);

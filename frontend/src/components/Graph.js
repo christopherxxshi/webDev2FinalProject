@@ -88,7 +88,7 @@ class Graph extends Component {
             letter: "Others",
             frequency: countothers
         })
-        console.log("language CAtegor", langArr)
+        // console.log("language CAtegor", langArr)
 
         const div = this.props.connectFauxDOM('div', 'chart');
         let wid = 500;

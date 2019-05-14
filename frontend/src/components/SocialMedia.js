@@ -12,7 +12,7 @@ class SocialMedia extends React.Component {
 
     signInFacebook = async (sMedia) => {
 
-        console.log(sMedia);
+        // console.log(sMedia);
 
         var provider;
         if (sMedia === "google") {
@@ -38,7 +38,7 @@ class SocialMedia extends React.Component {
             
             var user = result.user;
 
-            console.log(result);
+            // console.log(result);
 
             userDetails["name"] = result.user.displayName;
             userDetails["email"] = result.user.email;

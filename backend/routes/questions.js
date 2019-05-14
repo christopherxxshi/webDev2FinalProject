@@ -10,7 +10,7 @@ const nodemailer=require("nodemailer");
 const images = data.images;
 
 router.get('/:qId', async (req, res) => {
-    console.log("in get");
+    // console.log("in get");
     let qId = req.params.qId;
     try {
         let result = await questions.getQuestionById(qId);
@@ -18,12 +18,12 @@ router.get('/:qId', async (req, res) => {
 
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
-            console.log(gettingData);
+            // console.log(gettingData);
             result.comments[i]["userDetails"] = gettingData;
         }
 
         if (result.screenshotId) {
-            console.log("screenshotID found");
+            // console.log("screenshotID found");
             result["screenshotData"] = await images.getImgById(result.screenshotId);
         }
 
@@ -38,7 +38,7 @@ router.get('/:qId', async (req, res) => {
 
 router.post('/votes/:qId', async (req, res) => {
     try {
-        console.log("votes");
+        // console.log("votes");
         let fetchQuesition = await questions.getQuestionById(req.params.qId);
         let bodyData = req.body;
         if (bodyData.hasOwnProperty('upVote')) {
@@ -46,8 +46,8 @@ router.post('/votes/:qId', async (req, res) => {
             if (fetchQuesition.upVoteIds.includes(bodyData.userId)) {
                 res.status(200).json({ message: "Already Upvoted" });
             } else {
-                console.log('Need to add to voted list');
-                console.log(bodyData.userId);
+                // console.log('Need to add to voted list');
+                // console.log(bodyData.userId);
                 fetchQuesition.upVote = await (fetchQuesition.upVoteIds.length + 1);
                 await fetchQuesition.upVoteIds.push(bodyData.userId);
 
@@ -60,8 +60,8 @@ router.post('/votes/:qId', async (req, res) => {
                 data1["userDetail"] = await users.getUserById(upVoteAdded.ownerId);
 
                 upVoteAdded["userDetail"] = await users.getUserById(upVoteAdded.ownerId);
-                console.log("fed up");
-                console.log(data1);
+                // console.log("fed up");
+                // console.log(data1);
 
                 // for (var i = 0; i < upVoteAdded.comments.length; i++) {
                 //     console.log("fed up 1");
@@ -69,8 +69,8 @@ router.post('/votes/:qId', async (req, res) => {
                 //     console.log(gettingData);
                 //     upVoteAdded.comments[i].userDetails = gettingData;
                 // }
-                console.log("fed up 2");
-                console.log(upVoteAdded);
+                // console.log("fed up 2");
+                // console.log(upVoteAdded);
                 res.status(200).json(upVoteAdded);
 
 
@@ -89,12 +89,12 @@ router.post('/votes/:qId', async (req, res) => {
                 downVoteAdded["userDetail"] = await users.getUserById(downVoteAdded.ownerId);
 
                 for (var i = 0; i < downVoteAdded.comments.length; i++) {
-                    console.log(downVoteAdded.comments[i].userId);
+                    // console.log(downVoteAdded.comments[i].userId);
                     var gettingData = await users.getUserById(downVoteAdded.comments[i].userId);
-                    console.log(gettingData);
+                    // console.log(gettingData);
                     downVoteAdded.comments[i]["userDetails"] = gettingData;
                 }
-                console.log(downVoteAdded);
+                // console.log(downVoteAdded);
                 res.status(200).json(downVoteAdded);
             }
         }
@@ -105,7 +105,7 @@ router.post('/votes/:qId', async (req, res) => {
 
 
 router.patch('/:qId', async (req, res) => {
-    console.log("hello");
+    // console.log("hello");
     let qId = req.params.qId;
     let updateData = req.body;
     try {
@@ -138,12 +138,12 @@ router.get('/', async (req, res) => {
 
 // POST /user/:userId
 router.post('/user/:userId', async (req, res) => {
-    console.log(req.params.userId);
-    console.log(req.files);
-    console.log(req.body.screenshot);
+    // console.log(req.params.userId);
+    // console.log(req.files);
+    // console.log(req.body.screenshot);
     let userId = req.params.userId;
     let data = req.body;
-    console.log("data in user/uid POST: ", data);
+    // console.log("data in user/uid POST: ", data);
 
     try {
         let result = await questions.addQuestion(userId, data);
@@ -172,7 +172,7 @@ router.post('/:qId/comment/', async (req, res) => {
         }
         
 //Sending notifications to the user who poster the question
-console.log("credentials,",credentials.auth)
+// console.log("credentials,",credentials.auth)
 let transporter =nodemailer.createTransport(
     {
         service: credentials.service,
@@ -198,7 +198,7 @@ transporter.sendMail(mail,(err,info) => {
     if (error) {
         console.log(error);
       } else {
-        console.log('Email sent: ' + info.response);
+        console.log('Email sent: ');
       }
 
 });
@@ -259,7 +259,7 @@ router.get('/user/:userId', async (req, res) => {
 
 router.post('/search', async (req, res) => {
     let search = req.body.term;
-    console.log("Search term", search)
+    // console.log("Search term", search)
     try {
         let result = await questions.getAllQuestionsBySearchCriteria(search);
         res.status(200).json(result);

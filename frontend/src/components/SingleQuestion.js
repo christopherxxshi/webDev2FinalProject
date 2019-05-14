@@ -18,7 +18,7 @@ class SingleQuestion extends React.Component {
     async componentDidMount() {
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
-        console.log(this.props.question);
+        // console.log(this.props.question);
         await this.props.languageChange("");
 
         // let question = await axios({

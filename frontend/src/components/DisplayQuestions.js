@@ -62,7 +62,7 @@ class DisplayQuestions extends Component {
             }
         } else {
             // Can just upload
-            console.log("Straight upload route");
+            // console.log("Straight upload route");
             try {
                 let request = new Request('http://localhost:3001/api/image/uploadImg',
                     {
