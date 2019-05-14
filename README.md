@@ -61,7 +61,3 @@ We will use FuzzySearch as a search engine to search for the question based on t
 __D3.js__:
 We use this to find out the current trend, the top asked questions. D3.js is the best way of visualising the trends of questions. We have adopted this tehnology with React for data visualization.
 
-
-## Github Repo
-
-[Find repository here](https://github.com/gpadriga/webDev2FinalProject)
