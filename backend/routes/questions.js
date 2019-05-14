@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 const data = require("../data");
 const questions = data.questions;
+const credentials = data.credentials;
 const users = require("../data/users");
 const nodemailer=require("nodemailer");
 
@@ -164,23 +165,20 @@ router.post('/:qId/comment/', async (req, res) => {
         if(result.screenshotId) {
             result["screenshotData"] = await images.getImgById(result.screenshotId);
         }
-
-        
         for (var i = 0; i < result.comments.length; i++) {
             const gettingData = await users.getUserById(result.comments[i].userId);
-            // console.log(gettingData);
             result.comments[i]["userDetails"] = gettingData;
             lastuser = result.comments[i]["userDetails"].username;
         }
         
 //Sending notifications to the user who poster the question
-
+console.log("credentials,",credentials.auth)
 let transporter =nodemailer.createTransport(
     {
-        service: 'gmail',
+        service: credentials.service,
         auth: {
-            user: 'askoverflow2019@gmail.com',
-            pass: 'team9@cs554'
+            user: credentials.auth,
+            pass: credentials.pass
         }
     }
 );
@@ -188,13 +186,13 @@ let transporter =nodemailer.createTransport(
 let reciptant = result["userDetail"].emailId;
 
 let mail = {
-    from:'askoverflow2019@gmail.com',
+    from:credentials.auth,
     to:`${reciptant}`,
     subject: `${lastuser} has commented`,
     text:`${lastuser} has commented to your question you have posted in askoverflow.com`
 
 }
-console.log("mail details",mail)
+//console.log("mail details",mail)
 transporter.sendMail(mail,(err,info) => {
 
     if (error) {
