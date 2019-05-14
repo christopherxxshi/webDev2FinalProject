@@ -3,7 +3,7 @@ import ReactModal from 'react-modal';
 import { Link } from "react-router-dom";
 import { getSignleQuestionUser, deleteUserQuestion } from "../action";
 import { connect } from "react-redux";
-import { brotliDecompress } from "zlib";
+// import { brotliDecompress } from "zlib";
 
 
 ReactModal.setAppElement("#root");

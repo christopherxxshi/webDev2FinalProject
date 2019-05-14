@@ -40,14 +40,14 @@ class SideNavBar extends Component {
                 <div id="mainbox" onClick={this.openFunction}>&#9776; Select Language</div>
                 <div id="menu" className="sidemenu">
 
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Java")}>Java</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("JavaScript")}>JavaScript</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("HTML")}>HTML</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Python")}>Python</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("TypeScript")}>TypeScript</a>
-                    <a href="#" onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("Java")}>Java</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("JavaScript")}>JavaScript</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("HTML")}>HTML</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("Python")}>Python</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("TypeScript")}>TypeScript</a>
+                    <a onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
                     <a href="/BarData" >Top Asked</a>
-                    <a href="#" className="closebutton" onClick={this.closeFunction}>&times;</a>
+                    <a className="closebutton" onClick={this.closeFunction}>&times;</a>
                 </div>
             </div>
 

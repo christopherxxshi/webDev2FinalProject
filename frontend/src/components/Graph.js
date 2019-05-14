@@ -1,7 +1,7 @@
 //Module for data graph using D3JS.
 
 import React, { Component } from "react";
-import { ReactDOM } from "react-dom";
+// import { ReactDOM } from "react-dom";
 import { withFauxDOM } from 'react-faux-dom'
 import * as d3 from 'd3'
 import dataQ from "../api";
@@ -41,21 +41,21 @@ class Graph extends Component {
         let countjs = 0;
         let countts = 0;
         let countothers = 0;
-        var allQuestions = [];
+        var allQuestions = []; 
         let langArr = [];
 
         allQuestions = this.state.searchData.map(question => {
 
             if (question) {
-                if (question.language == "Java") {
+                if (question.language === "Java") {
                     languageCategory["Java"] = countjava++;
-                } else if (question.language == "HTML") {
+                } else if (question.language === "HTML") {
                     languageCategory["HTML"] = counthtml++;
-                } else if (question.language == "JavaScript") {
+                } else if (question.language === "JavaScript") {
                     languageCategory["JavaScript"] = countjs++;
-                } else if (question.language == "Python") {
+                } else if (question.language === "Python") {
                     languageCategory["Python"] = countpy++;
-                } else if (question.language == "TypeScript") {
+                } else if (question.language === "TypeScript") {
                     languageCategory["TypeScript"] = countts++;
                 } else {
                     languageCategory["Others"] = countothers++;

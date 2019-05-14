@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import data from "../api";
 import { Link, } from "react-router-dom";
-import questions from "../reducers/questions";
+// import questions from "../reducers/questions";
 import "../style/socialMedia.css";
 // 
 
@@ -77,7 +77,7 @@ class SearchQuestion extends Component {
                     length++;
                     let countAns=0;
                     let upVotes = questions.upVote;
-                    let comments = questions.comments.length == 0 ? "No Comments" :
+                    let comments = questions.comments.length === 0 ? "No Comments" :
                         questions.comments.map(comments => {
                             countAns++;
                             return (

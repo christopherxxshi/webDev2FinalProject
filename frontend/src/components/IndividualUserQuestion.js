@@ -160,7 +160,7 @@ class IndividualUserQuestion extends Component {
                                         //     </div>
                                         // </div>
                                         // :
-                                        indiQuestion.comments.length == 0 ?
+                                        indiQuestion.comments.length === 0 ?
 
                                             <h3 className="text-center myIndiQuestions">No comments for this Question</h3>
                                             :
