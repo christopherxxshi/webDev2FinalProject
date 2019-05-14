@@ -18,7 +18,7 @@ class SingleQuestion extends React.Component {
     async componentDidMount() {
         await this.props.getSignleQuestion(this.props.match.params.quesId);
 
-        console.log(this.props.question);
+        // console.log(this.props.question);
         await this.props.languageChange("");
 
         // let question = await axios({
@@ -120,7 +120,7 @@ class SingleQuestion extends React.Component {
 
             indiQuestion = (
                 <div>
-                    <h1>{this.props.question.title}</h1>
+                    <h1 className="titleOfSingleQuestion">{this.props.question.title}</h1>
                     {/* <h1>{this.state.question.title}</h1> */}
                     <hr />
 
@@ -132,7 +132,7 @@ class SingleQuestion extends React.Component {
                                     {this.props.question.upVote}
                                     <br />
                                     <FontAwesomeIcon
-                                        className="displayBtn"
+                                        className="displayBtn voteColor"
                                         icon={faThumbsUp}
                                         style={{ fontSize: '1.75em' }} />
                                     <hr className="myHrSize" />
@@ -144,7 +144,7 @@ class SingleQuestion extends React.Component {
                                     {this.props.question.downVote}
                                     <br />
                                     <FontAwesomeIcon
-                                        className="displayBtn"
+                                        className="displayBtn voteColor"
                                         icon={faThumbsDown}
                                         style={{ fontSize: '1.75em' }} />
                                     <br />
@@ -159,7 +159,12 @@ class SingleQuestion extends React.Component {
                             <br />
                             <br />
                             {imageStr !== "" ?
+<<<<<<< HEAD
                             <img src={imageStr} alt="a screenshot" className="screenshot"/>
+=======
+                            
+                            <img src={imageStr} alt="a screenshot" className="sizeOfImage"/>
+>>>>>>> origin
                             :
                             null}
                         </div>

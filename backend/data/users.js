@@ -75,14 +75,15 @@ module.exports.addUser = async function (data) {
     });
     try {
         let userExist = await this.getUserById(data.firebaseId);
-        console.log(userExist);
+        // console.log(userExist);
         if (userExist) {
             return { message: "User Already Exist" };
         }
         await newUser.save();
+        // console.log(newUser);
         return newUser;
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         throw e;
     }
 };

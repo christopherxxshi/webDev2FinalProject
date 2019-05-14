@@ -46,6 +46,7 @@ class SideNavBar extends Component {
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("Python")}>Python</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("TypeScript")}>TypeScript</a>
                     <a href="#" onClick={() => this.onSearchLang.bind(this)("Others")}>Others</a>
+                    <a href="/BarData" >Top Asked</a>
                     <a href="#" className="closebutton" onClick={this.closeFunction}>&times;</a>
                 </div>
             </div>

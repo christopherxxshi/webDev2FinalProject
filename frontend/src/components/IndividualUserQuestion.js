@@ -33,13 +33,13 @@ class IndividualUserQuestion extends Component {
 
 
     commentsIndi = async (comments) => {
-        console.log("indi comments");
-        console.log(comments[0]);
+        // console.log("indi comments");
+        // console.log(comments[0]);
         var comm = [];
 
         for (let prop in comments) {
             let indi = comments[prop];
-            console.log(indi);
+            // console.log(indi);
             comm.push(
                 <div className="box1" key={indi._id}>
                     <p>{indi.comment}</p>
@@ -65,7 +65,7 @@ class IndividualUserQuestion extends Component {
         // });
 
         // console.log(comm);
-        console.log("return")
+        // console.log("return")
         return <h1>hello</h1>;
 
     }
@@ -93,8 +93,8 @@ class IndividualUserQuestion extends Component {
                                     {/* <div  onClick={() => this.openComments.bind(this)(indiQuestion.quesId)}> */}
                                     {/* <div className="content"> */}
                                     <div className="text-center">
-                                        <h2>{indiQuestion.title}</h2>
-                                        <p>
+                                        <h2 className="myIndiTitle">{indiQuestion.title}</h2>
+                                        <p className="indiDescription">
                                             {indiQuestion.description}
 
                                         </p>
@@ -103,11 +103,11 @@ class IndividualUserQuestion extends Component {
                                     <div className="row text-center">
                                         <div className="userDateTime  col-lg-2">
                                             <div >
-                                                On <FontAwesomeIcon className="" icon={faCalendarAlt} /> | {indiQuestion.date}
+                                                <FontAwesomeIcon className="" icon={faCalendarAlt} /> | {indiQuestion.date}
 
                                             </div>
                                             <div>
-                                                At <FontAwesomeIcon className="" icon={faClock} /> | {indiQuestion.time} {indiQuestion.time > 12 ? <span>AM</span> : <span>PM</span>}
+                                                <FontAwesomeIcon className="" icon={faClock} /> | {indiQuestion.time} {indiQuestion.time > 12 ? <span>AM</span> : <span>PM</span>}
 
                                             </div>
 
@@ -162,9 +162,9 @@ class IndividualUserQuestion extends Component {
                                         // :
                                         indiQuestion.comments.length == 0 ?
 
-                                            <h3 className="text-center">No comments for this Question</h3>
+                                            <h3 className="text-center myIndiQuestions">No comments for this Question</h3>
                                             :
-                                            <h3 className="text-center">{`There are ${indiQuestion.comments.length} answers. Please search on above search field for answers.`}</h3>
+                                            <h3 className="text-center myIndiQuestions">{`There are ${indiQuestion.comments.length} answers. Please search on above search field for answers.`}</h3>
                                     }
 
                                 </div>
@@ -219,16 +219,16 @@ class IndividualUserQuestion extends Component {
             <div>
                 <hr />
                 <div className="text-center">
-                    <h1>
+                    <h1 className="individualH1">
                         Here are your all the questions which you posted
                 </h1>
-                    <h3>
-                        Note : You can only edit and delete your Questio when there are zero answers.
+                    <h3 className="redH3">
+                        Note : You can only edit and delete your Question when there are zero answers.
                 </h3>
                 </div>
 
                 <div className="container">
-                    <hr />
+                    <hr className="indiHR"/>
                     {questions}
                 </div>
 
@@ -243,7 +243,7 @@ class IndividualUserQuestion extends Component {
 
 const mapStsteToProps = (state) => {
 
-    console.log("individual question");
+    // console.log("individual question");
     var arr = [];
     for (let prop in state.questions.question) {
         arr.push(state.questions.question[prop]);

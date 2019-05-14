@@ -11,7 +11,7 @@ class AuthUser extends React.Component {
 
     signOut = async () => {
 
-        console.log("signOut in AuthUser");
+        // console.log("signOut in AuthUser");
 
         var signOut = false;
 
@@ -48,7 +48,7 @@ class AuthUser extends React.Component {
                         {this.props.auth.name}
                     </button>
 
-                    <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
+                    <button type="button" className="btn btn-secondary dropdown-toggle dropdown-toggle-split mydropDown" id="dropdownMenuReference" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" data-reference="parent">
                         <span className="sr-only">Toggle Dropdown</span>
                     </button>
 

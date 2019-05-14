@@ -23,7 +23,7 @@ export default (state = {}, action) => {
                     return question;
                 }
             });
-            console.log(arr);
+            // console.log(arr);
             return { question: arr };
 
         default:

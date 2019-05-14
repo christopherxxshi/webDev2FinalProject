@@ -59,6 +59,8 @@ module.exports.addQuestion = async function (ownerId, questionData) {
     // const found = await redisClient.getAsync(newQuestion.id);
     // console.log(found);
     await newQuestion.save();
+    // console.log(ownerId);
+    // console.log(questionData);
     return newQuestion;
 };
 
@@ -291,13 +293,13 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
 
         //Sorting the result according the upvotes
         
-        for (let i = 0; i < result.length -1; i++) {
-            for (let j = 1; j < result.length ; j++) {
+        for (let i = 0; i < result.length ; i++) {
+            for (let j = i+1; j < result.length ; j++) {
             if (result[j].upVote > result[i].upVote) {
                 let temp = result[i];
                 result[i] = result[j];
                 result[j] = temp;
-                console.log("Sorting");
+                // console.log("Sorting");
             }
         }
         }
@@ -309,6 +311,6 @@ module.exports.getAllQuestionsBySearchCriteria = async function (searchText) {
 };
 
 const escapeReg = function (text) {
-    console.log("inside escape", text)
+    // console.log("inside escape", text)
     return text.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
 };

@@ -48,7 +48,7 @@ hr{
   margin:0;
 }
 .script span {
-  background-color: #222;
+  /* background-color: #222; */
   padding: 0 0.3em;
   color:white;
 }
@@ -59,7 +59,7 @@ hr{
   z-index:-1!important;
   top: 50%!important;
   width: 100%!important;
-  border-bottom: 3px solid #fff!important;
+  border-bottom: 3px solid #fff !important;
 }
 .text1 {
   font-size: 60px;
@@ -69,4 +69,16 @@ hr{
 }
 .text3 {
   font-size: 100px;
+}
+.languageSize{
+  font-size: 22px;
+}
+.frontBigtitle{
+  color: white;
+  font-weight: bold;
+  font-size: 35px;
+}
+.frontBigtitle:hover{
+  text-decoration: none !important;
+  text-shadow: 1px 1px 10px white;
 }

@@ -29,7 +29,7 @@ class DisplayPosts extends React.Component {
 
         // this.setState({ render: true });
 
-        console.log("single question");
+        // console.log("single question");
 
         await this.props.displayQuestions();
 
@@ -115,13 +115,13 @@ class DisplayPosts extends React.Component {
                                     </div>
                                 </div> */}
                                         <div className="text-center">
-                                            <h3>{question.language}</h3>
+                                            <h3 className="languageSize">{question.language}</h3>
                                         </div>
 
                                     </div>
                                     <div className="col-lg-9  col-md-8 col-xs-12">
                                         <Link to={`/singleQuestion/${question._id}`}>
-                                            <h2>
+                                            <h2 className="frontBigtitle">
                                                 {question.title}
                                             </h2>
                                         </Link>
@@ -194,7 +194,7 @@ const mapStateToProps = (state) => {
 
     // console.log(state.questions);
 
-    console.log("state.questions.question");
+    // console.log("state.questions.question");
 
     return { questions: state.questions.question, language: state.language.language };
 };

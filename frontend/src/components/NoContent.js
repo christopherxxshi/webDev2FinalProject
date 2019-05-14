@@ -1,6 +1,6 @@
 import React from "react";
 import "../style/NoContent.css";
-import image from "../images/noContent.png";
+import image from "../images/noQuestions.png";
 
 export function NoContent(props) {
 
@@ -9,9 +9,7 @@ export function NoContent(props) {
         <div className="NoContent text-center">
                <br/> 
             <img className="imgExtn" alt="empty" src={image}></img>
-            <h1>
-                There are no Questions   
-            </h1>    
+            
         </div>
 
     )

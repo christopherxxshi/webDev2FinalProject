@@ -16,9 +16,9 @@ class EditUserQues extends React.Component {
 
     async componentDidMount() {
         this.setState({ quesId: this.props.match.params.quesId });
-        let getQuestiondetails =  await this.props.getSignleQuestionUser(this.props.match.params.quesId);
-        console.log("hello");
-        console.log(getQuestiondetails);
+        let getQuestiondetails = await this.props.getSignleQuestionUser(this.props.match.params.quesId);
+        // console.log("hello");
+        // console.log(getQuestiondetails);
         this.setState({ title: this.props.question.title });
         this.setState({ description: this.props.question.desc });
         this.setState({ language: this.props.question.language });
@@ -82,16 +82,24 @@ class EditUserQues extends React.Component {
                         <span>
 
                             <div>
+                                <div className="alignment">
+                                    <div className="one">
+                                    <button disabled={!(this.state.title && this.state.description && this.state.language)}
+                                        className=" btn" type="submit">Update</button>
+                                    </div>
+                                    <div className="two">
+                                    <button className="btn" onClick={() => history.push("/userQuestions")}>Cancel</button>
+                                    </div>
+                                </div>
 
 
                                 <div className=" post tect-center float-left">
-                                    <button disabled={!(this.state.title && this.state.description && this.state.language)}
-                                        className=" btn" type="submit">Update</button>
+                                    
                                 </div>
 
 
                                 <div className="float-right tect-center">
-                                    <button className="btn" onClick={() => history.push("/userQuestions")}>Cancel</button>
+                                    
                                 </div>
                             </div>
 

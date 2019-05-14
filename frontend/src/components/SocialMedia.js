@@ -12,7 +12,7 @@ class SocialMedia extends React.Component {
 
     signInFacebook = async (sMedia) => {
 
-        console.log(sMedia);
+        // console.log(sMedia);
 
         var provider;
         if (sMedia === "google") {
@@ -38,7 +38,7 @@ class SocialMedia extends React.Component {
             
             var user = result.user;
 
-            console.log(result);
+            // console.log(result);
 
             userDetails["name"] = result.user.displayName;
             userDetails["email"] = result.user.email;
@@ -135,22 +135,21 @@ class SocialMedia extends React.Component {
 
         return (
             <div className="float-right" style={divStyle}>
-                <div className="log-in-text text-center">Sign-in with...</div>
                 
                 <div className="social-Media-logo">
                 
-                    <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("facebook")}
+                    {/* <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("facebook")}
                         icon={faFacebookSquare} size="2x"
-                        className="mr-5 fbBrand" />
+                        className="mr-5 fbBrand" /> */}
 
                     <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("google")}
                         icon={faGooglePlusSquare} size="2x"
-                        className="mr-5 gBrand" />
+                        className="mr-5 gBrand myGoogleIcon" />
 
-                    <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("github")}
+                    {/* <FontAwesomeIcon cursor="pointer" onClick={() => this.signInFacebook.bind(this)("github")}
                         icon={faGithubSquare}
                         className="ghBrand"
-                        size="2x" />
+                        size="2x" /> */}
                 </div>
 
 
