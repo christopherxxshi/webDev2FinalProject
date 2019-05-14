@@ -1,16 +1,15 @@
+//Module for data graph using D3JS.
+
 import React, { Component } from "react";
 import { ReactDOM } from "react-dom";
-//import MyTool from "my-tooltip-component";
 import { withFauxDOM } from 'react-faux-dom'
 import * as d3 from 'd3'
 import dataQ from "../api";
-//import { connect } from "react-redux";
 import '../style/Graph.css'
 
-var num = 0;
-var colors = d3.schemeCategory10;
-// const width = 1265;
-// const height = 500;
+
+let num = 0;
+let colors = d3.schemeCategory10;
 
 class Graph extends Component {
     constructor(props) {
@@ -28,16 +27,9 @@ class Graph extends Component {
         this.drawD3Chart();
     }
 
-    // shouldComponentUpdate() {
-    //     return false;
-    // }
-
     async drawD3Chart() {
-        // await this.props.displayQuestions();
-
-
+        
         const response = await dataQ.get("/api/question");
-        console.log("response for graph", response);
         this.setState({ searchData: response.data });
 
         let languageCategory = {};
@@ -45,7 +37,6 @@ class Graph extends Component {
 
         let countjava = 0;
         let counthtml = 0;
-        // let countc = 0;
         let countpy = 0;
         let countjs = 0;
         let countts = 0;
@@ -66,8 +57,7 @@ class Graph extends Component {
                     languageCategory["Python"] = countpy++;
                 } else if (question.language == "TypeScript") {
                     languageCategory["TypeScript"] = countts++;
-                }
-                else {
+                } else {
                     languageCategory["Others"] = countothers++;
                 }
             }
@@ -104,39 +94,8 @@ class Graph extends Component {
         let wid = 500;
         let het = 600;
 
-        // let data = [
-        //     { letter: "A", frequency: .08167 },
-        //     { letter: "B", frequency: .01492 },
-        //     { letter: "C", frequency: .02780 },
-        //     { letter: "D", frequency: .04253 },
-        //     { letter: "E", frequency: .12702 },
-        //     { letter: "F", frequency: .02288 },
-        //     { letter: "G", frequency: .02022 },
-        //     { letter: "H", frequency: .06094 },
-        //     { letter: "I", frequency: .06973 },
-        //     { letter: "J", frequency: .00153 },
-        //     { letter: "K", frequency: .00747 },
-        //     { letter: "L", frequency: .04025 },
-        //     { letter: "M", frequency: .02517 },
-        //     { letter: "N", frequency: .06749 },
-        //     { letter: "O", frequency: .07507 },
-        //     { letter: "P", frequency: .01929 },
-        //     { letter: "Q", frequency: .00098 },
-        //     { letter: "R", frequency: .05987 },
-        //     { letter: "S", frequency: .06333 },
-        //     { letter: "T", frequency: .09056 },
-        //     { letter: "U", frequency: .02758 },
-        //     { letter: "V", frequency: .01037 },
-        //     { letter: "W", frequency: .02465 },
-        //     { letter: "X", frequency: .00150 },
-        //     { letter: "Y", frequency: .01971 },
-        //     { letter: "Z", frequency: .00074 },
-        // ]
 
-        //let data = this.props.data
         let margin = { top: 20, right: 30, bottom: 30, left: 35 },
-            // width = this.props.width - margin.left - margin.right,
-            // height = this.props.height - margin.top - margin.bottom;
             width = wid - margin.left - margin.right,
             height = het - margin.top - margin.bottom;
 
@@ -224,16 +183,4 @@ class Graph extends Component {
 }
 
 
-// const mapStateToProps = (state) => {
-
-//     // console.log("display component");
-
-//     // console.log(state.questions);
-
-//     console.log("state.questions.question");
-
-//     return { questions: state.questions.question, language: state.language.language };
-// };
 export default withFauxDOM(Graph)
-
-// export default connect(mapStateToProps, { displayQuestions })(withFauxDOM(Graph));
