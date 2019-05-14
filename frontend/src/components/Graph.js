@@ -5,6 +5,10 @@ import { withFauxDOM } from 'react-faux-dom'
 import * as d3 from 'd3'
 import dataQ from "../api";
 //import { connect } from "react-redux";
+import '../style/Graph.css'
+
+var num = 0;
+var colors = d3.schemeCategory10;
 
 class Graph extends Component {
     constructor(props) {
@@ -95,7 +99,7 @@ class Graph extends Component {
         console.log("language CAtegor", langArr)
 
         const div = this.props.connectFauxDOM('div', 'chart');
-        let wid = 600;
+        let wid = 500;
         let het = 600;
 
         // let data = [
@@ -139,15 +143,15 @@ class Graph extends Component {
 
         let y = d3.scaleLinear()
             .rangeRound([height, 0])
-            .domain([0,100])
-    
+            .domain([0, 100])
+
         let xAxis = d3.axisBottom()
             .scale(x)
 
         let yAxis = d3.axisLeft()
             .scale(y)
             .tickSize(10)
-        
+
 
 
         //Pass it to d3.select and proceed as normal
@@ -181,16 +185,32 @@ class Graph extends Component {
             .enter().append("rect")
             .attr("class", "bar")
             .attr("x", (d) => x(d.letter))
-            .attr("width", 70)
+            .attr("width", 60)
             .attr("y", (d) => y(d.frequency))
-            .attr("height", (d) => { return height - y(d.frequency) });
+            .attr("height", (d) => { return height - y(d.frequency) })
+            .style("margin", function(d) { return "20px"; })
+            .attr("fill", function (d, i) {
+                if(i>=6){
+                    if (i.toString().includes("0")) {
+                        num = i;
+                    }
+                    i = i - num;
+                }
+                return colors[i];
+            })
+            .append('title')
+            .text((d) => {
+                return d.letter +" ("+d.frequency+" Questions)"
+            });
     }
 
     render() {
         return (
             <div>
                 <h1>
-                    {this.props.chart}
+                    <div className="graphCenter">
+                        {this.props.chart}
+                    </div>
                 </h1>
 
             </div>

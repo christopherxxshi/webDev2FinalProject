@@ -132,7 +132,7 @@ class SingleQuestion extends React.Component {
                                     {this.props.question.upVote}
                                     <br />
                                     <FontAwesomeIcon
-                                        className="displayBtn"
+                                        className="displayBtn voteColor"
                                         icon={faThumbsUp}
                                         style={{ fontSize: '1.75em' }} />
                                     <hr className="myHrSize" />
@@ -144,7 +144,7 @@ class SingleQuestion extends React.Component {
                                     {this.props.question.downVote}
                                     <br />
                                     <FontAwesomeIcon
-                                        className="displayBtn"
+                                        className="displayBtn voteColor"
                                         icon={faThumbsDown}
                                         style={{ fontSize: '1.75em' }} />
                                     <br />

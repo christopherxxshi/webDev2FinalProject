@@ -115,7 +115,7 @@ class DisplayPosts extends React.Component {
                                     </div>
                                 </div> */}
                                         <div className="text-center">
-                                            <h3>{question.language}</h3>
+                                            <h3 className="languageSize">{question.language}</h3>
                                         </div>
 
                                     </div>
